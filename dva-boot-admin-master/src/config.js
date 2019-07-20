@@ -43,6 +43,7 @@ export default {
         return response;
       } else {
         throw new Error(message);
+        // return response;
       }
     },
     errorHandle: err => {
@@ -60,7 +61,7 @@ export default {
       // RequestError为拦截请求异常
       if (errName === 'RequestError') {
         notice.error(err.message);
-        console.error(err); 
+        console.error(err);
       } else {
         console.error(err);
       }

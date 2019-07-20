@@ -20,7 +20,6 @@ export default ({fetchMock, delay, mock, toSuccess, toError}) => {
           dataList: [],
         }), 400)
       }
-
       return toSuccess(mock({
         'currentPage': currentPage,
         'showCount': body.showCount,

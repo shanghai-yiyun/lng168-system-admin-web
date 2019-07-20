@@ -4,24 +4,15 @@
 const proxy = require('http-proxy-middleware');
 
 module.exports = function(app) {
-  app.use(
-    proxy('/api/sub', {
-      target: 'http://localhost:8080',
-      changeOrigin: true,
-      pathRewrite: {
-        '^/api': ''
-      }
-    })
-  );
-  // app.use(
-  //   proxy('/api', {
-  //     target: 'http://aaa:1000',
-  //     changeOrigin: true,
-  //     pathRewrite: {
-  //       '^/api': ''
-  //     }
-  //   })
-  // );
+    app.use(
+        proxy('/api', {
+            target: 'http://127.0.0.1:12080',
+            changeOrigin: true,
+            // pathRewrite: {
+            //     '^/gateway/gateway': '/gateway'
+            // }
+        })
+    );
   // app.use(
   //   proxy('/xxx', {
   //     target: 'http://bbb:2000',

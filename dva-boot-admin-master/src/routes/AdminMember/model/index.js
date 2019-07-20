@@ -1,5 +1,6 @@
 import modelEnhance from '@/utils/modelEnhance';
 import PageHelper from '@/utils/pageHelper';
+
 /**
  * 当第一次加载完页面时为true
  * 可以用这个值阻止切换页面时
@@ -7,17 +8,17 @@ import PageHelper from '@/utils/pageHelper';
  */
 let LOADED = false;
 export default modelEnhance({
-  namespace: 'crud',
+  namespace: 'adminMember',
 
   state: {
-    pageData: PageHelper.create(),
-    employees: []
+    pageData: PageHelper.create() ,
+    rolesMenu: []
   },
 
   subscriptions: {
     setup({ dispatch, history }) {
       history.listen(({ pathname }) => {
-        if (pathname === '/crud' && !LOADED) {
+        if (pathname === '/adminMembee' && !LOADED) {
           LOADED = true;
           dispatch({
             type: 'init'
@@ -30,16 +31,12 @@ export default modelEnhance({
   effects: {
     // 进入页面加载
     *init({ payload }, { call, put, select }) {
-      const { pageData } = yield select(state => state.crud);
-
+      const { pageData } = yield select(state => state.adminMembe);
       yield put({
         type: 'getPageInfo',
         payload: {
           pageData: pageData.startPage(1, 10)
         }
-      });
-      yield put({
-        type: 'getEmployees'
       });
     },
     // 获取分页数据
@@ -49,23 +46,36 @@ export default modelEnhance({
         type: '@request',
         payload: {
           valueField: 'pageData',
-          url: '/crud/getList',
+          url: '/adminMember/getList',
           pageInfo: pageData
         }
       });
     },
     // 保存 之后查询分页
     *save({ payload }, { call, put, select, take }) {
-      const { values, success } = payload;
-      const { pageData } = yield select(state => state.crud);
-      yield put({
-        type: '@request',
-        payload: {
-          notice: true,
-          url: '/crud/save',
-          data: values
-        }
-      });
+      const { values, success, record } = payload;
+      const { pageData } = yield select(state => state.adminMember);
+      if (record === null){
+        yield put({
+          type: '@request',
+          payload: {
+            notice: true,
+            url:  '/adminMember/add',
+            data: values
+          }
+        });
+      } else {
+        yield put({
+          type: '@request',
+          payload: {
+            notice: true,
+            url: '/adminMember/save',
+            data: values
+          }
+        });
+      }
+
+
       // 等待@request结束
       yield take('@request/@@end');
       yield put({
@@ -79,13 +89,13 @@ export default modelEnhance({
     // 删除 之后查询分页
     *remove({ payload }, { call, put, select }) {
       const { records, success } = payload;
-      const { pageData } = yield select(state => state.crud);
+      const { pageData } = yield select(state => state.adminMember);
       yield put({
         type: '@request',
         payload: {
           notice: true,
-          url: '/crud/bathDelete',
-          data: records.map(item => item.rowKey)
+          url: '/adminMember/bathDelete',
+          data: records
         }
       });
       yield put({
@@ -94,17 +104,19 @@ export default modelEnhance({
       });
       success();
     },
-    // 获取员工列表
-    *getEmployees({ payload }, { call, put }) {
+    // 获取穿梭树中得数据
+    *getData({payload}, {call, put, select}) {
+      const { record ,success } = payload;
       yield put({
         type: '@request',
-        afterResponse: resp => resp.data,
         payload: {
-          valueField: 'employees',
-          url: '/crud/getWorkEmployee'
+          valueField: 'rolesSelectMenu',
+          url: '/adminMember/detailInfoGet',
+          data: record
         }
       });
-    }
+      success();
+    },
   },
 
   reducers: {}

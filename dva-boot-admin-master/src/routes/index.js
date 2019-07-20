@@ -31,6 +31,7 @@ import CSSAnimate from './UI/CSSAnimate';
 import Alerts from './UI/Alerts';
 import Button from './UI/Button';
 import CRUD from './Business/CRUD';
+import AdminRoles from './AdminRole';
 
 /**
  * 主路由配置
@@ -48,9 +49,9 @@ const routesConfig = app => [
     indexRoute: '/sign/login',
     component: UserLayout,
     childRoutes: [
-      Login(app),
-      Register(app),
-      NotFound()
+      Login(app)  //登录
+      // Register(app),
+      // NotFound()
     ]
   },
   {
@@ -86,6 +87,7 @@ const routesConfig = app => [
       Print(),
       Banner(app),
       LevelRoute(app),
+      AdminRoles(app),
       NotFound()
     ]
   }

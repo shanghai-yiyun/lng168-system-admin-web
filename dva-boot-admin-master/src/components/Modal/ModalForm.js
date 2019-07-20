@@ -68,7 +68,6 @@ class ModalForm extends Component {
       full,
       preview
     } = this.props;
-
     const classname = cx(className, 'antui-modalform', { 'full-modal': full });
     const modalProps = {
       className: classname,

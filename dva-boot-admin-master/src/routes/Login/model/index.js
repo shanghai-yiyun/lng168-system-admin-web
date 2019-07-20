@@ -24,7 +24,8 @@ export default {
   effects: {
     *login({ payload }, { call, put }) {
       const { status, message, data } = yield call(login, payload);
-      if (status) {
+      if (status === 1) {
+        $$.setStore('token', message);
         $$.setStore('user', data);
         yield put(routerRedux.replace('/'));
       } else {
@@ -50,7 +51,8 @@ export default {
       return {
         ...state,
         loggedIn: false,
-        message: payload.message
+        message: payload.message,
+
       };
     },
   }

@@ -40,7 +40,7 @@ export default ({fetchMock, delay, mock, toSuccess, toError}) => {
     '/api/user/register': options => toSuccess(),
     '/api/user/menu': options => toSuccess([
       {
-        name: '仪表盘',
+        name: '主菜单',
         icon: 'dashboard',
         path: '/dashboard',
       },

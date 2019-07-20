@@ -36,8 +36,8 @@ class Login extends Component {
             <Form onSubmit={this.handleSubmit} className="login-form">
               <div className="user-img">
                 <img src={logoImg} alt="logo" />
-                <b>LANIF</b>
-                <span>Admin</span>
+                <b>LNG</b>
+                <span>物联网</span>
               </div>
               <FormItem>
                 {getFieldDecorator('userName', {
@@ -65,13 +65,9 @@ class Login extends Component {
                 )}
               </FormItem>
               <FormItem>
-                {getFieldDecorator('remember', {
-                  valuePropName: 'checked',
-                  initialValue: true
-                })(<Checkbox>记住我</Checkbox>)}
-                <Link className="login-form-forgot" to="#">
-                  忘记密码
-                </Link>
+                {/*<Link className="login-form-forgot" to="#">*/}
+                {/*  忘记密码*/}
+                {/*</Link>*/}
                 <Button
                   size="large"
                   type="primary"
@@ -80,9 +76,9 @@ class Login extends Component {
                 >
                   登录
                 </Button>
-                <div className="new-user">
-                  新用户？<Link to="/sign/register">现在注册</Link>
-                </div>
+                {/*<div className="new-user">*/}
+                {/*  新用户？<Link to="/sign/register">现在注册</Link>*/}
+                {/*</div>*/}
               </FormItem>
             </Form>
           </Spin>

@@ -5,6 +5,12 @@ import $$ from 'cmn-utils';
 import config from '@/config';
 
 class BaseComponent extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      set: false,
+    };
+  }
   /**
    * 在没有dispatch函数时，如果想要在组件内进行跳转可以用router进行跳转
    */
@@ -38,7 +44,7 @@ class BaseComponent extends React.Component {
   onUpdate = record => {
     this.setState({
       record,
-      visible: true
+      visible: !this.state.set,
     });
   };
 
@@ -63,7 +69,15 @@ class BaseComponent extends React.Component {
       onCancel() {}
     });
   };
-
+  /**
+   * 设置
+   */
+  // onSetting = record => {
+  //   this.setState({
+  //     record,
+  //     set: !this.state.set,
+  //   });
+  // };
   handleAdd() {
     /* 子类重写 */
   }

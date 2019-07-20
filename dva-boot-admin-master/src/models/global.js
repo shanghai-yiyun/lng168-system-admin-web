@@ -12,6 +12,7 @@ export default modelEnhance({
   effects: {
     *getMenu({ payload }, { call, put }) {
       const { status, data } = yield call(getMenu, payload);
+      // console.log(JSON.stringify(data));
       if (status) {
         const loopMenu = (menu, pitem = {}) => {
           menu.forEach(item => {
@@ -56,5 +57,6 @@ export function getFlatMenu(menus) {
 }
 
 export async function getMenu(payload) {
-  return $$.post('/user/menu', payload);
+  // return $$.post('/user/menu', payload);
+  return $$.post('/admin/user/menu', payload);
 }

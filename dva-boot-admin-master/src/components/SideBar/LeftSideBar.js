@@ -267,7 +267,6 @@ class LeftSideBar extends PureComponent {
         </div>
       </Sider>
     );
-
     return isMobile ? (
       <Drawer
         className="left-sidebar-drawer"
@@ -280,8 +279,8 @@ class LeftSideBar extends PureComponent {
         <div className="navbar-branding">
           <div className="navbar-brand">
             <img src={logoImg} alt="logo" />
-            <b>LANIF</b>
-            Admin
+            <b>LNG</b>
+            物联网
           </div>
           <span className="toggle_sidemenu_l" onClick={onCollapse}>
             <Icon type="lines" />

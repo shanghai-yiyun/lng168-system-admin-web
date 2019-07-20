@@ -43,7 +43,7 @@ export default class extends BaseComponent {
         components: ['./Radar']
       },
       {
-        title: '仪表盘 / Gauge',
+        title: '主菜单 / Gauge',
         icon: 'dashboard',
         key: 'Gauge',
         components: ['./Gauge']
