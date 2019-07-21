@@ -32,6 +32,7 @@ import Alerts from './UI/Alerts';
 import Button from './UI/Button';
 import CRUD from './Business/CRUD';
 import AdminRoles from './AdminRole';
+import AdminMember from './AdminMember';
 
 /**
  * 主路由配置
@@ -88,7 +89,8 @@ const routesConfig = app => [
       Banner(app),
       LevelRoute(app),
       AdminRoles(app),
-      NotFound()
+      AdminMember(app),
+      NotFound(),
     ]
   }
 ];

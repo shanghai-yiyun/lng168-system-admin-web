@@ -323,7 +323,7 @@ export const Paging = ({ dataItems, onChange, ...otherProps }) => {
     showQuickJumper: true,
     showTotal: total => `共 ${total} 条`,
     onShowSizeChange: (pageNum, pageSize) => onChange({ pageNum, pageSize }),
-    onChange: pageNum => onChange({ pageNum }),
+    onChange: (pageNum) => onChange({ pageNum }),
     ...otherProps
   };
   return <Pagination {...paging} />;

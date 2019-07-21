@@ -8,116 +8,119 @@ import PageHelper from '@/utils/pageHelper';
  */
 let LOADED = false;
 export default modelEnhance({
-  namespace: 'adminMember',
+    namespace: 'adminMember',
 
-  state: {
-    pageData: PageHelper.create() ,
-    rolesMenu: []
-  },
-
-  subscriptions: {
-    setup({ dispatch, history }) {
-      history.listen(({ pathname }) => {
-        if (pathname === '/adminMembee' && !LOADED) {
-          LOADED = true;
-          dispatch({
-            type: 'init'
-          });
-        }
-      });
-    }
-  },
-
-  effects: {
-    // 进入页面加载
-    *init({ payload }, { call, put, select }) {
-      const { pageData } = yield select(state => state.adminMembe);
-      yield put({
-        type: 'getPageInfo',
-        payload: {
-          pageData: pageData.startPage(1, 10)
-        }
-      });
+    state: {
+        pageData: PageHelper.create(),
+        memberCertificate: [],
     },
-    // 获取分页数据
-    *getPageInfo({ payload }, { call, put }) {
-      const { pageData } = payload;
-      yield put({
-        type: '@request',
-        payload: {
-          valueField: 'pageData',
-          url: '/adminMember/getList',
-          pageInfo: pageData
-        }
-      });
-    },
-    // 保存 之后查询分页
-    *save({ payload }, { call, put, select, take }) {
-      const { values, success, record } = payload;
-      const { pageData } = yield select(state => state.adminMember);
-      if (record === null){
-        yield put({
-          type: '@request',
-          payload: {
-            notice: true,
-            url:  '/adminMember/add',
-            data: values
-          }
-        });
-      } else {
-        yield put({
-          type: '@request',
-          payload: {
-            notice: true,
-            url: '/adminMember/save',
-            data: values
-          }
-        });
-      }
 
-
-      // 等待@request结束
-      yield take('@request/@@end');
-      yield put({
-        type: 'getPageInfo',
-        payload: { pageData }
-      });
-      success();
-    },
-    // 修改
-    *update({ payload }, { call, put }) {},
-    // 删除 之后查询分页
-    *remove({ payload }, { call, put, select }) {
-      const { records, success } = payload;
-      const { pageData } = yield select(state => state.adminMember);
-      yield put({
-        type: '@request',
-        payload: {
-          notice: true,
-          url: '/adminMember/bathDelete',
-          data: records
+    subscriptions: {
+        setup({dispatch, history}) {
+            history.listen(({pathname}) => {
+                if (pathname === '/adminMember' && !LOADED) {
+                    LOADED = true;
+                    dispatch({
+                        type: 'init'
+                    });
+                }
+            });
         }
-      });
-      yield put({
-        type: 'getPageInfo',
-        payload: { pageData }
-      });
-      success();
     },
-    // 获取穿梭树中得数据
-    *getData({payload}, {call, put, select}) {
-      const { record ,success } = payload;
-      yield put({
-        type: '@request',
-        payload: {
-          valueField: 'rolesSelectMenu',
-          url: '/adminMember/detailInfoGet',
-          data: record
-        }
-      });
-      success();
-    },
-  },
 
-  reducers: {}
+    effects: {
+        // 进入页面加载
+        * init({payload}, {call, put, select}) {
+            const {pageData} = yield select(state => state.adminMember);
+            yield put({
+                type: 'getPageInfo',
+                payload: {
+                    pageData: pageData.startPage(1, 10)
+                }
+            });
+        },
+        // 获取分页数据
+        * getPageInfo({payload}, {call, put}) {
+            const {pageData} = payload;
+            yield put({
+                type: '@request',
+                payload: {
+                    valueField: 'pageData',
+                    url: '/adminMember/getList',
+                    pageInfo: pageData
+                }
+            });
+        },
+        // 保存 之后查询分页
+        * save({payload}, {call, put, select, take}) {
+            const {values, success, record} = payload;
+            const {pageData} = yield select(state => state.adminMember);
+            if (record === null) {
+                yield put({
+                    type: '@request',
+                    payload: {
+                        notice: true,
+                        url: '/adminMember/add',
+                        data: values
+                    }
+                });
+            } else {
+                yield put({
+                    type: '@request',
+                    payload: {
+                        notice: true,
+                        url: '/adminMember/save',
+                        data: values
+                    }
+                });
+            }
+            // 等待@request结束
+            yield take('@request/@@end');
+            yield put({
+                type: 'getPageInfo',
+                payload: {pageData}
+            });
+            success();
+        },
+        // 修改
+        // * update({payload}, {call, put}) {
+        // },
+        // 删除 之后查询分页
+        * remove({payload}, {call, put, select}) {
+            const {records, success} = payload;
+            const {pageData} = yield select(state => state.adminMember);
+            yield put({
+                type: '@request',
+                payload: {
+                    notice: true,
+                    url: '/adminMember/bathDelete',
+                    data: records
+                }
+            });
+            // 等待@request结束
+            yield take('@request/@@end');
+            yield put({
+                type: 'getPageInfo',
+                payload: {pageData}
+            });
+            success();
+        },
+        // 获取认证信息中的数据中得数据
+        * getData({payload}, {call, put, select,take}) {
+            const {record, success} = payload;
+            yield put({
+                type: '@request',
+                payload: {
+                    valueField: 'memberCertificate',
+                    url: '/adminMember/detailInfoGet',
+                    data: record
+                }
+            });
+            // 等待@request结束
+            yield take('@request/@@end');
+            success();
+        },
+    },
+
+    reducers: {}
 });
