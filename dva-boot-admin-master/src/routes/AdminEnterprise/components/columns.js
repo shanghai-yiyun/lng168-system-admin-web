@@ -2,27 +2,25 @@ import React from 'react';
 import DataTable from 'components/DataTable';
 import Icon from 'components/Icon';
 import Button from 'components/Button';
-import moment from 'moment';
-import { Empty } from 'antd';
 
 export const createColumns = (self) => [
     {
-        title: '会员id',
+        title: '企业id',
         name: 'id',
         formItem: {
             type: 'hidden'
         }
     },{
-        title: '昵称',
-        name: 'nickname',
+        title: '企业名称',
+        name: 'entTitle',
         tableItem: {},
         formItem: {rules: [{required: true}]},
         searchItem: {
             group: 'abc'
         }
     }, {
-        title: '手机号',
-        name: 'mobile',
+        title: '企业编号',
+        name: 'entBh',
         tableItem: {},
         formItem: {rules: [{required: true}]},
         searchItem: {
@@ -30,56 +28,48 @@ export const createColumns = (self) => [
         }
     },
     {
-        title: '会员级别',
-        name: 'memberLevel',
+        title: '类型',
+        name: 'entType',
         dict: [
-            {code: 0, codeName: '游客'},
-            {code: 1, codeName: '试用期有效会员'},
-            {code: 2, codeName: '会员'},
-            {code: 3, codeName: '过期会员'}
+            {code: 0, codeName: '平台'},
+            {code: 1, codeName: '气源厂'},
+            {code: 2, codeName: '加气站'},
+            {code: 3, codeName: '贸易商'}
         ],
         tableItem: {},
         formItem: {
             type: 'select',
-            rules: [{required: true, message: '请选择一个级别类型！'}]
+            rules: [{required: true, message: '请选择一个类型！'}]
         }
-    },
-    {
-        title: '用户类型',
-        name: 'type',
-        dict: [
-            {code: 0, codeName: '模拟用户'},
-            {code: 1, codeName: '真是用户'}
-        ],
+    }, {
+        title: '地址',
+        name: 'entAddress',
         tableItem: {},
-        formItem: {
-            type: 'select',
-            rules: [{required: true, message: '请选择一个用户类型！'}]
+        formItem: {rules: [{required: true}]},
+        searchItem: {
+            group: 'abc'
         }
-    },
-    {
-        title: '截止日期',
-        name: 'closingDate',
+    }, {
+        title: '电话',
+        name: 'entPhone',
         tableItem: {},
-        formItem: {
-            type: 'datetime',
-            showTime: true,
-            initialValue: moment(),
-            rules: [{required: true}]
+        formItem: {rules: [{required: true}]},
+        searchItem: {
+            group: 'abc'
         }
     },
-    {
-        title: '认证信息',
-        tableItem: {
-            render: (text, record) => (
-                <DataTable.Oper>
-                    <Button tooltip="认证信息" onClick={e => self.onSetting(record)}>
-                        <Icon type="plus"/>
-                    </Button>
-                </DataTable.Oper>
-            )
-        }
-    },
+    // {
+    //     title: '认证资料',
+    //     tableItem: {
+    //         render: (text, record) => (
+    //             <DataTable.Oper>
+    //                 <Button tooltip="认证资料" onClick={e => self.onSetting(record)}>
+    //                     <Icon type="plus"/>
+    //                 </Button>
+    //             </DataTable.Oper>
+    //         )
+    //     }
+    // },
     {
         title: '操作',
         tableItem: {
@@ -91,6 +81,9 @@ export const createColumns = (self) => [
                     </Button>
                     <Button tooltip="删除" onClick={e => self.onDelete(record)}>
                         <Icon type="trash"/>
+                    </Button>
+                    <Button tooltip="资质" onClick={e => self.onSetting(record)}>
+                        <Icon type="plus"/>
                     </Button>
                 </DataTable.Oper>
             )
@@ -114,6 +107,12 @@ export const columns2 = [
     {
         title: '标题说明',
         name: 'title',
+        tableItem: {},
+        formItem: {rules: [{required: true}]},
+    },
+    {
+        title: '营业执照号',
+        name: 'registrationno',
         tableItem: {},
         formItem: {rules: [{required: true}]},
     },
@@ -162,7 +161,7 @@ export const columns2 = [
         tableItem: {
         },
         formItem: {
-            type: 'upload',
+            type: 'upload1',
             initialValue: [],
             rules: [
                 {
@@ -172,9 +171,10 @@ export const columns2 = [
             ],
             maxFileSize: 1000, // 最大限制 kb
             fileTypes: ['.png', '.jpg', '.gif'], // 允许类型
-            max: 10,
-            isHidden:true,
-            isHandleRemove:false
+            max: 10,//上传图片数量最大限制
+            isHidden:false,
+            isHandleRemove:true,
+            // onPreview:this.onPreview
         }
     }
     // {

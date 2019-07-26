@@ -8,17 +8,17 @@ import PageHelper from '@/utils/pageHelper';
  */
 let LOADED = false;
 export default modelEnhance({
-    namespace: 'adminMember',
+    namespace: 'adminEnterprise',
 
     state: {
         pageData: PageHelper.create(),
-        memberCertificate: [],
+        enterpriseCertificate: [],
     },
 
     subscriptions: {
         setup({dispatch, history}) {
             history.listen(({pathname}) => {
-                if (pathname === '/adminMember' && !LOADED) {
+                if (pathname === '/adminEnterprise' && !LOADED) {
                     LOADED = true;
                     dispatch({
                         type: 'init'
@@ -31,7 +31,7 @@ export default modelEnhance({
     effects: {
         // 进入页面加载
         * init({payload}, {call, put, select}) {
-            const {pageData} = yield select(state => state.adminMember);
+            const {pageData} = yield select(state => state.adminEnterprise);
             yield put({
                 type: 'getPageInfo',
                 payload: {
@@ -46,7 +46,7 @@ export default modelEnhance({
                 type: '@request',
                 payload: {
                     valueField: 'pageData',
-                    url: '/adminMember/getList',
+                    url: '/adminEnterprise/getList',
                     pageInfo: pageData
                 }
             });
@@ -54,13 +54,13 @@ export default modelEnhance({
         // 保存 之后查询分页
         * save({payload}, {call, put, select, take}) {
             const {values, success, record} = payload;
-            const {pageData} = yield select(state => state.adminMember);
+            const {pageData} = yield select(state => state.adminEnterprise);
             if (record === null) {
                 yield put({
                     type: '@request',
                     payload: {
                         notice: true,
-                        url: '/adminMember/add',
+                        url: '/adminEnterprise/add',
                         data: values
                     }
                 });
@@ -69,7 +69,7 @@ export default modelEnhance({
                     type: '@request',
                     payload: {
                         notice: true,
-                        url: '/adminMember/save',
+                        url: '/adminEnterprise/save',
                         data: values
                     }
                 });
@@ -85,12 +85,12 @@ export default modelEnhance({
         // 删除 之后查询分页
         * remove({payload}, {call, put, select,take}) {
             const {records, success} = payload;
-            const {pageData} = yield select(state => state.adminMember);
+            const {pageData} = yield select(state => state.adminEnterprise);
             yield put({
                 type: '@request',
                 payload: {
                     notice: true,
-                    url: '/adminMember/bathDelete',
+                    url: '/adminEnterprise/bathDelete',
                     data: records
                 }
             });
@@ -108,8 +108,8 @@ export default modelEnhance({
             yield put({
                 type: '@request',
                 payload: {
-                    valueField: 'memberCertificate',
-                    url: '/adminMember/detailInfoGet',
+                    valueField: 'enterpriseCertificate',
+                    url: '/adminEnterprise/detailInfoGet',
                     data: record
                 }
             });
@@ -120,12 +120,12 @@ export default modelEnhance({
         // 审批客户资质
         * approve({payload}, {call, put, select,take}) {
             const {record, success} = payload;
-            const {pageData} = yield select(state => state.adminMember);
+            const {pageData} = yield select(state => state.adminEnterprise);
             yield put({
                 type: '@request',
                 payload: {
                     notice: true,
-                    url: '/adminMember/approve',
+                    url: '/adminEnterprise/approve',
                     data: record
                 }
             });

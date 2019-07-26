@@ -13,9 +13,9 @@ import './index.less';
 const {Content, Header, Footer} = Layout;
 const Pagination = DataTable.Pagination;
 
-@connect(({adminMember, loading}) => ({
-    adminMember,
-    loading: loading.models.adminMember
+@connect(({adminEnterprise, loading}) => ({
+    adminEnterprise,
+    loading: loading.models.adminEnterprise
 }))
 export default class extends BaseComponent {
     state = {
@@ -30,7 +30,7 @@ export default class extends BaseComponent {
         const {rows} = this.state;
 
         this.props.dispatch({
-            type: 'adminMember/remove',
+            type: 'adminEnterprise/remove',
             payload: {
                 records,
                 success: () => {
@@ -46,12 +46,12 @@ export default class extends BaseComponent {
     };
     onSetting = record => {
         this.props.dispatch({
-            type: 'adminMember/getData',
+            type: 'adminEnterprise/getData',
             payload: {
                 record,
                 success: () => {
-                    const data =this.props.adminMember.memberCertificate.data;
-                    const content =this.props.adminMember.memberCertificate.message;
+                    const data =this.props.adminEnterprise.enterpriseCertificate.data;
+                    const content =this.props.adminEnterprise.enterpriseCertificate.message;
                     if(data.id.length===0){
                         Modal.confirm({
                             title: '提示',
@@ -62,7 +62,7 @@ export default class extends BaseComponent {
                     }else{
                         this.setState({
                             set: !this.state.set,
-                            detailInfo : this.props.adminMember.memberCertificate.data,
+                            detailInfo : this.props.adminEnterprise.enterpriseCertificate.data,
                         });
                     }
                 }
@@ -77,11 +77,34 @@ export default class extends BaseComponent {
             detailInfo:[]
         });
     };
+    onCancel = () => {
+        this.setState({
+            record: null,
+            visible: false,
+            set: false,
+            detailInfo:[]
+        });
+    };
+    handleCancel = () => this.setState({ previewVisible: false }
+    );
 
+    handlePreview = async file => {
+        if (!file.url && !file.preview) {
+            file.preview = await getBase64(file.originFileObj);
+        }
+
+        this.setState({
+            previewImage: file.url || file.preview,
+            previewVisible: true,
+        });
+    };
+
+    handleChange = ({ fileList }) => this.setState({ fileList });
     handleSubmit = (value, record)=> {
-        // alert(JSON.stringify(value));
+        alert(1);
+        console.log(JSON.stringify(value));
         this.props.dispatch({
-            type: 'adminMember/approve',
+            type: 'adminEnterprise/approve',
             payload: {
                 record: value,
                 success: () => {
@@ -90,16 +113,17 @@ export default class extends BaseComponent {
             }
         });
     };
+
     render() {
-        const {adminMember, loading, dispatch} = this.props;
-        const {pageData} = adminMember;
+        const {adminEnterprise, loading, dispatch} = this.props;
+        const {pageData} = adminEnterprise;
         const columns = createColumns(this);
         const {rows, record, visible} = this.state;
         const searchBarProps = {
             columns,
             onSearch: values => {
                 dispatch({
-                    type: 'adminMember/getPageInfo',
+                    type: 'adminEnterprise/getPageInfo',
                     payload: {
                         pageData: pageData.filter(values).jumpPage(1, 10)
                     }
@@ -117,7 +141,7 @@ export default class extends BaseComponent {
             selectedRowKeys: rows.map(item => item.rowKey),
             onChange: ({pageNum, pageSize}) => {
                 dispatch({
-                    type: 'adminMember/getPageInfo',
+                    type: 'adminEnterprise/getPageInfo',
                     payload: {
                         pageData: pageData.jumpPage(pageNum, pageSize)
                     }
@@ -144,7 +168,7 @@ export default class extends BaseComponent {
             // 可以使用主键或是否有record来区分状态
             onSubmit: values => {
                 dispatch({
-                    type: 'adminMember/save',
+                    type: 'adminEnterprise/save',
                     payload: {
                         values,
                         record,
@@ -165,9 +189,9 @@ export default class extends BaseComponent {
                     <Toolbar
                         appendLeft={
                             <Button.Group>
-                                {/*<Button type="primary" icon="plus" onClick={this.onAdd}>*/}
-                                {/*    新增*/}
-                                {/*</Button>*/}
+                                <Button type="primary" icon="plus" onClick={this.onAdd}>
+                                    新增
+                                </Button>
                                 <Button
                                     disabled={!rows.length}
                                     onClick={e => this.onDelete(rows)}
@@ -196,7 +220,7 @@ export default class extends BaseComponent {
                     onCancel={this.onCancel}
                     width={550}
                     // okButtonProps={{hidden:true }}
-                    // onOk={this.handleSubmit}
+                    // onOk={this.onApproval}
                     // cancelText={"取消"}
                     footer ={false}
                 >
@@ -206,7 +230,11 @@ export default class extends BaseComponent {
                         // footer={false}
                         onSubmit={this.handleSubmit}
                         onCancel={this.onCancel}
+
                         isHiddenReset={true}
+                        handleChange={this.handleChange}
+                        handlePreview={this.handlePreview}
+                        handleCancel={this.handleCancel}
                     >
                     </Form>
                 </Modal>

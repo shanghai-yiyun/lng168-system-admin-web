@@ -3,45 +3,53 @@ import DataTable from 'components/DataTable';
 import Icon from 'components/Icon';
 import Button from 'components/Button';
 
-export default (self) => [
+export const createColumns = (self) => [
     {
-        title: '角色id',
+        title: 'id',
         name: 'id',
+        tableItem: {},
         formItem: {
             type: 'hidden'
         }
-    },
-    {
-        title: '角色名称',
+    }, {
+        title: '参数代码',
+        name: 'code',
+        tableItem: {},
+        formItem: {rules: [{required: true}]},
+        searchItem: {
+            group: 'abc'
+        }
+    }, {
+        title: '参数名称',
         name: 'name',
         tableItem: {},
-        formItem: {}
-    },
-    {
-        title: '描述',
-        name: 'comment',
-        tableItem: {},
-        formItem: {}
-    },
-    {
-        title: '权限设置',
-        tableItem: {
-            render: (text, record) => (
-                <DataTable.Oper>
-                    <Button tooltip="设置" onClick={e => self.onSetting(record)}>
-                        <Icon type="plus"/>
-                    </Button>
-                </DataTable.Oper>
-            )
+        formItem: {rules: [{required: true}]},
+        searchItem: {
+            group: 'abc'
         }
     },
     {
+        title: '参数值',
+        name: 'value',
+        tableItem: {},
+        formItem: {
+            rules: [{required: true}]
+        }
+    },
+    {
+        title: '参数描述',
+        name: 'description',
+        tableItem: {},
+        formItem: {
+            rules: [{required: true}]
+        }
+    },{
         title: '操作',
         tableItem: {
             width: 180,
             render: (text, record) => (
                 <DataTable.Oper>
-                    <Button tooltip="修改" onClick={e => self.onUpdate(record)}>
+                    <Button tooltip="编辑" onClick={e => self.onUpdate(record)}>
                         <Icon type="edit"/>
                     </Button>
                     <Button tooltip="删除" onClick={e => self.onDelete(record)}>

@@ -110,7 +110,6 @@ export default class extends BaseComponent {
         });
       }
     };
-
     return (
       <Layout className="full-layout crud-page">
         <Header>

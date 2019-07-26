@@ -53,6 +53,7 @@ export default modelEnhance({
           pageInfo: pageData
         }
       });
+
     },
     // 保存 之后查询分页
     *save({ payload }, { call, put, select, take }) {
@@ -88,6 +89,7 @@ export default modelEnhance({
           data: records.map(item => item.rowKey)
         }
       });
+      yield take('@request/@@end');
       yield put({
         type: 'getPageInfo',
         payload: { pageData }

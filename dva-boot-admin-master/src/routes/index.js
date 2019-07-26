@@ -33,6 +33,8 @@ import Button from './UI/Button';
 import CRUD from './Business/CRUD';
 import AdminRoles from './AdminRole';
 import AdminMember from './AdminMember';
+import AdminSystem from './AdminSystem';
+import AdminEnterprise from './AdminEnterprise';
 
 /**
  * 主路由配置
@@ -90,6 +92,8 @@ const routesConfig = app => [
       LevelRoute(app),
       AdminRoles(app),
       AdminMember(app),
+      AdminSystem(app),
+      AdminEnterprise(app),
       NotFound(),
     ]
   }
