@@ -99,7 +99,6 @@ export default class extends BaseComponent {
         });
     };
 
-    handleChange = ({ fileList }) => this.setState({ fileList });
     handleSubmit = (value, record)=> {
         alert(1);
         console.log(JSON.stringify(value));
@@ -233,8 +232,6 @@ export default class extends BaseComponent {
 
                         isHiddenReset={true}
                         handleChange={this.handleChange}
-                        handlePreview={this.handlePreview}
-                        handleCancel={this.handleCancel}
                     >
                     </Form>
                 </Modal>

@@ -6,6 +6,7 @@ import objectAssign from 'object-assign';
 import $$ from 'cmn-utils';
 import omit from 'object.omit';
 import Password from './model/password';
+import PicturesWall from './model/pictureWall';
 import './style/index.less';
 
 const createForm = Form.create;
@@ -68,7 +69,18 @@ class FormComp extends React.Component {
      * 点击查询按钮 onSubmit(values) values 提交数据
      */
     onSubmit: PropTypes.func,
-
+    /**
+     * 点击查询按钮 handleDelete-pictureWall删除图片
+     */
+    handleDelete: PropTypes.func,
+    /**
+     * 点击查询按钮 handleSave-pictureWall保存图片
+     */
+    handleSave: PropTypes.func,
+    /**
+     * 点击关闭按钮
+     */
+    onCancel: PropTypes.func,
     /**
      * 是否是预览视图，所有表单项将展示为文本模式
      */
@@ -82,7 +94,10 @@ class FormComp extends React.Component {
      * 是否是提交中状态
      */
     loading: PropTypes.bool,
-
+    /**
+     * 取消按钮字样
+     */
+    isHiddenReset: PropTypes.bool,
     /**
      * 是否显示底部按钮，或传入自定义的底部按钮
      */
@@ -127,6 +142,10 @@ class FormComp extends React.Component {
   onReset = e => {
     this.props.form.resetFields();
   };
+  onCancel = e => {
+    const { form, record, onCancel } = this.props;
+    onCancel();
+  };
 
   onSubmit = e => {
     e.preventDefault();
@@ -134,6 +153,25 @@ class FormComp extends React.Component {
     form.validateFields((err, values) => {
       if (!err) {
         onSubmit && onSubmit(values, record);
+      }
+    });
+  };
+
+  handleSave = e => {
+    e.preventDefault();
+    const { form, record, handleSave } = this.props;
+    form.validateFields((err, values) => {
+      if (!err) {
+        handleSave && handleSave(values, record);
+      }
+    });
+  };
+  handleDelete = e => {
+    e.preventDefault();
+    const { form, record, handleDelete } = this.props;
+    form.validateFields((err, values) => {
+      if (!err) {
+        handleDelete && handleDelete(values, record);
       }
     });
   };
@@ -155,6 +193,7 @@ class FormComp extends React.Component {
       form,
       preview,
       loading,
+      isHiddenReset,
       footer,
       ...otherProps
     } = this.props;
@@ -166,7 +205,39 @@ class FormComp extends React.Component {
       'form-grid': type === 'grid',
       preview: preview
     });
-
+const uploadFile=
+    [
+  {
+    uid: '-1',
+    name: 'image.png',
+    status: 'done',
+    url: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
+  },
+  {
+    uid: '-2',
+    name: 'image.png',
+    status: 'done',
+    url: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
+  },
+  {
+    uid: '-3',
+    name: 'image.png',
+    status: 'done',
+    url: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
+  },
+  {
+    uid: '-4',
+    name: 'image.png',
+    status: 'done',
+    url: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
+  },
+  {
+    uid: '-5',
+    name: 'image.png',
+    status: 'done',
+    url: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
+  },
+];
     const colopts = type === 'grid' ? cols || this.cols : {};
     const rowopts = type === 'grid' ? rows || this.rows : {};
 
@@ -280,6 +351,15 @@ class FormComp extends React.Component {
                     {...formProps}
                   />
                 );
+              case 'upload1': //
+                return (
+                    <PicturesWall
+                    fileList={uploadFile}
+                    handleSave={this.handleSave}
+                    handleDelete={this.handleDelete}
+                    {...formProps}
+                    />
+                );
               default:
                 // 通用
                 FieldComp = require(`./model/${fieldType.toLowerCase()}`).default(
@@ -311,8 +391,11 @@ class FormComp extends React.Component {
               >
                 提交
               </Button>
-              <Button title="重置" onClick={e => this.onReset()} icon="reload">
+              <Button title="重置" onClick={e => this.onReset()} icon="reload" hidden={isHiddenReset}>
                 重置
+              </Button>
+              <Button title="关闭" onClick={e => this.onCancel()} >
+                关闭
               </Button>
             </ComponentCol>
           ) : (

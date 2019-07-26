@@ -161,7 +161,7 @@ export const columns2 = [
         tableItem: {
         },
         formItem: {
-            type: 'upload1',
+            type: 'upload',
             initialValue: [],
             rules: [
                 {

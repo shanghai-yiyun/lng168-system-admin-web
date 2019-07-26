@@ -33,7 +33,6 @@ export default class PicturesWall extends React.Component {
     handleChange = ({ fileList }) => this.setState({ fileList });
 
     render() {
-        // alert('00' + JSON.stringify(this.props.fileList));
         const { previewVisible, previewImage, fileList } = this.state;
         const uploadButton = (
             <div>
@@ -45,10 +44,13 @@ export default class PicturesWall extends React.Component {
             <div className="clearfix" style={{ width: '70%',margin: '0 auto'}}>
                 <Upload
                     action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
+                    // action={this.handleSave(fileList)}
                     listType="picture-card"
                     fileList={fileList}
                     onPreview={this.handlePreview}
                     onChange={this.handleChange}
+                    onRemove={this.handleDelete}
+
                 >
                     {fileList.length >= 8 ? null : uploadButton}
                 </Upload>
