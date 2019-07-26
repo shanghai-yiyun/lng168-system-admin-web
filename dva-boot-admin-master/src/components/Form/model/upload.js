@@ -24,11 +24,13 @@ export default ({
   renderUpload,
   btnIcon = 'upload',
   max,
+  isHidden,
   maxFileSize, // 最大文件大小
   fileTypes, // 允许文件类型
   action,    // 后台地址
   fileName,  // 上传到后台的文件名
   getPopupContainer,
+  isHandleRemove,
   ...otherProps
 }) => {
   const { getFieldDecorator } = form;
@@ -59,7 +61,7 @@ export default ({
   }
 
   if (preview) {
-    return <div style={otherProps.style}>{initval || ''}</div>;
+    return <div style={otherProps.style} >{initval || ''}</div>;
   }
 
   // 如果有rules
@@ -88,27 +90,42 @@ export default ({
   let uploadProps = {
     listType: 'picture',
     beforeUpload: file => false,
-  }
 
+  }
+    // handleCancel : () => this.setState({ previewVisible: false });
+    //
+    // handlePreview : async file => {
+    //     if (!file.url && !file.preview) {
+    //         file.preview = await getBase64(file.originFileObj);
+    //     }
+    //
+    //     this.setState({
+    //         previewImage: file.url || file.preview,
+    //         previewVisible: true,
+    //     });
+    // };
+    //
+    // handleChange : ({ fileList }) => this.setState({ fileList });
   // 真接上传到后台
   if (action) {
     uploadProps = omit(otherProps, ['beforeUpload']);
     uploadProps.action = action;
     uploadProps.name = fileName || 'file';
-  } 
+  }
 
   return getFieldDecorator(name, {
     valuePropName: 'fileList',
     getValueFromEvent: normFile,
     ...formFieldOptions
   })(
-    <Upload {...uploadProps} {...otherProps}>
+    <Upload {...uploadProps} {...otherProps} onRemove={isHandleRemove}>
       {renderUpload ? (
         renderUpload(form, record, isDisabled(max, form.getFieldValue(name)))
       ) : (
         <Button
           icon={btnIcon}
           disabled={isDisabled(max, form.getFieldValue(name))}
+          hidden={isHidden}
         >
           点击上传
         </Button>
