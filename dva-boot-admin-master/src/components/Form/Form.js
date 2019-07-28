@@ -205,39 +205,6 @@ class FormComp extends React.Component {
       'form-grid': type === 'grid',
       preview: preview
     });
-const uploadFile=
-    [
-  {
-    uid: '-1',
-    name: 'image.png',
-    status: 'done',
-    url: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
-  },
-  {
-    uid: '-2',
-    name: 'image.png',
-    status: 'done',
-    url: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
-  },
-  {
-    uid: '-3',
-    name: 'image.png',
-    status: 'done',
-    url: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
-  },
-  {
-    uid: '-4',
-    name: 'image.png',
-    status: 'done',
-    url: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
-  },
-  {
-    uid: '-5',
-    name: 'image.png',
-    status: 'done',
-    url: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
-  },
-];
     const colopts = type === 'grid' ? cols || this.cols : {};
     const rowopts = type === 'grid' ? rows || this.rows : {};
 
@@ -294,6 +261,7 @@ const uploadFile=
               form,
               name: field.name,
               title: field.title,
+              disabled:field.disabled,
               record,
               preview,
               ...field.formItem

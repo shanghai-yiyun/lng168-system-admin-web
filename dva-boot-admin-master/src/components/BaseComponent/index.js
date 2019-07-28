@@ -69,6 +69,24 @@ class BaseComponent extends React.Component {
       onCancel() {}
     });
   };
+  onSend = record => {
+    if (!record) return;
+    if ($$.isArray(record) && !record.length) return;
+
+    const content = `您是否要推送这${
+        $$.isArray(record) ? record.length : ''
+        }项？`;
+
+    Modal.confirm({
+      title: '注意',
+      content,
+      onOk: () => {
+        this.handleSend($$.isArray(record) ? record : [record]);
+      },
+      onCancel() {}
+    });
+  };
+
   /**
    * 设置
    */

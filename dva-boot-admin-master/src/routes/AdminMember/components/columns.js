@@ -67,18 +67,18 @@ export const createColumns = (self) => [
             initialValue: moment(),
             rules: [{required: true}]
         }
-    },
-    {
-        title: '认证信息',
-        tableItem: {
-            render: (text, record) => (
-                <DataTable.Oper>
-                    <Button tooltip="认证信息" onClick={e => self.onSetting(record)}>
-                        <Icon type="plus"/>
-                    </Button>
-                </DataTable.Oper>
-            )
-        }
+    // },
+    // {
+    //     title: '认证信息',
+    //     tableItem: {
+    //         render: (text, record) => (
+    //             <DataTable.Oper>
+    //                 <Button tooltip="认证信息" onClick={e => self.onSetting(record)}>
+    //                     <Icon type="plus"/>
+    //                 </Button>
+    //             </DataTable.Oper>
+    //         )
+    //     }
     },
     {
         title: '操作',
@@ -91,6 +91,9 @@ export const createColumns = (self) => [
                     </Button>
                     <Button tooltip="删除" onClick={e => self.onDelete(record)}>
                         <Icon type="trash"/>
+                    </Button>
+                    <Button tooltip="认证" onClick={e => self.onSetting(record)}>
+                        <Icon type="plus"/>
                     </Button>
                 </DataTable.Oper>
             )
@@ -112,19 +115,29 @@ export const columns2 = [
         }
     },
     {
+        name: 'entid',
+        formItem: {
+            type: 'hidden'
+        }
+    },
+    {
+        name: 'entbh',
+        formItem: {
+            type: 'hidden'
+        }
+    },
+    {
+        title: '所属企业',
+        name: 'entName',
+        tableItem: {},
+        formItem: {rules: [{required: true}]},
+    },
+    {
         title: '标题说明',
         name: 'title',
         tableItem: {},
         formItem: {rules: [{required: true}]},
     },
-    // {
-    //     title: '用户认证信息',
-    //     name: 'url',
-    //     tableItem: {
-    //
-    //     },
-    //     formItem: {}
-    // },
     {
         title: '类型',
         name: 'type',
@@ -176,50 +189,7 @@ export const columns2 = [
             isHidden:true,
             isHandleRemove:false
         }
-    }
-    // {
-    //     title: '角色名',
-    //     name: 'roleName',
-    //     formItem: {
-    //         rules: [
-    //             {
-    //                 required: true,
-    //                 message: '请输入角色名'
-    //             },
-    //             {
-    //                 pattern: /^[\w\u4E00-\u9FA5()]{1,20}$/,
-    //                 message: '角色名只能输入1-20个汉字、英文、数字、括号'
-    //             }
-    //         ]
-    //     }
-    // },
-    // {
-    //     title: '用户图标',
-    //     name: 'avatar',
-    //     formItem: {
-    //         type: 'upload',
-    //         initialValue: ['https://avatars1.githubusercontent.com/u/34116960'],
-    //         rules: [
-    //             {
-    //                 required: true,
-    //                 message: '请选择用户头像'
-    //             }
-    //         ],
-    //         maxFileSize: 1000, // 最大限制 kb
-    //         fileTypes: ['.png', '.jpg', '.gif'], // 允许类型
-    //         max: 2
-    //     }
-    // },
-    // {
-    //     title: '马上传',
-    //     name: 'userFile',
-    //     formItem: {
-    //         type: 'upload',
-    //         action: 'https://httpbin.org/post', // 后台接口 例：/uploadFile 会走代理
-    //         fileName: 'file1' // 后台接收的名字
-    //     }
-    // }
-    ,
+    },
     {
         title: '审批',
         name: 'approval',

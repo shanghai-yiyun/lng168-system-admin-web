@@ -28,7 +28,7 @@ export const createColumns = (self) => [
         }
     },
     {
-        title: '类型',
+        title: '企业类型',
         name: 'entType',
         dict: [
             {code: 0, codeName: '平台'},
@@ -58,18 +58,6 @@ export const createColumns = (self) => [
             group: 'abc'
         }
     },
-    // {
-    //     title: '认证资料',
-    //     tableItem: {
-    //         render: (text, record) => (
-    //             <DataTable.Oper>
-    //                 <Button tooltip="认证资料" onClick={e => self.onSetting(record)}>
-    //                     <Icon type="plus"/>
-    //                 </Button>
-    //             </DataTable.Oper>
-    //         )
-    //     }
-    // },
     {
         title: '操作',
         tableItem: {
@@ -112,19 +100,10 @@ export const columns2 = [
     },
     {
         title: '营业执照号',
-        name: 'registrationno',
+        name: 'entbh',
         tableItem: {},
         formItem: {rules: [{required: true}]},
-    },
-    // {
-    //     title: '用户认证信息',
-    //     name: 'url',
-    //     tableItem: {
-    //
-    //     },
-    //     formItem: {}
-    // },
-    {
+    },{
         title: '类型',
         name: 'type',
         dict: [
@@ -135,8 +114,12 @@ export const columns2 = [
             type: 'select',
             rules: [{required: true, message: '请选择一个角色类型！'}]
         }
-    },
-    {
+    },{
+        title: '企业人员',
+        name: 'workEmployees',
+        tableItem: {},
+        formItem: {},
+    },{
         title: '状态',
         name: 'state',
         dict: [
@@ -148,14 +131,12 @@ export const columns2 = [
             rules: [{required: true, message: '请选择一个状态！'}]
         },
 
-    },
-    {
+    },{
         title: '备注',
         name: 'memo',
         tableItem: {},
         formItem: {}
-    },
-    {
+    },{
         title: '用户认证信息',
         name: 'url',
         tableItem: {
@@ -174,53 +155,8 @@ export const columns2 = [
             max: 10,//上传图片数量最大限制
             isHidden:false,
             isHandleRemove:true,
-            // onPreview:this.onPreview
         }
-    }
-    // {
-    //     title: '角色名',
-    //     name: 'roleName',
-    //     formItem: {
-    //         rules: [
-    //             {
-    //                 required: true,
-    //                 message: '请输入角色名'
-    //             },
-    //             {
-    //                 pattern: /^[\w\u4E00-\u9FA5()]{1,20}$/,
-    //                 message: '角色名只能输入1-20个汉字、英文、数字、括号'
-    //             }
-    //         ]
-    //     }
-    // },
-    // {
-    //     title: '用户图标',
-    //     name: 'avatar',
-    //     formItem: {
-    //         type: 'upload',
-    //         initialValue: ['https://avatars1.githubusercontent.com/u/34116960'],
-    //         rules: [
-    //             {
-    //                 required: true,
-    //                 message: '请选择用户头像'
-    //             }
-    //         ],
-    //         maxFileSize: 1000, // 最大限制 kb
-    //         fileTypes: ['.png', '.jpg', '.gif'], // 允许类型
-    //         max: 2
-    //     }
-    // },
-    // {
-    //     title: '马上传',
-    //     name: 'userFile',
-    //     formItem: {
-    //         type: 'upload',
-    //         action: 'https://httpbin.org/post', // 后台接口 例：/uploadFile 会走代理
-    //         fileName: 'file1' // 后台接收的名字
-    //     }
-    // }
-    ,
-    {
+    },{
         title: '审批',
         name: 'approval',
         dict: [

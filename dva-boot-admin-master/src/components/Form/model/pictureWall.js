@@ -43,8 +43,8 @@ export default class PicturesWall extends React.Component {
         return (
             <div className="clearfix" style={{ width: '70%',margin: '0 auto'}}>
                 <Upload
-                    action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
-                    // action={this.handleSave(fileList)}
+                    // action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
+                    action={this.handleSave(fileList)}
                     listType="picture-card"
                     fileList={fileList}
                     onPreview={this.handlePreview}
