@@ -36,7 +36,7 @@ import AdminMember from './AdminMember';
 import AdminSystem from './AdminSystem';
 import AdminOrder from './AdminOrder';
 import AdminEnterprise from './AdminEnterprise';
-import AdminPurch from  './AdminSystem';
+import AdminPurch from  './AdminBusiness';
 import AdminPushMsg from  './AdminPushMsg';
 /**
  * 主路由配置
@@ -63,7 +63,7 @@ const routesConfig = app => [
     path: '/',
     title: '系统中心',
     component: BasicLayout,
-    indexRoute: '/coming',
+    indexRoute: '/dashboard',
     childRoutes: [
       Dashboard(app),
       Blank(app),
