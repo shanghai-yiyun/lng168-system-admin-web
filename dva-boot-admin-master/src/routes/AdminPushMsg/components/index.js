@@ -137,9 +137,9 @@ export default class extends BaseComponent {
                     <Toolbar
                         appendLeft={
                             <Button.Group>
-                                <Button type="primary" icon="plus" onClick={this.onAdd}>
-                                    新增
-                                </Button>
+                                {/*<Button type="primary" icon="plus" onClick={this.onAdd}>*/}
+                                {/*    新增*/}
+                                {/*</Button>*/}
                                 <Button
                                     disabled={!rows.length}
                                     onClick={e => this.onDelete(rows)}

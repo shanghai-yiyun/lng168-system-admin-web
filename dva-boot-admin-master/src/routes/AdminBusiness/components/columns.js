@@ -4,7 +4,7 @@ import Icon from 'components/Icon';
 import Button from 'components/Button';
 import moment from 'moment';
 
-export default (self) => [
+export const createColumns = (self, dataSource) => [
     {
         title: 'id',
         name: 'id',
@@ -112,6 +112,19 @@ export default (self) => [
             showTime: true,
             initialValue: moment()
         }
+    },{
+        title: '推送会员',
+        name: 'field2',
+        formItem: {
+            type: 'table',
+            rowKey: 'id',
+            titleKey: 'name',
+            dataSource,
+            columns: innerColumns,
+            onChange: (form, value, rows) => console.log('。。。:', value, rows),
+            loadData: self.onLoadTableData,
+            initialValue: [ ]
+        }
     },
     {
         title: '推送消息',
@@ -140,5 +153,20 @@ export default (self) => [
                 </DataTable.Oper>
             )
         }
+    }
+];
+const innerColumns = [
+    {
+        title: '昵称',
+        name: 'nickname',
+        tableItem: {}
+    },{
+        title: '用户名',
+        name: 'ename',
+        tableItem: {}
+    },{
+        title: '电话',
+        name: 'mobile',
+        tableItem: {}
     }
 ];

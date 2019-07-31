@@ -12,6 +12,7 @@ export default modelEnhance({
 
     state: {
         pageData: PageHelper.create(),
+        memberTableData: PageHelper.create(),
         // rolesMenu: [],
         // rolesSelectMenu: [],
     },
@@ -49,7 +50,7 @@ export default modelEnhance({
         // },
         // 进入页面加载
         * init({payload}, {call, put, select}) {
-            const {pageData} = yield select(state => state.adminBusiness);
+            const {pageData,memberTableData} = yield select(state => state.adminBusiness);
             yield put({
                 type: 'getPageInfo',
                 payload: {
@@ -57,7 +58,10 @@ export default modelEnhance({
                 }
             });
             // yield put({
-            //     type: 'getRolesMenu'
+            //     type: 'getMemberList',
+            //     payload: {
+            //         memberTableData: memberTableData.startPage(1, 10)
+            //     }
             // });
         },
         // 获取分页数据
@@ -106,18 +110,17 @@ export default modelEnhance({
         // 修改
         * update({payload}, {call, put}) {
         },
-        // // 获取穿梭树中得数据
-        // * getData({payload}, {call, put, select}) {
-        //     const {record, success} = payload;
+        // // 获取推送列表数据
+        // * getMemberList({payload}, {call, put, select}) {
+        //     const {memberTableData} = payload;
         //     yield put({
         //         type: '@request',
         //         payload: {
-        //             valueField: 'rolesSelectMenu',
-        //             url: '/adminBusiness/menuGet',
-        //             data: record
+        //             valueField: 'memberTableData',
+        //             url: '/adminBusiness/memberList',
+        //             memberTableData: {memberTableData}
         //         }
         //     });
-        //     success();
         // },
         // 删除 之后查询分页
         * remove({payload}, {call, put, select,take }) {
