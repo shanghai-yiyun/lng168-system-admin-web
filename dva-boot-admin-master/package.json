@@ -1,8 +1,8 @@
 {
   "name": "lng_168",
-  "version": "2.0.1",
+  "version": "1.0.1",
   "description": "lng_168",
-  "homepage": "/",
+  "homepage": "/admins",
   "license": "MIT",
   "scripts": {
     "start": "react-app-rewired start",
