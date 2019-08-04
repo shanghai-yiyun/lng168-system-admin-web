@@ -5,8 +5,8 @@ import BaseComponent from 'components/BaseComponent';
 import Toolbar from 'components/Toolbar';
 import DataTable from 'components/DataTable';
 import {ModalForm} from 'components/Modal';
-import TransferTree from 'components/TransferTree';
-import {createColumns} from './columns';
+import Form from 'components/Form';
+import {createColumns,createColumns2} from './columns';
 import PageHelper from '@/utils/pageHelper';
 import './index.less';
 import $$ from "cmn-utils/lib";
@@ -24,9 +24,6 @@ export default class extends BaseComponent {
         visible: false,
         rows: [],
         set: false,
-        targetNodes: [],
-        menuRecord: null,
-        loadingNodes: [],
     };
 
     handleDelete = records => {
@@ -48,64 +45,76 @@ export default class extends BaseComponent {
         });
     };
 
-    onSetting = record => {
-        this.props.dispatch({
-            type: 'adminBusiness/memberList',
-            payload: {
-                record,
-                success: () => {
-                    this.setState({
-                        set: !this.state.set,
-                        menuRecord: record,
-                    });
-                }
-            }
-        });
-    };
-    onMemberSelect = () => {
-        const {dispatch} = this.props;
-        const selectMember= this.state.targetNodes;
-        const menuRecord = this.state.menuRecord;
-        dispatch({
-            type: 'adminBusiness/sendMessage',
-            payload: {
-                menuRecord,
-                selectMember,
-                success: () => {
-                    this.setState({
-                        set: !this.state.set,
-                        targetNodes: [],
-                        loadingNodes: [],
-                    });
-                }
-            }
-        });
-    };
     onCancel = () => {
         this.setState({
             record: null,
             visible: false,
             set: false,
-            targetNodes: [],
-            loadingNodes: [],
         });
+
+        // location.reload();
+        // createColumns2(this,PageHelper.create(),PageHelper.create(),PageHelper.create())
     };
     handleChange = (targetKeys, targetNodes) => {
         this.setState({targetNodes: targetNodes});
     }
+    handleSubmit = (value)=> {
+        alert(JSON.stringify(value));
+        this.props.dispatch({
+            type: 'adminBusiness/sendMessage',
+            payload: {
+                record: this.state.record,
+                value: value,
+                success: () => {
+                    this.onCancel();
+                }
+            }
+        });
+    };
     onLoadTableData = pageInfo => {
-        return $$.post('/adminBusiness/memberList', PageHelper.requestFormat(pageInfo))
+        return $$.post('/adminMember/getList', PageHelper.requestFormat(pageInfo))
             .then(resp => {
                 return PageHelper.responseFormat(resp);
             })
             .catch(e => console.error(e));
     };
+    onLoadSupplyOfferData = pageInfo => {
+        const id = this.state.record.id;
+        const type = this.state.record.type;
+        pageInfo.filter({"id":id,"type":type});
+        return $$.post('/adminBusiness/getSupplyOfferList', PageHelper.requestFormat(pageInfo))
+            .then(resp => {
+                return PageHelper.responseFormat(resp);
+            })
+            .catch(e => console.error(e));
+    };
+    onLoadPurchOfferData= pageInfo => {
+        const id = this.state.record.id;
+        const type = this.state.record.type;
+        pageInfo.filter({"id":id,"type":type});
+        return $$.post('/adminMember/getPurchOfferList', PageHelper.requestFormat(pageInfo))
+            .then(resp => {
+                return PageHelper.responseFormat(resp);
+            })
+            .catch(e => console.error(e));
+    };
+    /**
+     * 意向咨询
+     * @param {object} 表单记录
+     */
+    onRecommended = record => {
+        this.setState({
+            record:record,
+            set: !this.state.set,
+        });
+    };
     render() {
         const {adminBusiness, loading, dispatch} = this.props;
-        const {pageData, rolesMenu, memberTableData} = adminBusiness;
+        const {pageData, memberTableData} = adminBusiness;
         const columns = createColumns(this,memberTableData);
-        const {rows, record, visible} = this.state;
-        // this.state.loadingNodes = rolesSelectMenu.data;
+        const {rows, record, visible,dataDataSup,dataDataPur} = this.state;
+        const columns2 = createColumns2(this,memberTableData,dataDataSup,dataDataPur);
+
         const dataTableProps = {
             loading,
             columns,
@@ -137,7 +146,7 @@ export default class extends BaseComponent {
             onCancel: () => {
                 this.setState({
                     record: null,
-                    visible: false
+                    visible: false,
                 });
             },
             // 新增、修改都会进到这个方法中，
@@ -151,7 +160,7 @@ export default class extends BaseComponent {
                         success: () => {
                             this.setState({
                                 record: null,
-                                visible: false
+                                visible: false,
                             });
                         }
                     }
@@ -187,25 +196,19 @@ export default class extends BaseComponent {
                 </Footer>
                 <ModalForm {...modalFormProps} />
                 <Modal
-                    title="选择推送会员"
+                    title="信息反馈"
                     visible={this.state.set}
-                    onOk={this.onMemberSelect}
                     onCancel={this.onCancel}
                     width={550}
+                    footer ={false}
+                    destroyOnClose
                 >
-                    <div>
-                        <Layout className="full-layout page transfer-tree-page">
-                            <Content>
-                                <TransferTree
-                                    dataSource={rolesMenu}
-                                    loading={loading}
-                                    targetNodes={this.state.loadingNodes}
-                                    onChange={this.handleChange}
-                                    showSearch
-                                />
-                            </Content>
-                        </Layout>
-                    </div>
+                    <Form
+                        columns={columns2}
+                        onSubmit={this.handleSubmit}
+                        onCancel={this.onCancel}
+                    >
+                    </Form>
                 </Modal>
             </Layout>
         );

@@ -41,6 +41,10 @@ export const createColumns = (self) => [
             type: 'select',
             rules: [{ required:true,message: '请选择一个状态！'}]
         },
+        searchItem: {
+            type: 'select',
+            group: 'abc'
+        }
     },{
         title: '订单编号',
         name: 'orderid',

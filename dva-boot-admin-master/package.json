@@ -1,12 +1,8 @@
 {
-  "name": "dva-boot-admin",
+  "name": "lng_168",
   "version": "2.0.1",
-  "description": "dva-boot-admin",
-  "homepage": "/dva-boot-admin",
-  "repository": {
-    "type": "git",
-    "url": "git@github.com:LANIF-UI/dva-boot-admin.git"
-  },
+  "description": "lng_168",
+  "homepage": "/",
   "license": "MIT",
   "scripts": {
     "start": "react-app-rewired start",

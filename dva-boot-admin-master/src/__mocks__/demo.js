@@ -18,13 +18,13 @@ export default ({fetchMock, delay, mock, toSuccess, toError}) => {
 
   return {
     // 支持方法头
-    'GET /api/getUserInfo': {
+    'GET /article-gateway/getUserInfo': {
       name: '小雨',
       sex: '男',
       age: 18,
     },
     // 模拟真实请求延迟效果
-    '/api/getUsers': delay([
+    '/article-gateway/getUsers': delay([
       { name: 'jonn' },
       { name: 'weiq' },
     ]),
@@ -40,7 +40,7 @@ export default ({fetchMock, delay, mock, toSuccess, toError}) => {
     'express:/user/:user': {},
     // 表格带分页, 写成函数形式可以使用请求参数，
     // 更真实的模拟后端数据处理业务
-    '/api/userInfo/getList': (options) => {
+    '/article-gateway/userInfo/getList': (options) => {
       const body = JSON.parse(options.body);
       const pageNum = body.pageNum;
       const idbase = (pageNum - 1) * 10 + 1;

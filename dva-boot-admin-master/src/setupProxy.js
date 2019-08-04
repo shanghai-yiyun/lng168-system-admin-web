@@ -5,8 +5,9 @@ const proxy = require('http-proxy-middleware');
 
 module.exports = function(app) {
     app.use(
-        proxy('/api', {
-            target: 'http://127.0.0.1:12080',
+        proxy('/article-gateway', {
+            // target: 'http://127.0.0.1:12080',
+            target: 'http://s.lng168.com:12080',
             changeOrigin: true,
             // pathRewrite: {
             //     '^/gateway/gateway': '/gateway'

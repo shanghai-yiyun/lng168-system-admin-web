@@ -52,7 +52,7 @@ export default class extends BaseComponent {
                 success: () => {
                     const data =this.props.adminMember.memberCertificate.data;
                     const content =this.props.adminMember.memberCertificate.message;
-                    if(data.id.length===0){
+                    if(data.membeId.length===0){
                         Modal.confirm({
                             title: '提示',
                             content,
@@ -79,7 +79,6 @@ export default class extends BaseComponent {
     };
 
     handleSubmit = (value, record)=> {
-        // alert(JSON.stringify(value));
         this.props.dispatch({
             type: 'adminMember/approve',
             payload: {
@@ -143,19 +142,19 @@ export default class extends BaseComponent {
             // 新增、修改都会进到这个方法中，
             // 可以使用主键或是否有record来区分状态
             onSubmit: values => {
-                dispatch({
-                    type: 'adminMember/save',
-                    payload: {
-                        values,
-                        record,
-                        success: () => {
+                // dispatch({
+                //     type: 'adminMember/save',
+                //     payload: {
+                //         values,
+                //         record,
+                //         success: () => {
                             this.setState({
                                 record: null,
                                 visible: false
                             });
-                        }
-                    }
-                });
+                //         }
+                //     }
+                // });
             }
         };
 
@@ -195,15 +194,11 @@ export default class extends BaseComponent {
                     destroyOnClose={true}
                     onCancel={this.onCancel}
                     width={550}
-                    // okButtonProps={{hidden:true }}
-                    // onOk={this.handleSubmit}
-                    // cancelText={"取消"}
                     footer ={false}
                 >
                     <Form
                         record={this.state.detailInfo}
                         columns={columns2}
-                        // footer={false}
                         onSubmit={this.handleSubmit}
                         onCancel={this.onCancel}
                         isHiddenReset={true}

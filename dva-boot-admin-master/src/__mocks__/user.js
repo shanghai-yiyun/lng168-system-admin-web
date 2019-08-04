@@ -17,7 +17,7 @@ export default ({fetchMock, delay, mock, toSuccess, toError}) => {
   // fetchMock.mock(/httpbin.org\/post/, {/* response */}, {/* options */});
 
   return {
-    '/api/user/login': (options) => {
+    '/article-gateway/user/login': (options) => {
       if (options.body) {
         const user = JSON.parse(options.body);
         if (user.userName === 'admin' && user.password === 'admin') {
@@ -37,8 +37,8 @@ export default ({fetchMock, delay, mock, toSuccess, toError}) => {
         return toError('请输入用户名和密码');
       }
     },
-    '/api/user/register': options => toSuccess(),
-    '/api/user/menu': options => toSuccess([
+    '/article-gateway/user/register': options => toSuccess(),
+    '/article-gateway/user/menu': options => toSuccess([
       {
         name: '主菜单',
         icon: 'dashboard',

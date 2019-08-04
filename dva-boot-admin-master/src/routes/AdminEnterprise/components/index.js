@@ -52,19 +52,20 @@ export default class extends BaseComponent {
                 success: () => {
                     const data =this.props.adminEnterprise.enterpriseCertificate.data;
                     const content =this.props.adminEnterprise.enterpriseCertificate.message;
-                    // if(data.id.length===0){
-                    //     Modal.confirm({
-                    //         title: '提示',
-                    //         content,
-                    //         okButtonProps:{hidden:true },
-                    //         onCancel() {}
-                    //     });
-                    // }else{
+                    if(data.entId.length===0){
+                        Modal.confirm({
+                            title: '提示',
+                            content,
+                            okButtonProps:{hidden:true },
+                            onCancel() {}
+                        });
+                    }else{
                         this.setState({
                             set: !this.state.set,
                             detailInfo : this.props.adminEnterprise.enterpriseCertificate.data,
                         });
-                    // }
+                    }
+
                 }
             }
         });
@@ -216,15 +217,11 @@ export default class extends BaseComponent {
                     destroyOnClose={true}
                     onCancel={this.onCancel}
                     width={550}
-                    // okButtonProps={{hidden:true }}
-                    // onOk={this.onApproval}
-                    // cancelText={"取消"}
                     footer ={false}
                 >
                     <Form
                         record={this.state.detailInfo}
                         columns={columns2}
-                        // footer={false}
                         onSubmit={this.handleSubmit}
                         onCancel={this.onCancel}
                         isHiddenReset={true}

@@ -13,6 +13,8 @@ export default modelEnhance({
     state: {
         pageData: PageHelper.create(),
         memberTableData: PageHelper.create(),
+        dataDataSup: PageHelper.create(),
+        dataDataPur: PageHelper.create(),
         // rolesMenu: [],
         // rolesSelectMenu: [],
     },
@@ -27,6 +29,10 @@ export default modelEnhance({
                     });
                 }
             });
+            // this.setState({
+            //     dataDataSup.filter:{},
+            //     dataDataPur.filter:{},
+            // });
         }
     },
 
@@ -50,7 +56,7 @@ export default modelEnhance({
         // },
         // 进入页面加载
         * init({payload}, {call, put, select}) {
-            const {pageData,memberTableData} = yield select(state => state.adminBusiness);
+            const {pageData} = yield select(state => state.adminBusiness);
             yield put({
                 type: 'getPageInfo',
                 payload: {
@@ -142,17 +148,24 @@ export default modelEnhance({
             });
             success();
         },
-        // // 获取全部菜单列表
-        // * getRolesMenu({payload}, {call, put}) {
-        //     yield put({
-        //         type: '@request',
-        //         afterResponse: resp => resp.data,
-        //         payload: {
-        //             valueField: 'rolesMenu',
-        //             url: '/adminBusiness/menuGetAll',
-        //         }
-        //     });
-        // }
+        // 获取全部菜单列表
+        * sendMessage({payload}, {call, put, select, take}) {
+            const {value, success, record} = payload;
+            yield put({
+                type: '@request',
+                payload: {
+                    notice: true,
+                    url: '/adminBusiness/sendMessage',
+                    data: {
+                        record: record,
+                        sendContent: value
+                    }
+                }
+            });
+            // 等待@request结束
+            yield take('@request/@@end');
+            success();
+        }
     },
     reducers: {}
 });

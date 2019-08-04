@@ -45,17 +45,130 @@ export const createColumns = (self) => [
         title: '地址',
         name: 'entAddress',
         tableItem: {},
-        formItem: {rules: [{required: true}]},
+        formItem: {},
         searchItem: {
             group: 'abc'
         }
     }, {
-        title: '电话',
+        title: '固定电话',
         name: 'entPhone',
         tableItem: {},
-        formItem: {rules: [{required: true}]},
+        formItem: {},
         searchItem: {
             group: 'abc'
+        }
+    }, {
+        title: '省份',
+        name: 'entProvince',
+        formItem: {},
+    }, {
+        title: '城市',
+        name: 'entCity',
+        formItem: {},
+    }, {
+        title: '县区',
+        name: 'entCounty',
+        formItem: {},
+    }, {
+        title: '邮编',
+        name: 'entZipcode',
+        formItem: {},
+    }, {
+        title: '联系人',
+        name: 'entContact',
+        formItem: {},
+    }, {
+        title: '手机',
+        name: 'entMobile',
+        formItem: {},
+    }, {
+        title: '企业网址',
+        name: 'entUrl',
+        formItem: {},
+    }, {
+        title: '备注',
+        name: 'entMemo',
+        formItem: {},
+    }, {
+        title: '经度',
+        name: 'entX',
+        formItem: {},
+    }, {
+        title: '纬度',
+        name: 'entY',
+        formItem: {},
+    }, {
+        title: '是否会员企业',
+        name: 'entMember',
+        dict: [
+            {code: 0, codeName: '非会员企业'},
+            {code: 1, codeName: '会员企业'},
+        ],
+        formItem: {
+            type: 'select',
+        },
+    }, {
+        title: '企业置顶1',
+        name: 'entTop',
+        formItem: {},
+    }, {
+        title: '企业推荐1',
+        name: 'entRec',
+        formItem: {},
+    }, {
+        title: '企业短名',
+        name: 'entShort',
+        formItem: {},
+    }, {
+        title: '警告标志',
+        name: 'entWarnSign',
+        formItem: {},
+    }, {
+        title: '警告内容',
+        name: 'entWarnContent',
+        formItem: {},
+    }, {
+        title: '企业分区标志',
+        name: 'entArea',
+        formItem: {},
+    }, {
+        title: '指数计算标志',
+        name: 'entMark',
+        dict: [
+            {code: 0, codeName: '计算'},
+            {code: 1, codeName: '不计算'},
+        ],
+        formItem: {
+            type: 'select',
+        },
+    }, {
+        title: '企业推荐模板',
+        name: 'templateType',
+        formItem: {},
+    }, {
+        title: '企业状态',
+        name: 'entState',
+        dict: [
+            {code: 0, codeName: '未运营'},
+            {code: 1, codeName: '运营'},
+            {code: 2, codeName: '未确认'}
+        ],
+        formItem: {
+            type: 'select',
+        },
+    },{
+        title: '审核状态',
+        name: 'cer_status',
+        dict: [
+            {code: 0, codeName: '未审核'},
+            {code: 1, codeName: '已通过'},
+            {code: 2, codeName: '已驳回'},
+        ],
+        tableItem: {},
+        formItem: {type: 'select'},
+        searchItem: {
+            group: 'abc',
+            type: 'select'
         }
     },
     {
@@ -71,7 +184,7 @@ export const createColumns = (self) => [
                         <Icon type="trash"/>
                     </Button>
                     <Button tooltip="资质" onClick={e => self.onSetting(record)}>
-                        <Icon type="plus"/>
+                        <Icon type="check"/>
                     </Button>
                 </DataTable.Oper>
             )
@@ -81,63 +194,46 @@ export const createColumns = (self) => [
 
 export const columns2 = [
     {
-        name: 'id',
+        name: 'entId',
         formItem: {
             type: 'hidden'
         }
     },
     {
-        name: 'pid',
-        formItem: {
-            type: 'hidden'
-        }
-    },
-    {
-        title: '标题说明',
-        name: 'title',
+        title: '企业名称',
+        name: 'entName',
+        disabled:true,
         tableItem: {},
         formItem: {rules: [{required: true}]},
     },
     {
         title: '营业执照号',
-        name: 'entbh',
+        name: 'entBh',
+        disabled:true,
         tableItem: {},
         formItem: {rules: [{required: true}]},
     },{
-        title: '类型',
-        name: 'type',
+        title: '公司类型',
+        name: 'entType',
+        disabled:true,
         dict: [
-            {code: 1, codeName: '企业'},
-            {code: 2, codeName: '会员'}
+            {code: "0", codeName: '平台'},
+            {code: "1", codeName: '气源厂'},
+            {code: "2", codeName: '加气站'},
+            {code: "3", codeName: '贸易商'}
         ],
         formItem: {
             type: 'select',
-            rules: [{required: true, message: '请选择一个角色类型！'}]
+            rules: [{required: true, message: '请选择一个类型！'}]
         }
     },{
         title: '企业人员',
         name: 'workEmployees',
+        disabled:true,
         tableItem: {},
         formItem: {},
     },{
-        title: '状态',
-        name: 'state',
-        dict: [
-            {code: 1, codeName: '正常'},
-            {code: 0, codeName: '待审核'}
-        ],
-        formItem: {
-            type: 'select',
-            rules: [{required: true, message: '请选择一个状态！'}]
-        },
-
-    },{
-        title: '备注',
-        name: 'memo',
-        tableItem: {},
-        formItem: {}
-    },{
-        title: '用户认证信息',
+        title: '企业认证信息',
         name: 'url',
         tableItem: {
         },

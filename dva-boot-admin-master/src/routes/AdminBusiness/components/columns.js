@@ -104,7 +104,7 @@ export const createColumns = (self, dataSource) => [
             rules: [{required: true, message: '请选择一个状态！'}]
         },
     },{
-        title: '发布时间',
+        title: '信息发布时间',
         name: 'pubDate',
         tableItem: {},
         formItem: {
@@ -112,27 +112,16 @@ export const createColumns = (self, dataSource) => [
             showTime: true,
             initialValue: moment()
         }
-    },{
-        title: '推送会员',
-        name: 'field2',
-        formItem: {
-            type: 'table',
-            rowKey: 'id',
-            titleKey: 'name',
-            dataSource,
-            columns: innerColumns,
-            onChange: (form, value, rows) => console.log('。。。:', value, rows),
-            loadData: self.onLoadTableData,
-            initialValue: [ ]
-        }
-    },
+    } ,
     {
-        title: '推送消息',
+        title: '信息反馈',
+        name: 'field2',
         tableItem: {
+            width: 80,
             render: (text, record) => (
                 <DataTable.Oper>
-                    <Button tooltip="推送消息" onClick={e => self.onSetting(record)}>
-                        <Icon type="plus"/>
+                    <Button tooltip="信息反馈" onClick={e => self.onRecommended(record)}>
+                        <Icon type="message"/>
                     </Button>
                 </DataTable.Oper>
             )
@@ -155,6 +144,54 @@ export const createColumns = (self, dataSource) => [
         }
     }
 ];
+
+export const createColumns2 = (self, dataSource,dataSource1,dataSource2) => [
+    {
+        title: '意向咨询',
+        name: 'sendList',
+        tableItem: {},
+        formItem: {
+            type: 'table',
+            rowKey: 'id',
+            titleKey: 'nickname',
+            dataSource,
+            columns: innerColumns,
+            onChange: (form, value, rows) => console.log('。。。:', value, rows),
+            loadData: self.onLoadTableData,
+            initialValue: [ ]
+        }
+    },
+    {
+        title: '供应抢购信息',
+        name: 'sup',
+        formItem: {
+            type: 'table',
+            rowKey: 'id',
+            titleKey: 'puEntName',
+            dataSource1,
+            columns:columnsSupplyOffer,
+            onChange: (form, value, rows) => console.log('。。。:', value, rows),
+            loadData: self.onLoadSupplyOfferData,
+            initialValue: [ ],
+            loading:true
+        }
+    },
+    {
+        title: '采购报价信息',
+        name: 'pur',
+        formItem: {
+            type: 'table',
+            rowKey: 'id',
+            titleKey: 'supEntName',
+            dataSource2,
+            columns:columnsPurchOffer,
+            onChange: (form, value, rows) => console.log('。。。:', value, rows),
+            loadData: self.onLoadPurchOfferData,
+            initialValue: [ ],
+            loading:true
+        }
+    }
+];
 const innerColumns = [
     {
         title: '昵称',
@@ -167,6 +204,93 @@ const innerColumns = [
     },{
         title: '电话',
         name: 'mobile',
+        tableItem: {}
+    }
+];
+//供应抢购表
+const columnsSupplyOffer = [
+    {
+        title: 'id',
+        name: 'id',
+        formItem: {
+            type: 'hidden'
+        }
+    },{
+        title: '采购单位ID',
+        name: 'purId',
+        formItem: {
+            type: 'purEntId'
+        }
+    },{
+        title: '采购企业名称',
+        name: 'puEntName',
+        tableItem: {}
+    },{
+        title: '采购量',
+        name: 'purNum',
+        tableItem: {}
+    },{
+        title: '到货日期',
+        name: 'purDate',
+        tableItem: {}
+    },{
+        title: '卸货地址',
+        name: 'purAddress',
+        tableItem: {}
+    },{
+        title: '发布时间',
+        name: 'pubDatetime',
+        tableItem: {
+            type: 'datetime',
+        }
+    },{
+        title: '会员ID',
+        name: 'memberid',
+        tableItem: {}
+    }
+];
+//采购报价表
+const columnsPurchOffer = [
+
+    {
+        title: 'id',
+        name: 'id',
+        formItem: {
+            type: 'hidden'
+        }
+    },{
+        title: '采购ID',
+        name: 'purId',
+        formItem: {
+            type: 'hidden'
+        }
+    },{
+        title: '液源厂',
+        name: 'supFactory',
+        tableItem: {}
+    },{
+        title: '供应单位编号',
+        name: 'supEntId',
+        tableItem: {}
+    },{
+        title: '供应企业名称',
+        name: 'supEntName',
+        tableItem: {}
+    },{
+        title: '单价',
+        name: 'supPrice',
+        tableItem: {}
+    },{
+        title: '装车时间',
+        name: 'supDate',
+        tableItem: {}
+    },{
+        title: '会员ID',
+        name: 'memberId',
+        tableItem: {}
+    },{
+        title: '发布时间',
+        name: 'puBdatetime',
         tableItem: {}
     }
 ];

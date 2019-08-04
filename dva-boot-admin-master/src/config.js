@@ -22,13 +22,12 @@ export default {
 
   // 异步请求配置
   request: {
-    prefix: '/api',
+    prefix: '/article-gateway',
 
     // 每次请求头部都会带着这些参数
     withHeaders: () => ({
-      token: store.getStore("token"),
+      Authorization: store.getStore("token"),
     }),
-
     /**
      * 因为modelEnhance需要知道服务器反回的数据，
      * 什么样的是成功，什么样的是失败，如

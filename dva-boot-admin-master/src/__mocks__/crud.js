@@ -4,7 +4,7 @@
 export default ({fetchMock, delay, mock, toSuccess, toError}) => {
   return {
     // 表格带分页
-    '/api/crud/getList': (options) => {
+    '/article-gateway/crud/getList': (options) => {
       const body = JSON.parse(options.body);
       const currentPage = body.currentPage;
       const idbase = (currentPage - 1) * 10 + 1;
@@ -23,7 +23,7 @@ export default ({fetchMock, delay, mock, toSuccess, toError}) => {
       return toSuccess(mock({
         'currentPage': currentPage,
         'showCount': body.showCount,
-        'totalResult': 100,
+        'totalResult': 90,
         'totalPage': 10,
         [`dataList|${body.showCount}`]: [{
           'id|+1': idbase,
@@ -41,14 +41,14 @@ export default ({fetchMock, delay, mock, toSuccess, toError}) => {
         }],
       }), 400)
     },
-    '/api/crud/bathDelete': (options) => toSuccess({options}, 400),
-    '/api/crud/getWorkEmployee': (options) => mock({
+    '/article-gateway/crud/bathDelete': (options) => toSuccess({options}, 400),
+    '/article-gateway/crud/getWorkEmployee': (options) => mock({
       'status': true,
       'data|10': [{
         'key|+1': 1,
         'title': '@cname',
       }]
     }),
-    '/api/crud/save': (options) => toSuccess({options}, 800),
+    '/article-gateway/crud/save': (options) => toSuccess({options}, 800),
   }
 }

@@ -29,7 +29,7 @@ export default (self) => [
             render: (text, record) => (
                 <DataTable.Oper>
                     <Button tooltip="设置" onClick={e => self.onSetting(record)}>
-                        <Icon type="plus"/>
+                        <Icon type="gear"/>
                     </Button>
                 </DataTable.Oper>
             )

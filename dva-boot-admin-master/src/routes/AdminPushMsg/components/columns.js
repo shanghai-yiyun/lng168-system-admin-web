@@ -16,9 +16,11 @@ export const createColumns = (self) => [
         tableItem: {},
         dict: [
             {code: 0, codeName: '订单推送'},
-            {code: 1, codeName: '客服推送'},
-            {code: 2, codeName: '新闻推送'},
-            {code: 3, codeName: '其他推送'}
+            {code: 1, codeName: '新闻推送'},
+            {code: 2, codeName: '抢购推送'},
+            {code: 3, codeName: '报价推送'},
+            {code: 4, codeName: '咨询回复'},
+            {code: 5, codeName: '聊天推送'}
         ],
         formItem: {
             type: 'select',
@@ -67,7 +69,7 @@ export const createColumns = (self) => [
     // },
 
     {
-        title: '状态',
+        title: '推送状态',
         name: 'state',
         tableItem:{},
         dict: [
@@ -79,6 +81,10 @@ export const createColumns = (self) => [
             type: 'select',
             rules: [{ required:true,message: '请选择一个状态！'}]
         },
+        searchItem: {
+            type: 'select',
+            group: 'abc'
+        }
     },{
         title: '操作',
         tableItem: {
