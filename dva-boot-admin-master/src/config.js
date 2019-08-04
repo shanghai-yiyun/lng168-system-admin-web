@@ -13,7 +13,7 @@ export default {
   /**
    * HTML的title模板
    */
-  htmlTitle: 'DBAdmin - {title}',
+  htmlTitle: 'LNG物联网 - {title}',
   
   /**
    * 系统通知
@@ -22,7 +22,7 @@ export default {
 
   // 异步请求配置
   request: {
-    prefix: '/article-gateway',
+    prefix: '/article-gate',
 
     // 每次请求头部都会带着这些参数
     withHeaders: () => ({

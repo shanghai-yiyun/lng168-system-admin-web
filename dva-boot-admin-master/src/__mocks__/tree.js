@@ -1,7 +1,7 @@
 export default ({fetchMock, delay, mock, toSuccess, toError}) => {
   return {
     // 组织机构
-    '/article-gateway/tree/getDept': (options) => {
+    '/article-gate/tree/getDept': (options) => {
       return toSuccess([{
         title: '经理',
         key: '0-0',
@@ -39,7 +39,7 @@ export default ({fetchMock, delay, mock, toSuccess, toError}) => {
       }], 400)
     },
     // 异步树
-    '/article-gateway/tree/getAsyncData': (options) => {
+    '/article-gate/tree/getAsyncData': (options) => {
       let key = '0';
       if (options.body) {
         key = JSON.parse(options.body);
@@ -60,7 +60,7 @@ export default ({fetchMock, delay, mock, toSuccess, toError}) => {
         }
       ], 400)
     },
-    '/article-gateway/tree/getAsyncSearchData': (options) => {
+    '/article-gate/tree/getAsyncSearchData': (options) => {
       let title = '0';
       if (options.body) {
         const data = JSON.parse(options.body);
@@ -74,7 +74,7 @@ export default ({fetchMock, delay, mock, toSuccess, toError}) => {
       ], 400)
     },
     // 异步select tree
-    '/article-gateway/tree/getAsyncTreeSelect': (options) => {
+    '/article-gate/tree/getAsyncTreeSelect': (options) => {
       let key = '0';
       if (options.body) {
         key = JSON.parse(options.body);
@@ -99,7 +99,7 @@ export default ({fetchMock, delay, mock, toSuccess, toError}) => {
       ], 400)
     },
     // 省市区数据
-    '/article-gateway/tree/getData': (options) => toSuccess(
+    '/article-gate/tree/getData': (options) => toSuccess(
       [
         {
           key: "123123",

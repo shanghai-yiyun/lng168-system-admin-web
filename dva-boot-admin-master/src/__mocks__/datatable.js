@@ -4,7 +4,7 @@
 export default ({ fetchMock, delay, mock, toSuccess, toError }) => {
   return {
     // 表格带分页
-    '/article-gateway/datatable/getList': options => {
+    '/article-gate/datatable/getList': options => {
       const body = JSON.parse(options.body);
       const currentPage = body.currentPage;
       const sortMap = body.sortMap;
@@ -38,7 +38,7 @@ export default ({ fetchMock, delay, mock, toSuccess, toError }) => {
       );
     },
     // 前台分页
-    '/article-gateway/datatable/frontPaging': options => {
+    '/article-gate/datatable/frontPaging': options => {
       return toSuccess(
         mock({
           [`list|33`]: [

@@ -4,7 +4,7 @@
 export default ({ fetchMock, delay, mock, toSuccess, toError }) => {
   // 模拟自动完成反回的数据
   return {
-    '/article-gateway/form/autoComplete': options => {
+    '/article-gate/form/autoComplete': options => {
       const body = JSON.parse(options.body);
       const userName = body;
 
