@@ -59,7 +59,6 @@ export default class extends BaseComponent {
         this.setState({targetNodes: targetNodes});
     }
     handleSubmit = (value)=> {
-        alert(JSON.stringify(value));
         this.props.dispatch({
             type: 'adminBusiness/sendMessage',
             payload: {
