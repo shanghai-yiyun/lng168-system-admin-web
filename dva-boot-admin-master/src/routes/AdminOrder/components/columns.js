@@ -59,11 +59,12 @@ export const createColumns = (self) => [
         name: 'orderTime',
         disabled:true,
         tableItem: {},
-        formItem: {},
+        formItem: {
+            type: 'datetime',
+        },
     },
     {
         title: '供应单位',
-        disabled:true,
         name: 'supEnt',
         tableItem: {},
         formItem: {
@@ -73,7 +74,6 @@ export const createColumns = (self) => [
     {
         title: '液源厂',
         name: 'supFactory',
-        disabled:true,
         formItem: {
 
         }
@@ -81,7 +81,6 @@ export const createColumns = (self) => [
     {
         title: '采购单位',
         name: 'purEnt',
-        disabled:true,
         tableItem: {},
         formItem: {
 
@@ -90,37 +89,32 @@ export const createColumns = (self) => [
     {
         title: '采购数量',
         name: 'purNum',
-        disabled:true,
         formItem: {
 
         }
     },{
         title: '采购单价',
         name: 'purPrice',
-        disabled:true,
         formItem: {
 
         }
     },{
         title: '装车时间',
-        disabled:true,
         name: 'supDate',
         formItem: {
-
+            type: 'datetime',
         }
     },{
         title: '卸货地址',
-        disabled:true,
         name: 'purAddress',
         formItem: {
 
         }
     },{
         title: '卸货时间',
-        disabled:true,
         name: 'purDate',
         formItem: {
-
+            type: 'datetime',
         }
     },{
         title: '操作',

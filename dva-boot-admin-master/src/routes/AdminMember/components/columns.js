@@ -55,6 +55,14 @@ export const createColumns = (self) => [
             // rules: [{required: true, message: '请选择一个级别类型！'}]
         }
     }, {
+        title: '注册时间',
+        name: 'timei',
+        tableItem: {},
+        disabled: true,
+        formItem: {
+            type: 'datetime',
+        },
+    }, {
         title: '截止日期',
         name: 'closingDate',
         disabled: true,
@@ -90,7 +98,7 @@ export const createColumns = (self) => [
     }, {
         title: '审核状态',
         disabled: true,
-        name: 'cer_status',
+        name: 'cerStatus',
         dict: [
             {code: 0, codeName: '未审核'},
             {code: 1, codeName: '已通过'},
@@ -192,7 +200,6 @@ export const columns2 = [
     {
         title: '用户认证信息',
         name: 'url',
-        disabled: true,
         tableItem: {},
         formItem: {
             type: 'upload',
@@ -206,8 +213,8 @@ export const columns2 = [
             maxFileSize: 1000, // 最大限制 kb
             fileTypes: ['.png', '.jpg', '.gif'], // 允许类型
             max: 10,
-            isHidden: true,
-            isHandleRemove: false
+            // isHidden: true,
+            // isHandleRemove: false
         }
     },
     {

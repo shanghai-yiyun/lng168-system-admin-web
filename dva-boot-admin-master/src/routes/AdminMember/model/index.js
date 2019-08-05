@@ -13,6 +13,7 @@ export default modelEnhance({
     state: {
         pageData: PageHelper.create(),
         memberCertificate: [],
+        memberLists: []
     },
 
     subscriptions: {
@@ -100,6 +101,20 @@ export default modelEnhance({
                 type: 'getPageInfo',
                 payload: {pageData}
             });
+            success();
+        },
+        // 删除 之后查询分页
+        * getMemberList({payload}, {call, put, select,take}) {
+            const {records,success} = payload;
+            yield put({
+                type: '@request',
+                payload: {
+                    valueField: 'memberLists',
+                    url: '/adminMember/getMemberList',
+                    data: records
+                }
+            });
+            yield take('@request/@@end');
             success();
         },
         // 获取认证信息中的数据中得数据

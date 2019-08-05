@@ -34,6 +34,14 @@ export const createColumns = (self) => [
         searchItem: {
             group: 'abc'
         }
+    },{
+        title: '推送时间',
+        name: 'timei',
+        tableItem: {},
+        disabled: true,
+        formItem: {
+            type: 'datetime',
+        },
     },
     {
         title: '通知标题',
