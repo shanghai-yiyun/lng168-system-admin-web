@@ -37,6 +37,14 @@ import AdminSystem from './AdminSystem';
 import AdminOrder from './AdminOrder';
 import AdminEnterprise from './AdminEnterprise';
 import AdminPurch from  './AdminBusiness';
+import AdminBusPur from  './AdminBusPur';
+import AdminBusPurOff from  './AdminBusPurOff';
+import AdminBusSup from  './AdminBusSup';
+import AdminBusSupOff from  './AdminBusSupOff';
+import AdminMsgSup from  './AdminMsgSup';
+import AdminMsgSupOff from  './AdminMsgSupOff';
+import AdminMsgPurOff from  './AdminMsgPurOff';
+import AdminMsgPur from  './AdminMsgPur';
 import AdminPushMsg from  './AdminPushMsg';
 /**
  * 主路由配置
@@ -96,8 +104,16 @@ const routesConfig = app => [
       AdminMember(app),
       AdminSystem(app),
       AdminOrder(app),
-      AdminPurch(app),
+      // AdminPurch(app),
+      AdminBusPur(app),
+      AdminBusPurOff(app),
+      AdminBusSup(app),
+      AdminBusSupOff(app),
       AdminEnterprise(app),
+      AdminMsgPur(app),
+      AdminMsgPurOff(app),
+      AdminMsgSup(app),
+      AdminMsgSupOff(app),
       AdminPushMsg(app),
       NotFound(),
     ]

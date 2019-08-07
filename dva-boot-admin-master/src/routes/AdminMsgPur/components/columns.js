@@ -67,17 +67,7 @@ export const createColumns = (self) => [
         formItem: {
             rules: [{required: true}]
         }
-    },
-    // {
-    //     title: '额外参数',
-    //     name: 'extrasparam',
-    //     tableItem: {},
-    //     formItem: {
-    //         rules: [{required: true}]
-    //     }
-    // },
-
-    {
+    },{
         title: '推送状态',
         name: 'state',
         tableItem:{},
@@ -100,9 +90,6 @@ export const createColumns = (self) => [
             width: 180,
             render: (text, record) => (
                 <DataTable.Oper>
-                    <Button tooltip="编辑" onClick={e => self.onUpdate(record)}>
-                        <Icon type="edit"/>
-                    </Button>
                     <Button tooltip="删除" onClick={e => self.onDelete(record)}>
                         <Icon type="trash"/>
                     </Button>

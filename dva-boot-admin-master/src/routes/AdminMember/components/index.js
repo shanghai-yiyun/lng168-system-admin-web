@@ -10,6 +10,7 @@ import {ModalForm} from 'components/Modal';
 import {createColumns, columns2} from './columns';
 import './index.less';
 import ExportJsonExcel from "js-export-excel";
+import $$ from "cmn-utils/lib";
 
 const {Content, Header, Footer} = Layout;
 const Pagination = DataTable.Pagination;
@@ -92,23 +93,41 @@ export default class extends BaseComponent {
         });
     };
     handleExport = records => {
-        this.props.dispatch({
-            type: 'adminMember/getMemberList',
-            payload: {
-                record: records,
-                success: () => {
-                    this.downloadExcel();
-                }
-            }
-        });
+        // this.props.dispatch({
+        //     type: 'adminMember/getMemberList',
+        //     payload: {
+        //         records,
+        //         success: () => {
+        //             this.downloadExcel();
+        //         }
+        //     }
+        // });
+        return $$.post('/adminMember/getMemberExport')
+            // .then(resp => {
+            //     alert(response );
+            // })
+
+            .then(response => response.blob())
+            .then(blob => {
+                alert(1);
+                var url = window.URL.createObjectURL(blob);
+                var a = document.createElement('a');
+                a.href = url;
+                a.download = "翼贸通会员明细统计表.xls";
+                a.click();
+            })
+            .catch(e => console.error(e));
     };
     // 调用方法
     downloadExcel = () => {
-        const {memberLists} = this.props;
+        const {adminMember} = this.props;
+        const {memberLists} = adminMember;
+        console.log(JSON.stringify(memberLists))
         var option = {};
         let dataTable = [];
         if (memberLists) {
             for (let i in memberLists.data) {
+                console.log(JSON.stringify(memberLists.data))
                 if (memberLists.data) {
                     let obj = {
                         '用户名': memberLists.data[i].ename,
@@ -226,12 +245,12 @@ export default class extends BaseComponent {
                                 >
                                     删除
                                 </Button>
-                                <Button
-                                    onClick={e => this.handleExport(rows)}
-                                    icon="download"
-                                >
-                                    一键导出列表
-                                </Button>
+                                {/*<Button*/}
+                                {/*    onClick={e => this.handleExport(rows)}*/}
+                                {/*    icon="download"*/}
+                                {/*>*/}
+                                {/*    一键导出列表*/}
+                                {/*</Button>*/}
                             </Button.Group>
                         }
                         pullDown={<SearchBar type="grid" {...searchBarProps} />}
