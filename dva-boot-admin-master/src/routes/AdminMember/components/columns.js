@@ -16,7 +16,6 @@ export const createColumns = (self) => [
         name: 'ename',
         tableItem: {},
         formItem: {},
-        disabled: true,
         searchItem: {
             group: 'abc'
         }
@@ -24,7 +23,6 @@ export const createColumns = (self) => [
         title: '昵称',
         name: 'nickname',
         tableItem: {},
-        disabled: true,
         formItem: {},
         searchItem: {
             group: 'abc'
@@ -33,16 +31,18 @@ export const createColumns = (self) => [
         title: '手机号',
         name: 'mobile',
         tableItem: {},
-        disabled: true,
         formItem: {},
         searchItem: {
             group: 'abc'
         }
+    // } ,{
+    //     title: '企业名称',
+    //     name: 'entName',
+    //     tableItem: {},
     },
     {
         title: '会员级别',
         name: 'memberLevel',
-        disabled: true,
         dict: [
             {code: 0, codeName: '游客'},
             {code: 1, codeName: '试用期有效会员'},
@@ -58,27 +58,14 @@ export const createColumns = (self) => [
         title: '注册时间',
         name: 'timei',
         tableItem: {},
-        disabled: true,
-        formItem: {
-            type: 'datetime',
-        },
     }, {
-        title: '截止日期',
-        name: 'closingDate',
-        disabled: true,
-        formItem: {
-            type: 'date',
-        },
-    },
-    {
         title: '用户类型',
         name: 'type',
         dict: [
             {code: 0, codeName: '模拟用户'},
-            {code: 1, codeName: '真是用户'}
+            {code: 1, codeName: '真实用户'}
         ],
         tableItem: {},
-        disabled: true,
         formItem: {
             type: 'select',
             // rules: [{required: true, message: '请选择一个用户类型！'}]
@@ -87,7 +74,6 @@ export const createColumns = (self) => [
     {
         title: '截止日期',
         name: 'closingDate',
-        disabled: true,
         tableItem: {},
         formItem: {
             type: 'datetime',
@@ -97,7 +83,6 @@ export const createColumns = (self) => [
         }
     }, {
         title: '审核状态',
-        disabled: true,
         name: 'cerStatus',
         dict: [
             {code: 0, codeName: '未审核'},
@@ -111,13 +96,7 @@ export const createColumns = (self) => [
             type: 'select'
         }
     }, {
-        title: '最后一次在线时间',
-        disabled: true,
-        name: 'appLastOnlineTime',
-        formItem: {},
-    }, {
         title: '推荐号',
-        disabled: true,
         name: 'referralCode',
         formItem: {},
     }, {
@@ -127,7 +106,7 @@ export const createColumns = (self) => [
             render: (text, record) => (
                 <DataTable.Oper>
                     <Button tooltip="详情" onClick={e => self.onUpdate(record)}>
-                        <Icon type="enlarge"/>
+                        <Icon type="edit"/>
                     </Button>
                     <Button tooltip="删除" onClick={e => self.onDelete(record)}>
                         <Icon type="trash"/>
@@ -157,7 +136,6 @@ export const columns2 = [
     {
         title: '公司名称',
         name: 'entName',
-        disabled: true,
         tableItem: {},
         formItem: {rules: [{required: true}]},
     },

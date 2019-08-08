@@ -39,7 +39,7 @@ export const createColumns = (self, dataSource) => [
         name: 'supDate',
         tableItem: {},
         formItem: {
-            type: 'date',
+            type: 'datetime',
         }
     },{
         title: '装车地址',

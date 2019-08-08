@@ -102,7 +102,7 @@ export default class extends BaseComponent {
         //         }
         //     }
         // });
-        return $$.post('/adminMember/getMemberExport')
+        return $$.get('/adminMember/getMemberExport')
             // .then(resp => {
             //     alert(response );
             // })
@@ -213,19 +213,19 @@ export default class extends BaseComponent {
             // 新增、修改都会进到这个方法中，
             // 可以使用主键或是否有record来区分状态
             onSubmit: values => {
-                // dispatch({
-                //     type: 'adminMember/save',
-                //     payload: {
-                //         values,
-                //         record,
-                //         success: () => {
+                dispatch({
+                    type: 'adminMember/save',
+                    payload: {
+                        values,
+                        record,
+                        success: () => {
                 this.setState({
                     record: null,
                     visible: false
                 });
-                //         }
-                //     }
-                // });
+                        }
+                    }
+                });
             }
         };
 
@@ -235,9 +235,9 @@ export default class extends BaseComponent {
                     <Toolbar
                         appendLeft={
                             <Button.Group>
-                                {/*<Button type="primary" icon="plus" onClick={this.onAdd}>*/}
-                                {/*    新增*/}
-                                {/*</Button>*/}
+                                <Button type="primary" icon="plus" onClick={this.onAdd}>
+                                    新增
+                                </Button>
                                 <Button
                                     disabled={!rows.length}
                                     onClick={e => this.onDelete(rows)}
@@ -245,12 +245,12 @@ export default class extends BaseComponent {
                                 >
                                     删除
                                 </Button>
-                                {/*<Button*/}
-                                {/*    onClick={e => this.handleExport(rows)}*/}
-                                {/*    icon="download"*/}
-                                {/*>*/}
-                                {/*    一键导出列表*/}
-                                {/*</Button>*/}
+                                <Button
+                                    onClick={e => this.handleExport(rows)}
+                                    icon="download"
+                                >
+                                    一键导出列表
+                                </Button>
                             </Button.Group>
                         }
                         pullDown={<SearchBar type="grid" {...searchBarProps} />}
