@@ -26,9 +26,9 @@ export const createColumns = (self, dataSource) => [
             group: 'abc'
         }
     },{
-        title: '会员id',
-        name: 'memberId',
-        formItem: {}
+        title: '发布会员名称',
+        name: 'memberName',
+        tableItem: {},
     },{
         title: '单价',
         name: 'supPrice',
@@ -41,11 +41,11 @@ export const createColumns = (self, dataSource) => [
         formItem: {
             type: 'datetime',
         }
-    },{
-        title: '装车地址',
-        name: 'supAddress',
-        tableItem: {},
-        formItem: {}
+    // },{
+    //     title: '装车地址',
+    //     name: 'supAddress',
+    //     tableItem: {},
+    //     formItem: {}
     },{
         title: '液源厂',
         name: 'supFactory',
@@ -54,12 +54,10 @@ export const createColumns = (self, dataSource) => [
     },{
         title: '纬度',
         name: 'positionX',
-        tableItem: {},
         formItem: {}
     },{
         title: '经度',
         name: 'positionY',
-        tableItem: {},
         formItem: {}
     },{
         title: '交易状态',
@@ -172,6 +170,23 @@ const innerColumns = [
     },{
         title: '电话',
         name: 'mobile',
+        tableItem: {}
+    },{
+        title: '企业类型',
+        name: 'entType',
+        dict: [
+            {code: 0, codeName: '平台'},
+            {code: 1, codeName: '气源厂'},
+            {code: 2, codeName: '加气站'},
+            {code: 3, codeName: '贸易商'},
+            {code: 9, codeName: '无'}
+        ],
+        tableItem: {
+
+        }
+    },{
+        title: '企业名称',
+        name: 'entName',
         tableItem: {}
     }
 ];

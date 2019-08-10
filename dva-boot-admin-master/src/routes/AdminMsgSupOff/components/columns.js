@@ -28,8 +28,8 @@ export const createColumns = (self) => [
             rules: [{required: true}]
         }
     },{
-        title: '操作员',
-        name: 'operator',
+        title: '推送人',
+        name: 'operatorName',
         tableItem: {},
         formItem: {rules: [{required: true}]},
         searchItem: {
@@ -47,7 +47,7 @@ export const createColumns = (self) => [
     {
         title: '通知标题',
         name: 'notificationTitle',
-        tableItem: {},
+        // tableItem: {},
         formItem: {
             rules: [{required: true}]
         }
@@ -78,13 +78,13 @@ export const createColumns = (self) => [
     // },
 
     {
-        title: '推送状态',
+        title: '消息状态',
         name: 'state',
         tableItem:{},
         dict: [
             {code: 0, codeName: '新消息'},
-            {code: 1, codeName: '发送成功'},
-            {code: 2, codeName: '已阅读'}
+            {code: 1, codeName: '发布人未选择报价'},
+            {code: 2, codeName: '发布人选择了其中一个报价'}
         ],
         formItem: {
             type: 'select',

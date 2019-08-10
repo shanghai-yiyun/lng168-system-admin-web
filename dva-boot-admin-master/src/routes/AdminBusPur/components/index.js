@@ -25,6 +25,7 @@ export default class extends BaseComponent {
         visible: false,
         rows: [],
         set: false,
+        entType:""
     };
 
     handleDelete = records => {
@@ -74,6 +75,11 @@ export default class extends BaseComponent {
                 return PageHelper.responseFormat(resp);
             })
             .catch(e => console.error(e));
+    };
+    onLoadTableData2 = (value) => {
+        this.setState({
+            entType:value
+        });
     };
     // onLoadSupplyOfferData = pageInfo => {
     //     const id = this.state.record.id;

@@ -29,7 +29,7 @@ export const createColumns = (self) => [
         }
     },{
         title: '操作员',
-        name: 'operator',
+        name: 'operatorName',
         tableItem: {},
         formItem: {rules: [{required: true}]},
         searchItem: {
@@ -47,7 +47,7 @@ export const createColumns = (self) => [
     {
         title: '通知标题',
         name: 'notificationTitle',
-        tableItem: {},
+        // tableItem: {},
         formItem: {
             rules: [{required: true}]
         }
@@ -63,6 +63,14 @@ export const createColumns = (self) => [
     {
         title: '信息内容',
         name: 'msgContent',
+        tableItem: {},
+        formItem: {
+            rules: [{required: true}]
+        }
+    },
+    {
+        title: '推送接收人',
+        name: 'receivers_info',
         tableItem: {},
         formItem: {
             rules: [{required: true}]

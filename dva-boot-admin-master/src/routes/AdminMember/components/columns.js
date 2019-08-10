@@ -35,10 +35,10 @@ export const createColumns = (self) => [
         searchItem: {
             group: 'abc'
         }
-    // } ,{
-    //     title: '企业名称',
-    //     name: 'entName',
-    //     tableItem: {},
+    } ,{
+        title: '企业名称',
+        name: 'entName',
+        tableItem: {},
     },
     {
         title: '会员级别',

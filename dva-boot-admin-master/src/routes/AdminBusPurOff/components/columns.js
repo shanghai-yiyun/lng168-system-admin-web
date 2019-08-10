@@ -12,19 +12,20 @@ export const createColumns = (self) => [
             type: 'hidden'
         }
     },{
-        title: '采购ID',
-        name: 'purId',
+        title: '发布采购会员名称',
+        name: 'purName',
+        tableItem: {},
         formItem: {},
     },{
         title: '液源厂',
         name: 'supFactory',
         formItem: {},
         tableItem: {}
-    },{
-        title: '供应单位编号',
-        name: 'supEntId',
-        formItem: {},
-        tableItem: {}
+    // },{
+    //     title: '供应单位编号',
+    //     name: 'supEntId',
+    //     formItem: {},
+    //     tableItem: {}
     },{
         title: '供应企业名称',
         name: 'supEntName',
@@ -42,10 +43,18 @@ export const createColumns = (self) => [
             type: 'date',
         }
     },{
-        title: '会员ID',
-        name: 'memberid',
+        title: '报价会员名称',
+        name: 'nickName',
         formItem: {},
         tableItem: {}
+    },{
+        title: '纬度',
+        name: 'positionX',
+        formItem: {}
+    },{
+        title: '经度',
+        name: 'positionY',
+        formItem: {}
     },{
         title: '发布时间',
         name: 'pubDatetime',
@@ -55,7 +64,6 @@ export const createColumns = (self) => [
             initialValue: moment()
         },
         tableItem: {}
-
     },
     {
         title: '操作',

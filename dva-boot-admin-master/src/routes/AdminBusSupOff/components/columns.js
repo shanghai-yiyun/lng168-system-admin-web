@@ -12,10 +12,10 @@ export const createColumns = (self) => [
             type: 'hidden'
         }
     },{
-        title: '采购单位ID',
-        name: 'purEntId ',
+        title: '供应发布会员名称',
+        tableItem: {},
+        name: 'supName',
         formItem: {
-            type: 'hidden'
         }
     },{
         title: '采购企业名称',
@@ -32,7 +32,7 @@ export const createColumns = (self) => [
         name: 'purDate',
         tableItem: {},
         formItem: {
-            type: 'date',
+            type: 'datetime',
         }
     },{
         title: '卸货地址',
@@ -46,8 +46,8 @@ export const createColumns = (self) => [
             type: 'datetime',
         }
     },{
-        title: '会员ID',
-        name: 'memberid',
+        title: '抢购会员名称',
+        name: 'nickName',
         tableItem: {},
         formItem: {}
     },

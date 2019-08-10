@@ -26,9 +26,9 @@ export const createColumns = (self, dataSource) => [
             group: 'abc'
         }
     },{
-        title: '会员id',
-        name: 'memberId',
-        formItem: {}
+        title: '发布会员名称',
+        tableItem: {},
+        name: 'memberName',
     },{
         title: '数量',
         name: 'purNum',
@@ -39,7 +39,7 @@ export const createColumns = (self, dataSource) => [
         name: 'purDate',
         tableItem: {},
         formItem: {
-            type: 'date',
+            type: 'datetime',
         }
     },{
         title: '卸货地址',
@@ -49,12 +49,10 @@ export const createColumns = (self, dataSource) => [
     },{
         title: '纬度',
         name: 'positionX',
-        tableItem: {},
         formItem: {}
     },{
         title: '经度',
         name: 'positionY',
-        tableItem: {},
         formItem: {}
     },{
         title: '交易状态',
@@ -127,6 +125,22 @@ export const createColumns = (self, dataSource) => [
 
 export const createColumns2 = (self, dataSource) => [
     {
+        title: '企业类型',
+        name: 'entType',
+        dict: [
+            {code: 0, codeName: '平台'},
+            {code: 1, codeName: '气源厂'},
+            {code: 2, codeName: '加气站'},
+            {code: 3, codeName: '贸易商'}
+        ],
+        tableItem: {
+
+        },
+        formItem: {
+            type: 'select',
+            onChange: (form, value) => self.onLoadTableData2(value)
+        }
+    },{
         title: '意向咨询',
         name: 'sendList',
         tableItem: {},
@@ -138,22 +152,10 @@ export const createColumns2 = (self, dataSource) => [
             columns: innerColumns,
             onChange: (form, value, rows) => console.log('。。。:', value, rows),
             loadData: self.onLoadTableData,
-            initialValue: [ ]
+            initialValue: [ ],
+            destroyOnClose:true
         }
 
-    } ,{
-        title: '企业类型',
-        name: 'entType',
-        dict: [
-            {code: 0, codeName: '平台'},
-            {code: 1, codeName: '气源厂'},
-            {code: 2, codeName: '加气站'},
-            {code: 3, codeName: '贸易商'}
-        ],
-        tableItem: {},
-        formItem: {
-            type: 'select',
-        }
     }
 ];
 const innerColumns = [
@@ -168,6 +170,23 @@ const innerColumns = [
     },{
         title: '电话',
         name: 'mobile',
+        tableItem: {}
+    },{
+        title: '企业类型',
+        name: 'entType',
+        dict: [
+            {code: 0, codeName: '平台'},
+            {code: 1, codeName: '气源厂'},
+            {code: 2, codeName: '加气站'},
+            {code: 3, codeName: '贸易商'},
+            {code: 9, codeName: '无'}
+        ],
+        tableItem: {
+
+        }
+    },{
+        title: '企业名称',
+        name: 'entName',
         tableItem: {}
     }
 ];
