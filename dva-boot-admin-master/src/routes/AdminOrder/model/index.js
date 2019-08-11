@@ -1,6 +1,7 @@
 import modelEnhance from '@/utils/modelEnhance';
 import PageHelper from '@/utils/pageHelper';
 import { viewContract } from '../service';
+import {login} from "../../Login/service";
 
 /**
  * 当第一次加载完页面时为true
@@ -105,20 +106,10 @@ export default modelEnhance({
         },
         // 查看合同
         * viewContract({payload}, {call, put, select,take}) {
-            const {orderid} = payload;
-            const response = yield put({
-                type: '@request',
-                payload: {
-                    url: '/business/order/viewContract',
-                    data: {
-                        memberId:"",
-                        orderId:orderid
-                    }
-
-                }
-            });
-            // 等待@request结束
-            yield take('@request/@@end');
+                const { status, message, data } = yield call(viewContract, payload);
+                const w = window.open('about:blank');
+                // 要打开的新页面的url
+                w.location.href=data.url;
         },
 
     },

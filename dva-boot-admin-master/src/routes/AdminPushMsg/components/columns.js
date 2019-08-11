@@ -21,20 +21,22 @@ export const createColumns = (self) => [
             {code: 3, codeName: '采购推送'},
             {code: 41, codeName: '报价回复'},
             {code: 42, codeName: '抢购回复'},
-            {code: 5, codeName: '聊天推送'}
+            {code: 5, codeName: '聊天推送'},
+            {code: 6, codeName: '点赞推送'},
+            {code: 7, codeName: '评论推送'}
         ],
         formItem: {
             type: 'select',
             rules: [{required: true}]
         }
-    },{
-        title: '操作员',
-        name: 'operator',
-        tableItem: {},
-        formItem: {rules: [{required: true}]},
-        searchItem: {
-            group: 'abc'
-        }
+    // },{
+    //     title: '操作员',
+    //     name: 'operator',
+    //     tableItem: {},
+    //     formItem: {rules: [{required: true}]},
+    //     searchItem: {
+    //         group: 'abc'
+    //     }
     },{
         title: '推送时间',
         name: 'timei',

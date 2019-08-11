@@ -55,7 +55,8 @@ export default class extends BaseComponent {
         this.props.dispatch({
             type: 'adminOrder/viewContract',
             payload: {
-                orderid:orderid
+                orderid:orderid,
+                memberId:""
             }
         });
     };
