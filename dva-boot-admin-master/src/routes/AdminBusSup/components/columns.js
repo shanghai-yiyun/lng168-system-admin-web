@@ -28,6 +28,7 @@ export const createColumns = (self, dataSource) => [
     },{
         title: '发布会员名称',
         name: 'memberName',
+        formItem: {},
         tableItem: {},
     },{
         title: '单价',

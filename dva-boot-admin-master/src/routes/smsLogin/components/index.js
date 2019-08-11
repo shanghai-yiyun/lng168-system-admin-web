@@ -24,6 +24,18 @@ class Login extends Component {
       }
     });
   };
+  sendSMS = e => {
+    const { form, dispatch } = this.props;
+    e.preventDefault();
+    form.validateFields((err, values) => {
+      if (!err) {
+        dispatch({
+          type: 'login/checkSMS',
+          payload: values
+        });
+      }
+    });
+  };
 
   render() {
     const { loading, form } = this.props;
@@ -42,27 +54,35 @@ class Login extends Component {
               <FormItem>
                 {getFieldDecorator('userName', {
                   initialValue: 'admin',
-                  rules: [{ required: true, message: '请输入您的用户名，示例admin' }]
+                  rules: [{ required: true, message: '请输入您的手机号码' }]
                 })(
                   <Input
                     size="large"
                     prefix={<Icon type="user" />}
-                    placeholder="用户名"
+                    placeholder="手机号码"
                   />
                 )}
+                <Button
+                    size="large"
+                    type="primary"
+                    onClick={this.sendSMS}
+                >
+                  获取验证码
+                </Button>
               </FormItem>
               <FormItem>
                 {getFieldDecorator('password', {
                   initialValue: 'admin',
-                  rules: [{ required: true, message: '请输入您的密码，示例admin' }]
+                  rules: [{ required: true, message: '请输入您的密码' }]
                 })(
                   <Input
                     size="large"
                     prefix={<Icon type="lock" />}
                     type="password"
-                    placeholder="密码"
+                    placeholder="短信验证码"
                   />
                 )}
+
               </FormItem>
               <FormItem>
                 {/*<Link className="login-form-forgot" to="#">*/}
@@ -79,9 +99,9 @@ class Login extends Component {
                 {/*<div className="new-user">*/}
                 {/*  <Link to="/sign/register">现在注册</Link>*/}
                 {/*</div>*/}
-                {/*<div className="new-user">*/}
-                {/*  <Link to="/sign/smsLogin">手机号登录</Link>*/}
-                {/*</div>*/}
+                <div className="new-user">
+                  <Link to="/sign/Login">用户名登录</Link>
+                </div>
               </FormItem>
             </Form>
           </Spin>

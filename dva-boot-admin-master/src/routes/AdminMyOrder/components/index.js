@@ -12,9 +12,9 @@ import './index.less';
 const {Content, Header, Footer} = Layout;
 const Pagination = DataTable.Pagination;
 
-@connect(({adminOrder, loading}) => ({
-    adminOrder,
-    loading: loading.models.adminOrder
+@connect(({adminMyOrder, loading}) => ({
+    adminMyOrder,
+    loading: loading.models.adminMyOrder
 }))
 export default class extends BaseComponent {
     state = {
@@ -24,44 +24,26 @@ export default class extends BaseComponent {
         set: false,
     };
 
-    handleDelete = records => {
-        const {rows} = this.state;
-
-        this.props.dispatch({
-            type: 'adminOrder/remove',
-            payload: {
-                records,
-                success: () => {
-                    // 如果操作成功，在已选择的行中，排除删除的行
-                    this.setState({
-                        rows: rows.filter(
-                            item => !records.some(jtem => jtem.rowKey === item.rowKey)
-                        )
-                    });
-                }
-            }
-        });
-    };
     onCancel = () => {
         this.setState({
             record: null,
             visible: false,
             set: false,
-            // detailInfo:[]
         });
     };
     onSetting = record => {
         const orderid = record.orderid
         this.props.dispatch({
-            type: 'adminOrder/viewContract',
+            type: 'adminMyOrder/viewContract',
             payload: {
-                orderid:orderid
+                orderid:orderid,
+                memberId:"",
             }
         });
     };
     render() {
-        const {adminOrder, loading, dispatch} = this.props;
-        const {pageData} = adminOrder;
+        const {adminMyOrder, loading, dispatch} = this.props;
+        const {pageData} = adminMyOrder;
         const columns = createColumns(this);
         const {rows, record, visible} = this.state;
 
@@ -69,7 +51,7 @@ export default class extends BaseComponent {
             columns,
             onSearch: values => {
                 dispatch({
-                    type: 'adminOrder/getPageInfo',
+                    type: 'adminMyOrder/getPageInfo',
                     payload: {
                         pageData: pageData.filter(values).jumpPage(1, 10)
                     }
@@ -81,13 +63,13 @@ export default class extends BaseComponent {
             columns,
             rowKey: 'id',
             dataItems: pageData,
-            selectType: 'checkbox',
+            // selectType: 'checkbox',
             showNum: true,
             isScroll: true,
-            selectedRowKeys: rows.map(item => item.rowKey),
+            // selectedRowKeys: rows.map(item => item.rowKey),
             onChange: ({pageNum, pageSize}) => {
                 dispatch({
-                    type: 'adminOrder/getPageInfo',
+                    type: 'adminMyOrder/getPageInfo',
                     payload: {
                         pageData: pageData.jumpPage(pageNum, pageSize)
                     }
@@ -109,23 +91,6 @@ export default class extends BaseComponent {
                     record: null,
                     visible: false
                 });
-            },
-            // 新增、修改都会进到这个方法中，
-            // 可以使用主键或是否有record来区分状态
-            onSubmit: values => {
-                dispatch({
-                    type: 'adminOrder/save',
-                    payload: {
-                        values,
-                        record,
-                        success: () => {
-                            this.setState({
-                                record: null,
-                                visible: false
-                            });
-                        }
-                    }
-                });
             }
         };
 
@@ -135,16 +100,6 @@ export default class extends BaseComponent {
                     <Toolbar
                         appendLeft={
                             <Button.Group>
-                                {/*<Button type="primary" icon="plus" onClick={this.onAdd}>*/}
-                                {/*    新增*/}
-                                {/*</Button>*/}
-                                {/*<Button*/}
-                                {/*    disabled={!rows.length}*/}
-                                {/*    onClick={e => this.onDelete(rows)}*/}
-                                {/*    icon="delete"*/}
-                                {/*>*/}
-                                {/*    删除*/}
-                                {/*</Button>*/}
                             </Button.Group>
                         }
                         pullDown={<SearchBar type="grid" {...searchBarProps} />}

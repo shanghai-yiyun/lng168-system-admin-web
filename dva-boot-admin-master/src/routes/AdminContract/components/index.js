@@ -1,10 +1,11 @@
 import React from 'react';
 import {connect} from 'dva';
-import {Layout, Button, Modal, Col} from 'antd';
+import {Layout, Button, Modal, Col, Input, Icon} from 'antd';
 import BaseComponent from 'components/BaseComponent';
 import Toolbar from 'components/Toolbar';
 import SearchBar from 'components/SearchBar';
 import DataTable from 'components/DataTable';
+import Form from 'components/Form';
 import {ModalForm} from 'components/Modal';
 import {createColumns} from './columns';
 import './index.less';
@@ -12,9 +13,9 @@ import './index.less';
 const {Content, Header, Footer} = Layout;
 const Pagination = DataTable.Pagination;
 
-@connect(({adminOrder, loading}) => ({
-    adminOrder,
-    loading: loading.models.adminOrder
+@connect(({adminContract, loading}) => ({
+    adminContract,
+    loading: loading.models.adminContract
 }))
 export default class extends BaseComponent {
     state = {
@@ -22,13 +23,21 @@ export default class extends BaseComponent {
         visible: false,
         rows: [],
         set: false,
+        // detailInfo: []
     };
-
+    onSetting = record => {
+        const {fileList} = record;
+        const {url} = fileList[0];
+        // alert(url)
+        const w = window.open('about:blank');
+        // 要打开的新页面的url
+        w.location.href=url;
+    };
     handleDelete = records => {
         const {rows} = this.state;
 
         this.props.dispatch({
-            type: 'adminOrder/remove',
+            type: 'adminContract/remove',
             payload: {
                 records,
                 success: () => {
@@ -42,34 +51,63 @@ export default class extends BaseComponent {
             }
         });
     };
-    onCancel = () => {
-        this.setState({
-            record: null,
-            visible: false,
-            set: false,
-            // detailInfo:[]
-        });
-    };
-    onSetting = record => {
-        const orderid = record.orderid
+    // onSetting = record => {
+    //     this.props.dispatch({
+    //         type: 'adminContract/getData',
+    //         payload: {
+    //             record,
+    //             success: () => {
+    //                 const data =this.props.adminContract.enterpriseCertificate.data;
+    //                 const content =this.props.adminContract.enterpriseCertificate.message;
+    //                 if(data.entId.length===0){
+    //                     Modal.confirm({
+    //                         title: '提示',
+    //                         content,
+    //                         okButtonProps:{hidden:true },
+    //                         onCancel() {}
+    //                     });
+    //                 }else{
+    //                     this.setState({
+    //                         set: !this.state.set,
+    //                         detailInfo : this.props.adminContract.enterpriseCertificate.data,
+    //                     });
+    //                 }
+    //
+    //             }
+    //         }
+    //     });
+    // };
+    // onCancel = () => {
+    //     this.setState({
+    //         record: null,
+    //         visible: false,
+    //         set: false,
+    //         detailInfo:[]
+    //     });
+    // };
+
+    handleSubmit = (value, record)=> {
         this.props.dispatch({
-            type: 'adminOrder/viewContract',
+            type: 'adminContract/approve',
             payload: {
-                orderid:orderid
+                record: value,
+                success: () => {
+                    this.onCancel();
+                }
             }
         });
     };
+
     render() {
-        const {adminOrder, loading, dispatch} = this.props;
-        const {pageData} = adminOrder;
+        const {adminContract, loading, dispatch} = this.props;
+        const {pageData} = adminContract;
         const columns = createColumns(this);
         const {rows, record, visible} = this.state;
-
         const searchBarProps = {
             columns,
             onSearch: values => {
                 dispatch({
-                    type: 'adminOrder/getPageInfo',
+                    type: 'adminContract/getPageInfo',
                     payload: {
                         pageData: pageData.filter(values).jumpPage(1, 10)
                     }
@@ -87,7 +125,7 @@ export default class extends BaseComponent {
             selectedRowKeys: rows.map(item => item.rowKey),
             onChange: ({pageNum, pageSize}) => {
                 dispatch({
-                    type: 'adminOrder/getPageInfo',
+                    type: 'adminContract/getPageInfo',
                     payload: {
                         pageData: pageData.jumpPage(pageNum, pageSize)
                     }
@@ -114,7 +152,7 @@ export default class extends BaseComponent {
             // 可以使用主键或是否有record来区分状态
             onSubmit: values => {
                 dispatch({
-                    type: 'adminOrder/save',
+                    type: 'adminContract/save',
                     payload: {
                         values,
                         record,
@@ -135,16 +173,16 @@ export default class extends BaseComponent {
                     <Toolbar
                         appendLeft={
                             <Button.Group>
-                                {/*<Button type="primary" icon="plus" onClick={this.onAdd}>*/}
-                                {/*    新增*/}
-                                {/*</Button>*/}
-                                {/*<Button*/}
-                                {/*    disabled={!rows.length}*/}
-                                {/*    onClick={e => this.onDelete(rows)}*/}
-                                {/*    icon="delete"*/}
-                                {/*>*/}
-                                {/*    删除*/}
-                                {/*</Button>*/}
+                                <Button type="primary" icon="plus" onClick={this.onAdd}>
+                                    新增
+                                </Button>
+                                <Button
+                                    disabled={!rows.length}
+                                    onClick={e => this.onDelete(rows)}
+                                    icon="delete"
+                                >
+                                    删除
+                                </Button>
                             </Button.Group>
                         }
                         pullDown={<SearchBar type="grid" {...searchBarProps} />}

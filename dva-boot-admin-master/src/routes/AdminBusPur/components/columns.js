@@ -15,37 +15,49 @@ export const createColumns = (self, dataSource) => [
     {
         title: '企业id',
         name: 'entId',
-        formItem: {},
+        formItem: {
+            rules: [{required: true}]
+        },
     },
     {
         title: '企业名称',
         name: 'entName',
         tableItem: {},
-        formItem: {},
+        formItem: {
+            rules: [{required: true}]
+        },
         searchItem: {
             group: 'abc'
         }
     },{
         title: '发布会员名称',
         tableItem: {},
+        formItem: {
+            rules: [{required: true}]
+        },
         name: 'memberName',
     },{
         title: '数量',
         name: 'purNum',
         tableItem: {},
-        formItem: {}
+        formItem: {
+            rules: [{required: true}]
+        }
     },{
         title: '卸货时间',
         name: 'purDate',
         tableItem: {},
         formItem: {
             type: 'datetime',
+            rules: [{required: true}]
         }
     },{
         title: '卸货地址',
         name: 'purAddress',
         tableItem: {},
-        formItem: {}
+        formItem: {
+            rules: [{required: true}]
+        }
     },{
         title: '纬度',
         name: 'positionX',
@@ -64,7 +76,7 @@ export const createColumns = (self, dataSource) => [
         tableItem: {},
         formItem: {
             type: 'select',
-            // rules: [{required: true, message: '请选择一个状态！'}]
+            rules: [{required: true}]
         },
         searchItem: {
             type: 'select',
@@ -88,7 +100,8 @@ export const createColumns = (self, dataSource) => [
         formItem: {
             type: 'datetime',
             showTime: true,
-            initialValue: moment()
+            initialValue: moment(),
+            rules: [{required: true}]
         }
     } ,
     {

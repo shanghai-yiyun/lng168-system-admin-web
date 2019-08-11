@@ -1,6 +1,5 @@
 import modelEnhance from '@/utils/modelEnhance';
 import PageHelper from '@/utils/pageHelper';
-import { viewContract } from '../service';
 
 /**
  * 当第一次加载完页面时为true
@@ -9,17 +8,17 @@ import { viewContract } from '../service';
  */
 let LOADED = false;
 export default modelEnhance({
-    namespace: 'adminOrder',
+    namespace: 'adminContract',
 
     state: {
         pageData: PageHelper.create(),
-        viewContractUrl:""
+        enterpriseCertificate: [],
     },
 
     subscriptions: {
         setup({dispatch, history}) {
             history.listen(({pathname}) => {
-                if (pathname === '/adminOrder' && !LOADED) {
+                if (pathname === '/adminContract' && !LOADED) {
                     LOADED = true;
                     dispatch({
                         type: 'init'
@@ -32,7 +31,7 @@ export default modelEnhance({
     effects: {
         // 进入页面加载
         * init({payload}, {call, put, select}) {
-            const {pageData} = yield select(state => state.adminOrder);
+            const {pageData} = yield select(state => state.adminContract);
             yield put({
                 type: 'getPageInfo',
                 payload: {
@@ -47,7 +46,7 @@ export default modelEnhance({
                 type: '@request',
                 payload: {
                     valueField: 'pageData',
-                    url: '/adminOrder/getList',
+                    url: '/adminContract/getList',
                     pageInfo: pageData
                 }
             });
@@ -55,13 +54,14 @@ export default modelEnhance({
         // 保存 之后查询分页
         * save({payload}, {call, put, select, take}) {
             const {values, success, record} = payload;
-            const {pageData} = yield select(state => state.adminOrder);
+            const {pageData} = yield select(state => state.adminContract);
+            console.log(JSON.stringify(values));
             if (record === null) {
                 yield put({
                     type: '@request',
                     payload: {
                         notice: true,
-                        url: '/adminOrder/add',
+                        url: '/adminContract/add',
                         data: values
                     }
                 });
@@ -70,7 +70,7 @@ export default modelEnhance({
                     type: '@request',
                     payload: {
                         notice: true,
-                        url: '/adminOrder/save',
+                        url: '/adminContract/save',
                         data: values
                     }
                 });
@@ -86,12 +86,12 @@ export default modelEnhance({
         // 删除 之后查询分页
         * remove({payload}, {call, put, select,take}) {
             const {records, success} = payload;
-            const {pageData} = yield select(state => state.adminOrder);
+            const {pageData} = yield select(state => state.adminContract);
             yield put({
                 type: '@request',
                 payload: {
                     notice: true,
-                    url: '/adminOrder/bathDelete',
+                    url: '/adminContract/bathDelete',
                     data: records
                 }
             });
@@ -103,24 +103,6 @@ export default modelEnhance({
             });
             success();
         },
-        // 查看合同
-        * viewContract({payload}, {call, put, select,take}) {
-            const {orderid} = payload;
-            const response = yield put({
-                type: '@request',
-                payload: {
-                    url: '/business/order/viewContract',
-                    data: {
-                        memberId:"",
-                        orderId:orderid
-                    }
-
-                }
-            });
-            // 等待@request结束
-            yield take('@request/@@end');
-        },
-
     },
 
     reducers: {}

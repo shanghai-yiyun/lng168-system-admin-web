@@ -27,6 +27,7 @@ export const createColumns = (self) => [
         title: '订单状态',
         name: 'orderState',
         tableItem:{},
+        disable:true,
         dict: [
             {code: 0, codeName: '待签约'},
             {code: 1, codeName: '待付款'},
@@ -37,10 +38,10 @@ export const createColumns = (self) => [
             {code: 6, codeName: '交易关闭'},
             {code: 7, codeName: '自动结算'},
         ],
-        formItem: {
-            type: 'select',
-            rules: [{ required:true,message: '请选择一个状态！'}]
-        },
+        // formItem: {
+        //     type: 'select',
+        //     rules: [{ required:true,message: '请选择一个状态！'}]
+        // },
         searchItem: {
             type: 'select',
             group: 'abc'
@@ -66,6 +67,7 @@ export const createColumns = (self) => [
     {
         title: '供应单位',
         name: 'supEnt',
+        disabled:true,
         tableItem: {},
         formItem: {
 
@@ -74,6 +76,7 @@ export const createColumns = (self) => [
     {
         title: '液源厂',
         name: 'supFactory',
+        disabled:true,
         formItem: {
 
         }
@@ -81,6 +84,7 @@ export const createColumns = (self) => [
     {
         title: '采购单位',
         name: 'purEnt',
+        disabled:true,
         tableItem: {},
         formItem: {
 
@@ -89,30 +93,35 @@ export const createColumns = (self) => [
     {
         title: '采购数量',
         name: 'purNum',
+        disabled:true,
         formItem: {
 
         }
     },{
         title: '采购单价',
         name: 'purPrice',
+        disabled:true,
         formItem: {
 
         }
     },{
         title: '装车时间',
         name: 'supDate',
+        disabled:true,
         formItem: {
             type: 'datetime',
         }
     },{
         title: '卸货地址',
         name: 'purAddress',
+        disabled:true,
         formItem: {
 
         }
     },{
         title: '卸货时间',
         name: 'purDate',
+        disabled:true,
         formItem: {
             type: 'datetime',
         }
@@ -122,8 +131,8 @@ export const createColumns = (self) => [
             width: 180,
             render: (text, record) => (
                 <DataTable.Oper>
-                    <Button tooltip="编辑" onClick={e => self.onUpdate(record)}>
-                        <Icon type="edit"/>
+                    <Button tooltip="查看详情" onClick={e => self.onUpdate(record)}>
+                        <Icon type="enlarge"/>
                     </Button>
                     {/*<Button tooltip="删除" onClick={e => self.onDelete(record)}>*/}
                     {/*    <Icon type="trash"/>*/}

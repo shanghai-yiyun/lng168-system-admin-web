@@ -10,6 +10,7 @@ import Gallery from './Widgets/Gallery';
 import Result from './Widgets/Result';
 import LevelRoute from './Widgets/LevelRoute';
 import Login from './Login';
+import smsLogin from './smsLogin';
 import Register from './Register';
 import Dashboard from './Dashboard';
 import Blank from './Blank';
@@ -35,6 +36,7 @@ import AdminRoles from './AdminRole';
 import AdminMember from './AdminMember';
 import AdminSystem from './AdminSystem';
 import AdminOrder from './AdminOrder';
+import AdminMyOrder from './AdminMyOrder';
 import AdminEnterprise from './AdminEnterprise';
 import AdminPurch from  './AdminBusiness';
 import AdminBusPur from  './AdminBusPur';
@@ -46,6 +48,7 @@ import AdminMsgSupOff from  './AdminMsgSupOff';
 import AdminMsgPurOff from  './AdminMsgPurOff';
 import AdminMsgPur from  './AdminMsgPur';
 import AdminPushMsg from  './AdminPushMsg';
+import AdminContract from  './AdminContract';
 /**
  * 主路由配置
  * 
@@ -62,7 +65,8 @@ const routesConfig = app => [
     indexRoute: '/sign/login',
     component: UserLayout,
     childRoutes: [
-      Login(app)  //登录
+      Login(app) , //登录
+      smsLogin(app)  //登录
       // Register(app),
       // NotFound()
     ]
@@ -104,6 +108,7 @@ const routesConfig = app => [
       AdminMember(app),
       AdminSystem(app),
       AdminOrder(app),
+      AdminMyOrder(app),
       // AdminPurch(app),
       AdminBusPur(app),
       AdminBusPurOff(app),
@@ -115,6 +120,7 @@ const routesConfig = app => [
       AdminMsgSup(app),
       AdminMsgSupOff(app),
       AdminPushMsg(app),
+      AdminContract(app),
       NotFound(),
     ]
   }
