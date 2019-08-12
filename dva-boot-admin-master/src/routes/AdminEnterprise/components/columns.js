@@ -252,18 +252,18 @@ export const columns2 = [
             isHidden:false,
             isHandleRemove:true,
         }
-    },{
-        title: '审批',
-        name: 'approval',
-        dict: [
-            {code: "1", codeName: '通过'},
-            {code: "0", codeName: '驳回'},
-            {code: "3", codeName: '未审核'}
-        ],
-        formItem: {
-            type: 'select',
-            rules: [{required: true, message: '请选择一个状态！'}]
-        },
+    // },{
+    //     title: '审批',
+    //     name: 'approval',
+    //     dict: [
+    //         {code: "1", codeName: '通过'},
+    //         {code: "0", codeName: '驳回'},
+    //         {code: "3", codeName: '未审核'}
+    //     ],
+    //     formItem: {
+    //         type: 'select',
+    //         rules: [{required: true, message: '请选择一个状态！'}]
+    //     },
 
     }
 ];

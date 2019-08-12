@@ -70,6 +70,23 @@ export const createColumns = (self) => [
             type: 'select',
             // rules: [{required: true, message: '请选择一个用户类型！'}]
         }
+    }, {
+        title: '用户权限',
+        name: 'sys_group_id',
+        dict: [
+            {code: 1, codeName: '系统管理员'},
+            {code: 2, codeName: '客服'},
+            {code: 3, codeName: '驾驶员'},
+            {code: 8, codeName: '开发工程师'},
+            {code: 9, codeName: '调度'},
+            {code: 10, codeName: '财务'},
+            {code: 0, codeName: '无'},
+        ],
+        tableItem: {},
+        formItem: {
+            type: 'select',
+            rules: [{required: true, message: '请选择权限！'}]
+        }
     },
     {
         title: '截止日期',
@@ -99,6 +116,60 @@ export const createColumns = (self) => [
         title: '推荐号',
         name: 'referralCode',
         formItem: {},
+    }, {
+        title: 'infoId',
+        name: 'infoId',
+        formItem: {
+            type: 'hidden'
+        }
+    }, {
+        title: '企业id',
+        name: 'ent_id',
+        formItem: {},
+    }, {
+        title: '公司',
+        name: 'company',
+        formItem: {},
+    }, {
+        title: '邮编',
+        name: 'post',
+        formItem: {},
+    }, {
+        title: '电话',
+        name: 'phone',
+        formItem: {},
+    }, {
+        title: '邮箱',
+        name: 'email',
+        formItem: {},
+    }, {
+        title: 'QQ',
+        name: 'qq',
+        formItem: {},
+    }, {
+        title: '身份证号',
+        name: 'registration_id',
+        formItem: {},
+    }, {
+        title: '会员信息推送id',
+        name: 'org_id',
+        formItem: {},
+    }, {
+        title: '商城金币',
+        name: 'ec_gold_coin',
+        formItem: {},
+    }, {
+        title: '商城会员级别',
+        name: 'ec_type',
+        dict: [
+            {code: 0, codeName: '超级管理员'},
+            {code: 1, codeName: '机构管理员'},
+            {code: 2, codeName: '店铺管理员'},
+            {code: 3, codeName: '用户'},
+        ],
+        formItem: {
+            type:'select'
+        },
     }, {
         title: '操作',
         tableItem: {
@@ -194,19 +265,19 @@ export const columns2 = [
             // isHidden: true,
             // isHandleRemove: false
         }
-    },
-    {
-        title: '审批',
-        name: 'approval',
-        dict: [
-            {code: "1", codeName: '通过'},
-            {code: "0", codeName: '驳回'},
-            {code: "3", codeName: '未审核'}
-        ],
-        formItem: {
-            type: 'select',
-            rules: [{required: true, message: '请选择一个状态！'}]
-        },
+    // },
+    // {
+    //     title: '审批',
+    //     name: 'approval',
+    //     dict: [
+    //         {code: "1", codeName: '通过'},
+    //         {code: "0", codeName: '驳回'},
+    //         {code: "3", codeName: '未审核'}
+    //     ],
+    //     formItem: {
+    //         type: 'select',
+    //         rules: [{required: true, message: '请选择一个状态！'}]
+    //     },
 
     }
 ];
