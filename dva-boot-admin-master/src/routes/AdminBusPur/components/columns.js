@@ -18,6 +18,22 @@ export const createColumns = (self, dataSource) => [
         formItem: {
             rules: [{required: true}]
         },
+    },{
+        title: '',
+        name: 'beginTime',
+        searchItem: {
+            type: 'datetime',
+            group: 'abc',
+            placeholder: '这是查询开始时间'
+        }
+    },{
+        title: '',
+        name: 'endTime',
+        searchItem: {
+            type: 'datetime',
+            group: 'abc',
+            placeholder: '这是查询结束时间'
+        }
     },
     {
         title: '企业名称',
@@ -36,6 +52,9 @@ export const createColumns = (self, dataSource) => [
             rules: [{required: true}]
         },
         name: 'memberName',
+        searchItem: {
+            group: 'abc'
+        }
     },{
         title: '数量',
         name: 'purNum',
@@ -138,22 +157,22 @@ export const createColumns = (self, dataSource) => [
 
 export const createColumns2 = (self, dataSource) => [
     {
-        title: '企业类型',
-        name: 'entType',
-        dict: [
-            {code: 0, codeName: '平台'},
-            {code: 1, codeName: '气源厂'},
-            {code: 2, codeName: '加气站'},
-            {code: 3, codeName: '贸易商'}
-        ],
-        tableItem: {
-
-        },
-        formItem: {
-            type: 'select',
-            onChange: (form, value) => self.onLoadTableData2(value)
-        }
-    },{
+    //     title: '企业类型',
+    //     name: 'entType',
+    //     dict: [
+    //         {code: 0, codeName: '平台'},
+    //         {code: 1, codeName: '气源厂'},
+    //         {code: 2, codeName: '加气站'},
+    //         {code: 3, codeName: '贸易商'}
+    //     ],
+    //     tableItem: {
+    //
+    //     },
+    //     formItem: {
+    //         type: 'select',
+    //         onChange: (form, value) => self.onLoadTableData2(value)
+    //     }
+    // },{
         title: '意向咨询',
         name: 'sendList',
         tableItem: {},

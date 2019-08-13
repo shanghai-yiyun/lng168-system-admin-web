@@ -16,8 +16,25 @@ export const createColumns = (self, dataSource) => [
         title: '企业id',
         name: 'entId',
         formItem: {}
+    },{
+        title: '',
+        name: 'beginTime',
+        searchItem: {
+            type: 'datetime',
+            group: 'abc',
+            placeholder: '这是查询开始时间'
+        }
+    },{
+        title: '',
+        name: 'endTime',
+        searchItem: {
+            type: 'datetime',
+            group: 'abc',
+            placeholder: '这是查询结束时间'
+        }
     },
     {
+
         title: '企业名名称',
         name: 'entName',
         tableItem: {},
@@ -30,6 +47,9 @@ export const createColumns = (self, dataSource) => [
         name: 'memberName',
         formItem: {},
         tableItem: {},
+        searchItem: {
+            group: 'abc'
+        }
     },{
         title: '单价',
         name: 'supPrice',
@@ -144,19 +164,19 @@ export const createColumns2 = (self, dataSource) => [
             loadData: self.onLoadTableData,
             initialValue: [ ]
         }
-    }, {
-        title: '企业类型',
-        name: 'entType',
-        dict: [
-            {code: 0, codeName: '平台'},
-            {code: 1, codeName: '气源厂'},
-            {code: 2, codeName: '加气站'},
-            {code: 3, codeName: '贸易商'}
-        ],
-        tableItem: {},
-        formItem: {
-            type: 'select',
-        }
+    // }, {
+    //     title: '企业类型',
+    //     name: 'entType',
+    //     dict: [
+    //         {code: 0, codeName: '平台'},
+    //         {code: 1, codeName: '气源厂'},
+    //         {code: 2, codeName: '加气站'},
+    //         {code: 3, codeName: '贸易商'}
+    //     ],
+    //     tableItem: {},
+    //     formItem: {
+    //         type: 'select',
+    //     }
     }
 ];
 const innerColumns = [

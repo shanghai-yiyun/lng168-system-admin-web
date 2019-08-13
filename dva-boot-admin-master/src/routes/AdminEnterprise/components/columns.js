@@ -40,6 +40,10 @@ export const createColumns = (self) => [
         formItem: {
             type: 'select',
             rules: [{required: true, message: '请选择一个类型！'}]
+        },
+        searchItem: {
+            type: 'select',
+            group: 'abc'
         }
     }, {
         title: '地址',

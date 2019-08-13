@@ -30,7 +30,7 @@ export default class extends BaseComponent {
 
     handleDelete = records => {
         const {rows} = this.state;
-
+alert(JSON.stringify(records));
         this.props.dispatch({
             type: 'adminMember/remove',
             payload: {

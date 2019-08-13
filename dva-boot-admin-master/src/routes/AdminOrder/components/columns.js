@@ -54,6 +54,22 @@ export const createColumns = (self) => [
         searchItem: {
             group: 'abc'
         }
+    },{
+        title: '',
+        name: 'beginTime',
+        searchItem: {
+            type: 'datetime',
+            group: 'abc',
+            placeholder: '这是订单开始时间'
+        }
+    },{
+        title: '',
+        name: 'endTime',
+        searchItem: {
+            type: 'datetime',
+            group: 'abc',
+            placeholder: '这是订单结束时间'
+        }
     }, {
         title: '订单时间',
         name: 'orderTime',
@@ -69,13 +85,26 @@ export const createColumns = (self) => [
         tableItem: {},
         formItem: {
 
+        },
+        searchItem: {
+            group: 'abc'
         }
+    }, {
+        title: '供应单位签约',
+        name: 'supSignFlag',
+        tableItem: {},
+        dict: [
+            {code: 0, codeName: '未签约'},
+            {code: 1, codeName: '已签约'},
+        ],
+        formItem: {
+            type: 'select',
+        },
     },
     {
         title: '液源厂',
         name: 'supFactory',
         formItem: {
-
         }
     },
     {
@@ -83,8 +112,21 @@ export const createColumns = (self) => [
         name: 'purEnt',
         tableItem: {},
         formItem: {
-
+        },
+        searchItem: {
+            group: 'abc'
         }
+    }, {
+        title: '采购单位签约',
+        name: 'purSignFlag',
+        tableItem: {},
+        dict: [
+            {code: 0, codeName: '未签约'},
+            {code: 1, codeName: '已签约'},
+        ],
+        formItem: {
+            type: 'select',
+        },
     },
     {
         title: '采购数量',

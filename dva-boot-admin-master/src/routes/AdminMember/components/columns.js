@@ -35,10 +35,18 @@ export const createColumns = (self) => [
         searchItem: {
             group: 'abc'
         }
+    }, {
+        title: '企业id',
+        name: 'entId',
+        formItem: {},
     } ,{
         title: '企业名称',
         name: 'entName',
+        formItem: {},
         tableItem: {},
+        searchItem: {
+            group: 'abc'
+        }
     },
     {
         title: '会员级别',
@@ -86,6 +94,10 @@ export const createColumns = (self) => [
         formItem: {
             type: 'select',
             rules: [{required: true, message: '请选择权限！'}]
+        },
+        searchItem: {
+            type: 'select',
+            group: 'abc'
         }
     },
     {
@@ -122,10 +134,6 @@ export const createColumns = (self) => [
         formItem: {
             type: 'hidden'
         }
-    }, {
-        title: '企业id',
-        name: 'ent_id',
-        formItem: {},
     }, {
         title: '公司',
         name: 'company',
@@ -207,6 +215,7 @@ export const columns2 = [
     {
         title: '公司名称',
         name: 'entName',
+        disabled: true,
         tableItem: {},
         formItem: {rules: [{required: true}]},
     },
