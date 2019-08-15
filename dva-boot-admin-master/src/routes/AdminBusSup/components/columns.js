@@ -20,17 +20,17 @@ export const createColumns = (self, dataSource) => [
         title: '',
         name: 'beginTime',
         searchItem: {
-            type: 'datetime',
+            type: 'date',
             group: 'abc',
-            placeholder: '这是查询开始时间'
+            placeholder: '发布时间Start'
         }
     },{
         title: '',
         name: 'endTime',
         searchItem: {
-            type: 'datetime',
+            type: 'date',
             group: 'abc',
-            placeholder: '这是查询结束时间'
+            placeholder: '发布时间End'
         }
     },
     {

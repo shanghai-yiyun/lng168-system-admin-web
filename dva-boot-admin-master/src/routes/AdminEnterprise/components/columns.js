@@ -162,7 +162,7 @@ export const createColumns = (self) => [
         },
     },{
         title: '审核状态',
-        name: 'cer_status',
+        name: 'cerStatus',
         dict: [
             {code: 0, codeName: '未审核'},
             {code: 1, codeName: '已通过'},

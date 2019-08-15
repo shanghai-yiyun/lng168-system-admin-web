@@ -99,6 +99,23 @@ export const createColumns = (self) => [
             type: 'select',
             group: 'abc'
         }
+    }, {
+        title: '企业认证状态',
+        name: 'ent_cer_status',
+        dict: [
+            {code: 0, codeName: '认证失败'},
+            {code: 1, codeName: '已认证'},
+            {code: 3, codeName: '认证中'},
+            {code: 9, codeName: '无'}
+        ],
+        tableItem: {},
+        formItem: {
+            type: 'select',
+        },
+        searchItem: {
+            type: 'select',
+            group: 'abc'
+        }
     },
     {
         title: '截止日期',

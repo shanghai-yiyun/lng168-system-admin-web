@@ -58,17 +58,17 @@ export const createColumns = (self) => [
         title: '',
         name: 'beginTime',
         searchItem: {
-            type: 'datetime',
+            type: 'date',
             group: 'abc',
-            placeholder: '这是订单开始时间'
+            placeholder: '开始时间'
         }
     },{
         title: '',
         name: 'endTime',
         searchItem: {
-            type: 'datetime',
+            type: 'date',
             group: 'abc',
-            placeholder: '这是订单结束时间'
+            placeholder: '结束时间'
         }
     }, {
         title: '订单时间',

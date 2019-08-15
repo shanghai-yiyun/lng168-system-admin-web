@@ -166,7 +166,6 @@ class TableControlled extends Component {
       ...otherProps
     } = this.props;
     const { dataSource, value, rows, loading, visible } = this.state;
-
     const dataTableProps = {
       loading,
       columns,
