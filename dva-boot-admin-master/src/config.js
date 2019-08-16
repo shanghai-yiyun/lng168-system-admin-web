@@ -13,7 +13,7 @@ export default {
   /**
    * HTML的title模板
    */
-  htmlTitle: 'LNG物联网 - {title}',
+  htmlTitle: '翼贸通 - {title}',
   
   /**
    * 系统通知

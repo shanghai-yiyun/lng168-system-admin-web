@@ -107,8 +107,8 @@ export default class extends BaseComponent {
     };
     render() {
         const {adminBusSup, loading, dispatch} = this.props;
-        const {pageData, memberTableData} = adminBusSup;
-        const columns = createColumns(this,memberTableData);
+        const {pageData, memberTableData,ents} = adminBusSup;
+        const columns = createColumns(this,memberTableData,ents);
         const {rows, record, visible} = this.state;
         const columns2 = createColumns2(this,memberTableData);
         const searchBarProps = {

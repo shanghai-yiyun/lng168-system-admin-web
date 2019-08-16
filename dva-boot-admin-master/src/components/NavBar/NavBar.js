@@ -87,8 +87,7 @@ class NavBar extends PureComponent {
         <div className="navbar-branding">
           <Link className="navbar-brand" to="/">
             <img src={logoImg} alt="logo" />
-            <b>LNG</b>
-            物联网
+            <b>翼贸通管理后台</b>
           </Link>
           <span className="toggle_sidemenu_l" onClick={onCollapseLeftSide}>
             <Icon type="lines" />

@@ -13,6 +13,7 @@ export default modelEnhance({
     state: {
         pageData: PageHelper.create(),
         memberTableData: PageHelper.create(),
+        ents: []
     },
 
     subscriptions: {
@@ -37,6 +38,9 @@ export default modelEnhance({
                 payload: {
                     pageData: pageData.startPage(1, 10)
                 }
+            });
+            yield put({
+                type: 'getEnts'
             });
         },
         // 获取分页数据
@@ -122,6 +126,16 @@ export default modelEnhance({
             // 等待@request结束
             yield take('@request/@@end');
             success();
+        },
+        *getEnts({ payload }, { call, put }) {
+            yield put({
+                type: '@request',
+                afterResponse: resp => resp.data,
+                payload: {
+                    valueField: 'ents',
+                    url: '/adminEnterprise/getEnts'
+                }
+            });
         }
     },
     reducers: {}

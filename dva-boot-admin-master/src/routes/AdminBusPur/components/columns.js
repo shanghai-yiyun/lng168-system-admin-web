@@ -4,20 +4,13 @@ import Icon from 'components/Icon';
 import Button from 'components/Button';
 import moment from 'moment';
 
-export const createColumns = (self, dataSource) => [
+export const createColumns = (self, dataSource,ents) => [
     {
         title: 'id',
         name: 'id',
         formItem: {
             type: 'hidden'
         }
-    },
-    {
-        title: '企业id',
-        name: 'entId',
-        formItem: {
-            rules: [{required: true}]
-        },
     },{
         title: '',
         name: 'beginTime',
@@ -37,10 +30,14 @@ export const createColumns = (self, dataSource) => [
     },
     {
         title: '企业名称',
-        name: 'entName',
+        name: 'entId',
+        dict:ents,
         tableItem: {},
         formItem: {
-            rules: [{required: true}]
+            rules: [{required: true}],
+            type:'select',
+            showSearch:true,
+            optionFilterProp:'children',
         },
         searchItem: {
             group: 'abc'

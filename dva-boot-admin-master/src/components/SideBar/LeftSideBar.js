@@ -279,8 +279,7 @@ class LeftSideBar extends PureComponent {
         <div className="navbar-branding">
           <div className="navbar-brand">
             <img src={logoImg} alt="logo" />
-            <b>LNG</b>
-            物联网
+            <b>翼贸通管理后台</b>
           </div>
           <span className="toggle_sidemenu_l" onClick={onCollapse}>
             <Icon type="lines" />
