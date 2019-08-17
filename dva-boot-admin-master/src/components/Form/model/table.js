@@ -6,6 +6,7 @@ import $$ from 'cmn-utils';
 import isEqual from 'react-fast-compare';
 import PageHelper from '@/utils/pageHelper';
 import assign from 'object-assign';
+import SearchBar from 'components/SearchBar';
 
 const Pagination = DataTable.Pagination;
 const Option = Select.Option;
@@ -121,7 +122,25 @@ class TableControlled extends Component {
       });
     }
   }
+  async onSearchSub({ values}) {
+    const { loadData } = this.props;
+    const { dataSource } = this.state;
 
+    if (loadData) {
+      this.setState({
+        loading: true
+      });
+
+      const newDataSource = await loadData(
+          dataSource.filter(values).jumpPage(1, 10)
+      );
+
+      this.setState({
+        loading: false,
+        dataSource: assign(dataSource, newDataSource)
+      });
+    }
+  }
   onSelectChange = (value, option) => {
     const { rowKey, onChange } = this.props;
     const { rows } = this.state;
@@ -166,6 +185,11 @@ class TableControlled extends Component {
       ...otherProps
     } = this.props;
     const { dataSource, value, rows, loading, visible } = this.state;
+    const searchBarPropsSub = {
+      loading,
+      columns,
+      onSearch: values => this.onSearchSub({ values})
+      }
     const dataTableProps = {
       loading,
       columns,
@@ -208,7 +232,7 @@ class TableControlled extends Component {
             className="antui-table-modal"
             title={'请选择' + otherProps.title}
             visible={visible}
-            width={modal.width || 600}
+            width={modal.width || 1000}
             onCancel={this.hideModal}
             footer={[
               <Pagination
@@ -218,6 +242,7 @@ class TableControlled extends Component {
                 showQuickJumper={false}
                 {...dataTableProps}
               />,
+              <SearchBar group="abc" {...searchBarPropsSub} />,
               <Button key="back" onClick={this.hideModal}>
                 取消
               </Button>,

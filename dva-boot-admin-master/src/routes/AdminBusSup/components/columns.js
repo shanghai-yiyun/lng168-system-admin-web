@@ -162,26 +162,16 @@ export const createColumns2 = (self, dataSource) => [
             loadData: self.onLoadTableData,
             initialValue: [ ]
         }
-    // }, {
-    //     title: '企业类型',
-    //     name: 'entType',
-    //     dict: [
-    //         {code: 0, codeName: '平台'},
-    //         {code: 1, codeName: '气源厂'},
-    //         {code: 2, codeName: '加气站'},
-    //         {code: 3, codeName: '贸易商'}
-    //     ],
-    //     tableItem: {},
-    //     formItem: {
-    //         type: 'select',
-    //     }
     }
 ];
 const innerColumns = [
     {
         title: '昵称',
         name: 'nickname',
-        tableItem: {}
+        tableItem: {},
+        searchItem: {
+            group: 'abc'
+        }
     },{
         title: '用户名',
         name: 'ename',
@@ -189,7 +179,10 @@ const innerColumns = [
     },{
         title: '电话',
         name: 'mobile',
-        tableItem: {}
+        tableItem: {},
+        searchItem: {
+            group: 'abc'
+        }
     },{
         title: '企业类型',
         name: 'entType',
@@ -206,6 +199,9 @@ const innerColumns = [
     },{
         title: '企业名称',
         name: 'entName',
-        tableItem: {}
+        tableItem: {},
+        searchItem: {
+            group: 'abc'
+        }
     }
 ];

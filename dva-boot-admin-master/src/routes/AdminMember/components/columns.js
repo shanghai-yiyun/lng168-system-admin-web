@@ -3,6 +3,8 @@ import DataTable from 'components/DataTable';
 import Icon from 'components/Icon';
 import Button from 'components/Button';
 import moment from 'moment';
+import axios from 'axios';
+import store from "cmn-utils/lib/store";
 
 export const createColumns = (self) => [
     {
@@ -307,3 +309,40 @@ export const columns2 = [
 
     }
 ];
+
+
+export async function getExcel(url, fileName) {
+    // const token = store.getStore("token");
+    axios.get(url, {
+            responseType: 'blob', // 表明返回服务器返回的数据类型,
+            headers: {
+                Authorization: store.getStore("token"),
+                Accept: 'application/json',
+            },
+        })
+        .then(res =>{
+            const content = res;
+            const blob = new Blob([content.data], {
+                type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=utf-8',
+            });
+            // return;
+            if ('download' in document.createElement('a')) {
+                // 非IE下载
+                const elink = document.createElement('a');
+                elink.download = fileName;
+                elink.style.display = 'none';
+                elink.target = '_blank';
+                elink.href = URL.createObjectURL(blob);
+                document.body.appendChild(elink);
+                console.log(elink);
+                elink.click();
+                URL.revokeObjectURL(elink.href); // 释放URL 对象
+                document.body.removeChild(elink);
+                // window.location.reload();
+            } else {
+                // IE10+下载
+                navigator.msSaveBlob(blob, fileName);
+                window.location.reload();
+            }
+        });
+}

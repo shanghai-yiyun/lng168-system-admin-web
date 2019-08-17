@@ -211,6 +211,7 @@ export default class extends BaseComponent {
                 </Footer>
                 <ModalForm {...modalFormProps} />
                 <Modal
+                    style={{width: '90%'}}
                     title="信息反馈"
                     visible={this.state.set}
                     onCancel={this.onCancel}

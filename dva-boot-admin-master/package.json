@@ -44,6 +44,7 @@
     "http-proxy-middleware": "^0.19.1",
     "less": "^3.8.1",
     "less-loader": "^4.1.0",
+    "axios": "^0.18.0",
     "mockjs": "^1.0.1-beta3",
     "prop-types": "^15.6.1",
     "react-app-rewired": "^2.1.0",

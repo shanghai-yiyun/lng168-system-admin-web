@@ -269,7 +269,7 @@ class SearchBar extends React.Component {
               title="查询"
               type={type === 'grid' ? 'primary' : 'default'}
               onClick={e => this.searchForm()}
-              htmlType="submit"
+              // htmlType="submit"
               icon="search"
             >
               查询
