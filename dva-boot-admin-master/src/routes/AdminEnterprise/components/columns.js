@@ -186,9 +186,9 @@ export const createColumns = (self,provinces,cities,countries) => [
         title: '审核状态',
         name: 'cerStatus',
         dict: [
-            {code: 0, codeName: '未审核'},
-            {code: 1, codeName: '已通过'},
-            {code: 2, codeName: '已驳回'},
+            {code: 0, codeName: '认证失败'},
+            {code: 1, codeName: '已认证'},
+            {code: 2, codeName: '认证中'},
         ],
         tableItem: {},
         formItem: {type: 'select'},

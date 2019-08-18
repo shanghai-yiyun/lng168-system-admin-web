@@ -6,7 +6,7 @@ import moment from 'moment';
 import axios from 'axios';
 import store from "cmn-utils/lib/store";
 
-export const createColumns = (self) => [
+export const createColumns = (self,ents) => [
     {
         title: '会员id',
         name: 'id',
@@ -38,16 +38,30 @@ export const createColumns = (self) => [
         searchItem: {
             group: 'abc'
         }
-    }, {
-        title: '企业id',
-        name: 'entId',
-        formItem: {},
-    } ,{
+    // }, {
+    //     title: '企业id',
+    //     name: 'entId',
+    //     formItem: {},
+    // } ,{
+    //     title: '企业名称',
+    //     name: 'entName',
+    //     formItem: {},
+    //     tableItem: {},
+    //     searchItem: {
+    //     }
+    },{
         title: '企业名称',
-        name: 'entName',
-        formItem: {},
+        name: 'entId',
+        dict:ents,
         tableItem: {},
+        formItem: {
+            rules: [{required: true}],
+            type:'select',
+            showSearch:true,
+            optionFilterProp:'children',
+        },
         searchItem: {
+            group: 'abc'
         }
     },
     {
@@ -106,7 +120,7 @@ export const createColumns = (self) => [
         dict: [
             {code: 0, codeName: '认证失败'},
             {code: 1, codeName: '已认证'},
-            {code: 3, codeName: '认证中'},
+            {code: 2, codeName: '认证中'},
             {code: 9, codeName: '无'}
         ],
         tableItem: {},

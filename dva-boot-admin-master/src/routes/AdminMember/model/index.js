@@ -39,6 +39,9 @@ export default modelEnhance({
                     pageData: pageData.startPage(1, 10)
                 }
             });
+            yield put({
+                type: 'getEnts'
+            });
         },
         // 获取分页数据
         * getPageInfo({payload}, {call, put}) {
@@ -152,6 +155,16 @@ export default modelEnhance({
             });
             success();
         },
+        *getEnts({ payload }, { call, put }) {
+            yield put({
+                type: '@request',
+                afterResponse: resp => resp.data,
+                payload: {
+                    valueField: 'ents',
+                    url: '/adminEnterprise/getEnts'
+                }
+            });
+        }
     },
 
     reducers: {}
