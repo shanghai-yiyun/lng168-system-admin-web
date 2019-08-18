@@ -3,7 +3,7 @@ import DataTable from 'components/DataTable';
 import Icon from 'components/Icon';
 import Button from 'components/Button';
 
-export const createColumns = (self) => [
+export const createColumns = (self,provinces,cities,countries) => [
     {
         title: '企业id',
         name: 'id',
@@ -43,7 +43,6 @@ export const createColumns = (self) => [
         },
         searchItem: {
             type: 'select',
-            group: 'abc'
         }
     }, {
         title: '地址',
@@ -51,7 +50,6 @@ export const createColumns = (self) => [
         tableItem: {},
         formItem: {},
         searchItem: {
-            group: 'abc'
         }
     }, {
         title: '固定电话',
@@ -59,20 +57,42 @@ export const createColumns = (self) => [
         tableItem: {},
         formItem: {},
         searchItem: {
-            group: 'abc'
         }
     }, {
         title: '省份',
         name: 'entProvince',
-        formItem: {},
+        dict:provinces,
+        formItem: {
+            rules: [{required: true}],
+            type:'select',
+            showSearch:true,
+            optionFilterProp:'children',
+            onChange: (form, value, rows) => self.getSubCities(value),
+        // },
+        // searchItem: {
+        //     group: 'abc'
+        }
     }, {
         title: '城市',
         name: 'entCity',
-        formItem: {},
+        dict:cities,
+        formItem: {
+            rules: [{required: true}],
+            type: 'select',
+            showSearch: true,
+            optionFilterProp: 'children',
+            onChange: (form, value, rows) => self.getSubCountries(value),
+        }
     }, {
         title: '县区',
         name: 'entCounty',
-        formItem: {},
+        dict:countries,
+        formItem: {
+            rules: [{required: true}],
+            type: 'select',
+            showSearch: true,
+            optionFilterProp: 'children',
+        }
     }, {
         title: '邮编',
         name: 'entZipcode',
@@ -84,7 +104,9 @@ export const createColumns = (self) => [
     }, {
         title: '手机',
         name: 'entMobile',
-        formItem: {},
+        formItem: {
+            rules:[{ pattern: /^1[3|5|7|8|9][0-9]\d{8}$/, message: "手机号码格式不正确"}]
+        },
     }, {
         title: '企业网址',
         name: 'entUrl',

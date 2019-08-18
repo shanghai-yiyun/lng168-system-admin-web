@@ -132,13 +132,13 @@ export const createColumns = (self) => [
         title: '采购数量',
         name: 'purNum',
         formItem: {
-
+            rules: [{required: true},{message:'只能输入数字',pattern: /^[0-9]+$/}]
         }
     },{
         title: '采购单价',
         name: 'purPrice',
         formItem: {
-
+            rules: [{required: true},{message:'只能输入数字',pattern: /^[0-9]+$/}]
         }
     },{
         title: '装车时间',

@@ -95,7 +95,7 @@ export const createColumns = (self) => [
         name: 'purNum',
         disabled:true,
         formItem: {
-
+            rules: [{required: true},{message:'只能输入数字',pattern: /^[0-9]+$/}]
         }
     },{
         title: '采购单价',

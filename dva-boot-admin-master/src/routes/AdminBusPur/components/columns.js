@@ -57,7 +57,7 @@ export const createColumns = (self, dataSource,ents) => [
         name: 'purNum',
         tableItem: {},
         formItem: {
-            rules: [{required: true}]
+            rules: [{required: true},{message:'只能输入数字',pattern: /^[0-9]+$/}]
         }
     },{
         title: '卸货时间',

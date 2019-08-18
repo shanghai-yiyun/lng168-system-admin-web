@@ -48,7 +48,9 @@ export const createColumns = (self, dataSource) => [
     },{
         title: '数量',
         name: 'num',
-        tableItem: {},
+        tableItem: {
+            rules: [{required: true},{message:'只能输入数字',pattern: /^[0-9]+$/}]
+        },
         formItem: {}
     },{
         title: '装车/卸货时间',
@@ -69,7 +71,9 @@ export const createColumns = (self, dataSource) => [
     },{
         title: '单价',
         name: 'supPrice',
-        formItem: {}
+        formItem: {
+            rules: [{required: true},{message:'只能输入数字',pattern: /^[0-9]+$/}]
+        }
     },{
         title: '纬度',
         name: 'position_x',
@@ -279,7 +283,9 @@ const columnsPurchOffer = [
     },{
         title: '单价',
         name: 'supPrice',
-        tableItem: {}
+        tableItem: {
+            rules: [{required: true},{message:'只能输入数字',pattern: /^[0-9]+$/}]
+        }
     },{
         title: '装车时间',
         name: 'supDate',

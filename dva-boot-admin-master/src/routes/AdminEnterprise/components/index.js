@@ -44,6 +44,22 @@ export default class extends BaseComponent {
             }
         });
     };
+    getSubCities = values => {
+        this.props.dispatch({
+            type: 'adminEnterprise/getCities',
+            payload: {
+                pid:values,
+            }
+        });
+    };
+    getSubCountries = values => {
+        this.props.dispatch({
+            type: 'adminEnterprise/getCountries',
+            payload: {
+                pid:values,
+            }
+        });
+    };
     onSetting = record => {
         this.props.dispatch({
             type: 'adminEnterprise/getData',
@@ -68,14 +84,6 @@ export default class extends BaseComponent {
 
                 }
             }
-        });
-    };
-    onCancel = () => {
-        this.setState({
-            record: null,
-            visible: false,
-            set: false,
-            detailInfo:[]
         });
     };
     onCancel = () => {
@@ -114,8 +122,8 @@ export default class extends BaseComponent {
 
     render() {
         const {adminEnterprise, loading, dispatch} = this.props;
-        const {pageData} = adminEnterprise;
-        const columns = createColumns(this);
+        const {pageData,provinces,cities,countries} = adminEnterprise;
+        const columns = createColumns(this,provinces,cities,countries);
         const {rows, record, visible} = this.state;
         const searchBarProps = {
             columns,

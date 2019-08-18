@@ -34,6 +34,7 @@ import Button from './UI/Button';
 import CRUD from './Business/CRUD';
 import AdminRoles from './AdminRole';
 import AdminMember from './AdminMember';
+import AdminCustomerService from './AdminCustomerService';
 import AdminSystem from './AdminSystem';
 import AdminOrder from './AdminOrder';
 import AdminMyOrder from './AdminMyOrder';
@@ -106,6 +107,7 @@ const routesConfig = app => [
       LevelRoute(app),
       AdminRoles(app),
       AdminMember(app),
+      AdminCustomerService(app),
       AdminSystem(app),
       AdminOrder(app),
       AdminMyOrder(app),

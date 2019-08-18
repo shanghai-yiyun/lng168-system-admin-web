@@ -52,7 +52,9 @@ export const createColumns = (self, dataSource,ents) => [
         title: '单价',
         name: 'supPrice',
         tableItem: {},
-        formItem: {}
+        formItem: {
+            rules: [{required: true},{message:'只能输入数字',pattern: /^[0-9]+$/}]
+        }
     },{
         title: '装车时间',
         name: 'supDate',

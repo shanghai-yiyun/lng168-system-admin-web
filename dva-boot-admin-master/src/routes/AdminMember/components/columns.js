@@ -19,7 +19,6 @@ export const createColumns = (self) => [
         tableItem: {},
         formItem: {},
         searchItem: {
-            group: 'abc'
         }
     }, {
         title: '昵称',
@@ -33,7 +32,9 @@ export const createColumns = (self) => [
         title: '手机号',
         name: 'mobile',
         tableItem: {},
-        formItem: {},
+        formItem: {
+            rules:[{ pattern: /^1[3|5|7|8|9][0-9]\d{8}$/, message: "手机号码格式不正确"}]
+        },
         searchItem: {
             group: 'abc'
         }
@@ -47,7 +48,6 @@ export const createColumns = (self) => [
         formItem: {},
         tableItem: {},
         searchItem: {
-            group: 'abc'
         }
     },
     {
@@ -99,7 +99,6 @@ export const createColumns = (self) => [
         },
         searchItem: {
             type: 'select',
-            group: 'abc'
         }
     }, {
         title: '企业认证状态',

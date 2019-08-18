@@ -13,6 +13,9 @@ export default modelEnhance({
     state: {
         pageData: PageHelper.create(),
         enterpriseCertificate: [],
+        provinces: [],
+        cities: [],
+        countries: []
     },
 
     subscriptions: {
@@ -37,6 +40,9 @@ export default modelEnhance({
                 payload: {
                     pageData: pageData.startPage(1, 10)
                 }
+            });
+            yield put({
+                type: 'getProvinces'
             });
         },
         // 获取分页数据
@@ -137,6 +143,41 @@ export default modelEnhance({
             });
             success();
         },
+        *getProvinces({ payload }, { call, put }) {
+            yield put({
+                type: '@request',
+                afterResponse: resp => resp.data,
+                payload: {
+                    valueField: 'provinces',
+                    url: '/adminEnterprise/getAreas'
+                }
+            });
+        },
+        *getCities({ payload }, { call, put }) {
+            const {pid} = payload;
+            alert(pid);
+            yield put({
+                type: '@request',
+                afterResponse: resp => resp.data,
+                payload: {
+                    valueField: 'cities',
+                    url: '/adminEnterprise/getAreas',
+                    data: pid
+                }
+            });
+        },
+        *getCountries({ payload }, { call, put }) {
+            const {pid} = payload;
+            yield put({
+                type: '@request',
+                afterResponse: resp => resp.data,
+                payload: {
+                    valueField: 'countries',
+                    url: '/adminEnterprise/getAreas',
+                    data: pid
+                }
+            });
+        }
     },
 
     reducers: {}
