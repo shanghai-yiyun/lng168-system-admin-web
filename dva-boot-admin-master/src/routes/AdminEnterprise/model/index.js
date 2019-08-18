@@ -155,7 +155,6 @@ export default modelEnhance({
         },
         *getCities({ payload }, { call, put }) {
             const {pid} = payload;
-            alert(pid);
             yield put({
                 type: '@request',
                 afterResponse: resp => resp.data,
