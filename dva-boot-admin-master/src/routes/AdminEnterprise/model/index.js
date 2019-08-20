@@ -153,7 +153,7 @@ export default modelEnhance({
                 }
             });
         },
-        *getCities({ payload }, { call, put }) {
+        *getCities({ payload }, { call, put}) {
             const {pid} = payload;
             yield put({
                 type: '@request',

@@ -4,7 +4,7 @@ import Icon from 'components/Icon';
 import Button from 'components/Button';
 import moment from 'moment';
 
-export const createColumns = (self, dataSource,ents) => [
+export const createColumns = (self, dataSource,ents,members) => [
     {
         title: 'id',
         name: 'id',
@@ -34,7 +34,7 @@ export const createColumns = (self, dataSource,ents) => [
         dict:ents,
         tableItem: {},
         formItem: {
-            rules: [{required: true}],
+            rules: [{required: true, message: '企业名称不能为空！'}],
             type:'select',
             showSearch:true,
             optionFilterProp:'children',
@@ -44,11 +44,15 @@ export const createColumns = (self, dataSource,ents) => [
         }
     },{
         title: '发布会员名称',
+        name: 'memberId',
+        dict:members,
         tableItem: {},
         formItem: {
-            rules: [{required: true}]
+            rules: [{required: true, message: '会员名称不能为空！'}],
+            type:'select',
+            showSearch:true,
+            optionFilterProp:'children',
         },
-        name: 'memberName',
         searchItem: {
             group: 'abc'
         }
@@ -65,14 +69,14 @@ export const createColumns = (self, dataSource,ents) => [
         tableItem: {},
         formItem: {
             type: 'datetime',
-            rules: [{required: true}]
+            rules: [{required: true, message: '卸货时间不能为空！'}]
         }
     },{
         title: '卸货地址',
         name: 'purAddress',
         tableItem: {},
         formItem: {
-            rules: [{required: true}]
+            rules: [{required: true, message: '卸货地址不能为空！'}]
         }
     },{
         title: '纬度',
@@ -92,7 +96,7 @@ export const createColumns = (self, dataSource,ents) => [
         tableItem: {},
         formItem: {
             type: 'select',
-            rules: [{required: true}]
+            rules: [{required: true, message: '请选择一个状态！'}]
         },
         searchItem: {
             type: 'select',
@@ -117,7 +121,7 @@ export const createColumns = (self, dataSource,ents) => [
             type: 'datetime',
             showTime: true,
             initialValue: moment(),
-            rules: [{required: true}]
+            rules: [{required: true, message: '发布时间不能为空！'}]
         }
     } ,
     {

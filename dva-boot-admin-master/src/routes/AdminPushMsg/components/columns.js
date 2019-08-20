@@ -27,7 +27,7 @@ export const createColumns = (self) => [
         ],
         formItem: {
             type: 'select',
-            rules: [{required: true}]
+            rules: [{required: true, message: '请选择一个状态！'}]
         }
     // },{
     //     title: '操作员',
@@ -51,7 +51,7 @@ export const createColumns = (self) => [
         name: 'notificationTitle',
         tableItem: {},
         formItem: {
-            rules: [{required: true}]
+            rules: [{required: true, message: '通知标题不能为空！'}]
         }
     },
     {
@@ -59,7 +59,7 @@ export const createColumns = (self) => [
         name: 'msgTitle',
         tableItem: {},
         formItem: {
-            rules: [{required: true}]
+            rules: [{required: true, message: '信息标题不能为空！'}]
         }
     },
     {
@@ -67,7 +67,7 @@ export const createColumns = (self) => [
         name: 'msgContent',
         tableItem: {},
         formItem: {
-            rules: [{required: true}]
+            rules: [{required: true, message: '信息内容不能为空！'}]
         }
     },
     // {

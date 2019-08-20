@@ -24,7 +24,7 @@ export const createColumns = (self) => [
         tableItem: {width: 180},
         formItem: {
             type:'textarea',
-            rules: [{required: true}],
+            rules: [{required: true, message: '参数不能为空！'}],
             style:{width:200}
         },
     }, {

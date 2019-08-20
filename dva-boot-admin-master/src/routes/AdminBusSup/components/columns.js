@@ -4,7 +4,7 @@ import Icon from 'components/Icon';
 import Button from 'components/Button';
 import moment from 'moment';
 
-export const createColumns = (self, dataSource,ents) => [
+export const createColumns = (self, dataSource,ents,members) => [
     {
         title: 'id',
         name: 'id',
@@ -42,9 +42,15 @@ export const createColumns = (self, dataSource,ents) => [
         }
     },{
         title: '发布会员名称',
-        name: 'memberName',
-        formItem: {},
+        name: 'memberId',
+        dict:members,
         tableItem: {},
+        formItem: {
+            rules: [{required: true, message: '会员名称不能为空！'}],
+            type:'select',
+            showSearch:true,
+            optionFilterProp:'children',
+        },
         searchItem: {
             group: 'abc'
         }

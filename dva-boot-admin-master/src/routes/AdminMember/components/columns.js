@@ -55,7 +55,7 @@ export const createColumns = (self,ents) => [
         dict:ents,
         tableItem: {},
         formItem: {
-            rules: [{required: true}],
+            rules: [{required: true, message: '企业名称不能为空！'}],
             type:'select',
             showSearch:true,
             optionFilterProp:'children',
@@ -109,7 +109,7 @@ export const createColumns = (self,ents) => [
         tableItem: {},
         formItem: {
             type: 'select',
-            rules: [{required: true, message: '请选择权限！'}]
+            rules: [{required: true, message: '请选择一个状态！'}]
         },
         searchItem: {
             type: 'select',
@@ -249,14 +249,14 @@ export const columns2 = [
         name: 'entName',
         disabled: true,
         tableItem: {},
-        formItem: {rules: [{required: true}]},
+        formItem: {rules: [{required: true, message: '公司名称不能为空！'}]},
     },
     {
         title: '营业执照号',
         name: 'entBh',
         disabled: true,
         formItem: {
-            rules: [{required: true}]
+            rules: [{required: true, message: '营业执照号不能为空！'}]
         }
     },
     {

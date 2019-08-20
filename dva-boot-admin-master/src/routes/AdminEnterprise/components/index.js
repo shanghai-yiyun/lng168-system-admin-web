@@ -44,7 +44,9 @@ export default class extends BaseComponent {
             }
         });
     };
-    getSubCities = values => {
+    getSubCities = (values,form) => {
+        form.setFieldsValue({'entCity': ''});
+        form.setFieldsValue({'entCounty': ''});
         this.props.dispatch({
             type: 'adminEnterprise/getCities',
             payload: {
@@ -52,7 +54,8 @@ export default class extends BaseComponent {
             }
         });
     };
-    getSubCountries = values => {
+    getSubCountries = (values,form) => {
+        form.setFieldsValue({'entCounty': ''});
         this.props.dispatch({
             type: 'adminEnterprise/getCountries',
             payload: {

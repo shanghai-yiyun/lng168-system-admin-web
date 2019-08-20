@@ -14,7 +14,7 @@ export const createColumns = (self,provinces,cities,countries) => [
         title: '企业名称',
         name: 'entTitle',
         tableItem: {},
-        formItem: {rules: [{required: true}]},
+        formItem: {rules: [{required: true, message: '企业名称不能为空！'}]},
         searchItem: {
             group: 'abc'
         }
@@ -22,7 +22,7 @@ export const createColumns = (self,provinces,cities,countries) => [
         title: '企业编号',
         name: 'entBh',
         tableItem: {},
-        formItem: {rules: [{required: true}]},
+        formItem: {rules: [{required: true, message: '企业编号不能为空！'}]},
         searchItem: {
             group: 'abc'
         }
@@ -63,11 +63,11 @@ export const createColumns = (self,provinces,cities,countries) => [
         name: 'entProvince',
         dict:provinces,
         formItem: {
-            rules: [{required: true}],
+            rules: [{required: true, message: '省份不能为空！'}],
             type:'select',
             showSearch:true,
             optionFilterProp:'children',
-            onChange: (form, value, rows) => self.getSubCities(value),
+            onChange: (form, value, rows) => self.getSubCities(value,form),
         // },
         // searchItem: {
         //     group: 'abc'
@@ -77,18 +77,18 @@ export const createColumns = (self,provinces,cities,countries) => [
         name: 'entCity',
         dict:cities,
         formItem: {
-            rules: [{required: true}],
+            rules: [{required: true, message: '城市不能为空！'}],
             type: 'select',
             showSearch: true,
             optionFilterProp: 'children',
-            onChange: (form, value, rows) => self.getSubCountries(value),
+            onChange: (form, value, rows) => self.getSubCountries(value,form),
         }
     }, {
         title: '县区',
         name: 'entCounty',
         dict:countries,
         formItem: {
-            rules: [{required: true}],
+            rules: [{required: true, message: '县区不能为空！'}],
             type: 'select',
             showSearch: true,
             optionFilterProp: 'children',
@@ -230,14 +230,14 @@ export const columns2 = [
         name: 'entName',
         disabled:true,
         tableItem: {},
-        formItem: {rules: [{required: true}]},
+        formItem: {rules: [{required: true, message: '企业名称不能为空！'}]},
     },
     {
         title: '营业执照号',
         name: 'entBh',
         disabled:true,
         tableItem: {},
-        formItem: {rules: [{required: true}]},
+        formItem: {rules: [{required: true, message: '营业执照号不能为空！'}]},
     },{
         title: '公司类型',
         name: 'entType',
