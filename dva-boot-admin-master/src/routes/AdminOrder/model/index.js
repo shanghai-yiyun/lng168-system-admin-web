@@ -14,7 +14,8 @@ export default modelEnhance({
 
     state: {
         pageData: PageHelper.create(),
-        viewContractUrl:""
+        viewContractUrl:"",
+        ents: [],
     },
 
     subscriptions: {
@@ -39,6 +40,9 @@ export default modelEnhance({
                 payload: {
                     pageData: pageData.startPage(1, 10)
                 }
+            });
+            yield put({
+                type: 'getEnts'
             });
         },
         // 获取分页数据
@@ -110,6 +114,16 @@ export default modelEnhance({
                 const w = window.open('about:blank');
                 // 要打开的新页面的url
                 w.location.href=data.url;
+        },
+        *getEnts({ payload }, { call, put }) {
+            yield put({
+                type: '@request',
+                afterResponse: resp => resp.data,
+                payload: {
+                    valueField: 'ents',
+                    url: '/adminEnterprise/getEnts'
+                }
+            });
         },
 
     },

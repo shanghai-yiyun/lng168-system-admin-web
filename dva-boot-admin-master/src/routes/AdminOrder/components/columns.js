@@ -3,7 +3,7 @@ import DataTable from 'components/DataTable';
 import Icon from 'components/Icon';
 import Button from 'components/Button';
 
-export const createColumns = (self) => [
+export const createColumns = (self,ents) => [
     {
         title: 'id',
         name: 'id',
@@ -106,6 +106,16 @@ export const createColumns = (self) => [
         name: 'supFactory',
         formItem: {
         }
+    },{
+        title: '液源单位',
+        name: 'entFromId',
+        dict:ents,
+        formItem: {
+            rules: [{required: true, message: '企业名称不能为空！'}],
+            type:'select',
+            showSearch:true,
+            optionFilterProp:'children',
+        }
     },
     {
         title: '采购单位',
@@ -151,6 +161,16 @@ export const createColumns = (self) => [
         name: 'purAddress',
         formItem: {
 
+        }
+    },{
+        title: '卸货单位',
+        name: 'entToId',
+        dict:ents,
+        formItem: {
+            rules: [{required: true, message: '企业名称不能为空！'}],
+            type:'select',
+            showSearch:true,
+            optionFilterProp:'children',
         }
     },{
         title: '卸货时间',

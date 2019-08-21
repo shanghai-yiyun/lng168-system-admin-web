@@ -186,14 +186,32 @@ export const createColumns = (self,provinces,cities,countries) => [
         title: '审核状态',
         name: 'cerStatus',
         dict: [
-            {code: 0, codeName: '认证失败'},
-            {code: 1, codeName: '已认证'},
-            {code: 2, codeName: '认证中'},
+            {code: 0, codeName: '未审核'},
+            {code: 1, codeName: '已审核'},
+            {code: 2, codeName: '审核中'},
+            {code: 3, codeName: '审核失败'},
         ],
         tableItem: {},
         formItem: {type: 'select'},
         searchItem: {
-            group: 'abc',
+            type: 'select'
+        }
+    },{
+        title: '认证状态',
+        name: 'fddStatus',
+        dict: [
+            {code: 0, codeName: '未认证'},
+            {code: 1, codeName: '管理员资料已提交'},
+            {code: 2, codeName: '企业基本资料(没有申请表)已提交'},
+            {code: 3, codeName: '已提交待审核'},
+            {code: 4, codeName: '审核通过'},
+            {code: 5, codeName: '审核不通过'},
+            {code: 6, codeName: '人工初审通过'},
+        ],
+        tableItem: {},
+        disabled:true,
+        formItem: {type: 'select'},
+        searchItem: {
             type: 'select'
         }
     },
