@@ -73,7 +73,7 @@ export default class extends BaseComponent {
                 success: () => {
                     const data = this.props.adminEnterprise.enterpriseCertificate.data;
                     const content = this.props.adminEnterprise.enterpriseCertificate.message;
-                    if (data.entId.length === 0) {
+                    // if (data.entId.length === 0) {
                         // Modal.confirm({
                         //     title: '提示',
                         //     content,
@@ -81,16 +81,16 @@ export default class extends BaseComponent {
                         //     onCancel() {
                         //     }
                         // });
-                        this.setState({
-                            set: !this.state.set,
-                            detailInfo: [],
-                        });
-                    } else {
+                        // this.setState({
+                        //     set: !this.state.set,
+                        //     detailInfo: [],
+                        // });
+                    // } else {
                         this.setState({
                             set: !this.state.set,
                             detailInfo: this.props.adminEnterprise.enterpriseCertificate.data,
                         });
-                    }
+                    // }
 
                 }
             }
