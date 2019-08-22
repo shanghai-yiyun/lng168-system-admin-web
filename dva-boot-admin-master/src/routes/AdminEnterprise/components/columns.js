@@ -230,6 +230,12 @@ export const createColumns = (self,provinces,cities,countries) => [
                     <Button tooltip="资质" onClick={e => self.onSetting(record)}>
                         <Icon type="check"/>
                     </Button>
+                    <Button tooltip="新增气质报告" onClick={e => self.onSetting2(record)}>
+                        <Icon type="plus"/>
+                    </Button>
+                    <Button tooltip="查看气质报告" onClick={e => self.onSetting3(record)}>
+                        <Icon type="lines"/>
+                    </Button>
                 </DataTable.Oper>
             )
         }
@@ -309,5 +315,36 @@ export const columns2 = [
     //         rules: [{required: true, message: '请选择一个状态！'}]
     //     },
 
+    }
+];
+export const columns3 = [
+    {
+        name: 'entId',
+        formItem: {
+            type: 'hidden'
+        }
+    },{
+        title: '气质报告',
+        name: 'fileList',
+        formItem: {
+            type: 'upload',
+            initialValue: [],
+            rules: [
+                {
+                    required: true,
+                    message: '请上传气质报告'
+                }
+            ],
+            maxFileSize: 1000, // 最大限制 kb
+            fileTypes: ['.png', '.jpg', '.gif'], // 允许类型
+            max: 1,//上传图片数量最大限制
+            action: 'http://s.lng168.com/article-gate/business/file/uploadGasReport'
+            // action: 'http://localhost:3000/article-gate/business/file/uploadGasReport'
+        }
+    },    {
+        title: '备注',
+        name: 'memo',
+        tableItem: {},
+        formItem: {},
     }
 ];

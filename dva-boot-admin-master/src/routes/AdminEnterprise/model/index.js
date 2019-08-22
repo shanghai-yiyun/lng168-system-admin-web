@@ -1,5 +1,7 @@
 import modelEnhance from '@/utils/modelEnhance';
 import PageHelper from '@/utils/pageHelper';
+import {viewReport} from "../../AdminEnterprise/service";
+import { normal } from 'components/Notification';
 
 /**
  * 当第一次加载完页面时为true
@@ -7,12 +9,14 @@ import PageHelper from '@/utils/pageHelper';
  * 多次初始化数据
  */
 let LOADED = false;
+const notice = normal;
 export default modelEnhance({
     namespace: 'adminEnterprise',
 
     state: {
         pageData: PageHelper.create(),
         enterpriseCertificate: [],
+        gasReport: [],
         provinces: [],
         cities: [],
         countries: []
@@ -121,6 +125,38 @@ export default modelEnhance({
             });
             // 等待@request结束
             yield take('@request/@@end');
+            success();
+        },
+        // 获取气质报告信息
+        * getGasReport({payload}, {call, put, select,take}) {
+            const {entId} = payload;
+            const {status, message, data} = yield call(viewReport, entId);
+            if(status != 999){
+                const w = window.open('about:blank');
+                // 要打开的新页面的url
+                w.location.href=data.url;
+            }else{
+                notice.info(message);
+            }
+        },
+        // 保存气质报告
+        * saveGasReport({payload}, {call, put, select,take}) {
+            const {record, success} = payload;
+            const {pageData} = yield select(state => state.adminEnterprise);
+            yield put({
+                type: '@request',
+                payload: {
+                    notice: true,
+                    url: '/adminEnterprise/saveGasReport',
+                    data: record
+                }
+            });
+            // 等待@request结束
+            yield take('@request/@@end');
+            yield put({
+                type: 'getPageInfo',
+                payload: {pageData}
+            });
             success();
         },
         // 审批客户资质

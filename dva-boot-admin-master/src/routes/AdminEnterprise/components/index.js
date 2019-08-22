@@ -7,7 +7,7 @@ import SearchBar from 'components/SearchBar';
 import DataTable from 'components/DataTable';
 import Form from 'components/Form';
 import {ModalForm} from 'components/Modal';
-import {createColumns,columns2} from './columns';
+import {createColumns, columns2, columns3} from './columns';
 import './index.less';
 
 const {Content, Header, Footer} = Layout;
@@ -23,7 +23,9 @@ export default class extends BaseComponent {
         visible: false,
         rows: [],
         set: false,
-        detailInfo: []
+        set2: false,
+        detailInfo: [],
+        detailInfo2: []
     };
 
     handleDelete = records => {
@@ -44,22 +46,22 @@ export default class extends BaseComponent {
             }
         });
     };
-    getSubCities = (values,form) => {
+    getSubCities = (values, form) => {
         form.setFieldsValue({'entCity': ''});
         form.setFieldsValue({'entCounty': ''});
         this.props.dispatch({
             type: 'adminEnterprise/getCities',
             payload: {
-                pid:values,
+                pid: values,
             }
         });
     };
-    getSubCountries = (values,form) => {
+    getSubCountries = (values, form) => {
         form.setFieldsValue({'entCounty': ''});
         this.props.dispatch({
             type: 'adminEnterprise/getCountries',
             payload: {
-                pid:values,
+                pid: values,
             }
         });
     };
@@ -69,23 +71,42 @@ export default class extends BaseComponent {
             payload: {
                 record,
                 success: () => {
-                    const data =this.props.adminEnterprise.enterpriseCertificate.data;
-                    const content =this.props.adminEnterprise.enterpriseCertificate.message;
-                    if(data.entId.length===0){
-                        Modal.confirm({
-                            title: '提示',
-                            content,
-                            okButtonProps:{hidden:true },
-                            onCancel() {}
-                        });
-                    }else{
+                    const data = this.props.adminEnterprise.enterpriseCertificate.data;
+                    const content = this.props.adminEnterprise.enterpriseCertificate.message;
+                    if (data.entId.length === 0) {
+                        // Modal.confirm({
+                        //     title: '提示',
+                        //     content,
+                        //     okButtonProps: {hidden: true},
+                        //     onCancel() {
+                        //     }
+                        // });
                         this.setState({
                             set: !this.state.set,
-                            detailInfo : this.props.adminEnterprise.enterpriseCertificate.data,
+                            detailInfo: [],
+                        });
+                    } else {
+                        this.setState({
+                            set: !this.state.set,
+                            detailInfo: this.props.adminEnterprise.enterpriseCertificate.data,
                         });
                     }
 
                 }
+            }
+        });
+    };
+    onSetting2 = record => {
+        this.setState({
+            set2: !this.state.set2,
+            detailInfo2: {"entId":record.id,},
+        });
+    };
+    onSetting3 = record => {
+        this.props.dispatch({
+            type: 'adminEnterprise/getGasReport',
+            payload: {
+                entId : record.id,
             }
         });
     };
@@ -94,10 +115,18 @@ export default class extends BaseComponent {
             record: null,
             visible: false,
             set: false,
-            detailInfo:[]
+            detailInfo: []
         });
     };
-    handleCancel = () => this.setState({ previewVisible: false }
+    onCancel2 = () => {
+        this.setState({
+            record: null,
+            visible: false,
+            set2: false,
+            detailInfo2: []
+        });
+    };
+    handleCancel = () => this.setState({previewVisible: false}
     );
 
     handlePreview = async file => {
@@ -111,7 +140,7 @@ export default class extends BaseComponent {
         });
     };
 
-    handleSubmit = (value, record)=> {
+    handleSubmit = (value, record) => {
         this.props.dispatch({
             type: 'adminEnterprise/approve',
             payload: {
@@ -122,11 +151,22 @@ export default class extends BaseComponent {
             }
         });
     };
+    handleSubmit2 = (value, record) => {
+        this.props.dispatch({
+            type: 'adminEnterprise/saveGasReport',
+            payload: {
+                record: value,
+                success: () => {
+                    this.onCancel2();
+                }
+            }
+        });
+    };
 
     render() {
         const {adminEnterprise, loading, dispatch} = this.props;
-        const {pageData,provinces,cities,countries} = adminEnterprise;
-        const columns = createColumns(this,provinces,cities,countries);
+        const {pageData, provinces, cities, countries} = adminEnterprise;
+        const columns = createColumns(this, provinces, cities, countries);
         const {rows, record, visible} = this.state;
         const searchBarProps = {
             columns,
@@ -228,7 +268,7 @@ export default class extends BaseComponent {
                     destroyOnClose={true}
                     onCancel={this.onCancel}
                     width={550}
-                    footer ={false}
+                    footer={false}
                 >
                     <Form
                         record={this.state.detailInfo}
@@ -237,6 +277,23 @@ export default class extends BaseComponent {
                         onCancel={this.onCancel}
                         isHiddenReset={true}
                         handleChange={this.handleChange}
+                    >
+                    </Form>
+                </Modal>
+                <Modal
+                    title="气质报告"
+                    visible={this.state.set2}
+                    destroyOnClose={true}
+                    onCancel={this.onCancel2}
+                    width={550}
+                    footer={false}
+                >
+                    <Form
+                        record={this.state.detailInfo2}
+                        columns={columns3}
+                        onSubmit={this.handleSubmit2}
+                        onCancel={this.onCancel2}
+                        isHiddenReset={true}
                     >
                     </Form>
                 </Modal>
