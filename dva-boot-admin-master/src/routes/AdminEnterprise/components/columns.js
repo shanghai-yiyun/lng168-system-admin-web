@@ -158,6 +158,10 @@ export const createColumns = (self,provinces,cities,countries) => [
         name: 'entArea',
         formItem: {},
     }, {
+        title: '更新时间',
+        name: 'timeu',
+        tableItem: {}
+    }, {
         title: '指数计算标志',
         name: 'entMark',
         dict: [
