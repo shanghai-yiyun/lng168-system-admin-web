@@ -190,7 +190,6 @@ export const createColumns = (self,provinces,cities,countries) => [
         title: '审核状态',
         name: 'cerStatus',
         dict: [
-            {code: 0, codeName: '未审核'},
             {code: 1, codeName: '已审核'},
             {code: 2, codeName: '审核中'},
             {code: 3, codeName: '审核失败'},
@@ -300,25 +299,15 @@ export const columns2 = [
                     message: '请选择用户认证图片'
                 }
             ],
+            listType:"picture",
             maxFileSize: 1000, // 最大限制 kb
             fileTypes: ['.png', '.jpg', '.gif'], // 允许类型
             max: 10,//上传图片数量最大限制
             isHidden:false,
             isHandleRemove:true,
+            // action: 'http://localhost:3000/article-gate/business/file/upload?fileType=image&subType=certificate'
+            action: 'http://s.lng168.com/article-gate/business/file/upload?fileType=image&subType=certificate'
         }
-    // },{
-    //     title: '审批',
-    //     name: 'approval',
-    //     dict: [
-    //         {code: "1", codeName: '通过'},
-    //         {code: "0", codeName: '驳回'},
-    //         {code: "3", codeName: '未审核'}
-    //     ],
-    //     formItem: {
-    //         type: 'select',
-    //         rules: [{required: true, message: '请选择一个状态！'}]
-    //     },
-
     }
 ];
 export const columns3 = [
@@ -339,11 +328,12 @@ export const columns3 = [
                     message: '请上传气质报告'
                 }
             ],
+            listType:"picture",
             maxFileSize: 1000, // 最大限制 kb
             fileTypes: ['.png', '.jpg', '.gif'], // 允许类型
             max: 1,//上传图片数量最大限制
-            action: 'http://s.lng168.com/article-gate/business/file/uploadGasReport'
-            // action: 'http://localhost:3000/article-gate/business/file/uploadGasReport'
+            // action: 'http://localhost:3000/article-gate/business/file/upload?fileType=image&subType=report'
+            action: 'http://s.lng168.com/article-gate/business/file/upload?fileType=image&subType=report'
         }
     },    {
         title: '备注',

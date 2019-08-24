@@ -82,12 +82,18 @@ export const createColumns = (self,ents) => [
     {
         title: '供应单位',
         name: 'supEnt',
-        tableItem: {},
-        formItem: {
-
-        },
         searchItem: {
             group: 'abc'
+        }
+    },{
+        title: '供应单位',
+        name: 'supEntId',
+        dict:ents,
+        formItem: {
+            rules: [{required: true, message: '企业名称不能为空！'}],
+            type:'select',
+            showSearch:true,
+            optionFilterProp:'children',
         }
     }, {
         title: '供应单位签约',
@@ -121,10 +127,18 @@ export const createColumns = (self,ents) => [
         title: '采购单位',
         name: 'purEnt',
         tableItem: {},
-        formItem: {
-        },
         searchItem: {
             group: 'abc'
+        }
+    },{
+        title: '采购单位',
+        name: 'purEntId',
+        dict:ents,
+        formItem: {
+            rules: [{required: true, message: '企业名称不能为空！'}],
+            type:'select',
+            showSearch:true,
+            optionFilterProp:'children',
         }
     }, {
         title: '采购单位签约',
@@ -178,6 +192,14 @@ export const createColumns = (self,ents) => [
         formItem: {
             type: 'datetime',
         }
+    }, {
+        title: '是否匹配系统单位',
+        name: 'isFormat',
+        tableItem: {},
+        dict: [
+            {code: 0, codeName: '否'},
+            {code: 1, codeName: '是'},
+        ],
     },{
         title: '操作',
         tableItem: {

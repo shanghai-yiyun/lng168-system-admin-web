@@ -14,6 +14,10 @@ export const createColumns = (self,ents) => [
             type: 'hidden'
         }
     }, {
+        title: '商城金币',
+        name: 'ec_gold_coin',
+        formItem: {type: 'hidden'},
+    }, {
         title: '用户名',
         name: 'ename',
         tableItem: {},
@@ -196,7 +200,7 @@ export const createColumns = (self,ents) => [
         formItem: {},
     }, {
         title: '商城金币',
-        name: 'ec_gold_coin',
+        name: 'ec_gold_coin_add',
         formItem: {},
     }, {
         title: '商城会员级别',
@@ -300,26 +304,13 @@ export const columns2 = [
                     message: '请选择用户认证图片'
                 }
             ],
+            listType:"picture",
             maxFileSize: 1000, // 最大限制 kb
             fileTypes: ['.png', '.jpg', '.gif'], // 允许类型
             max: 10,
-            // isHidden: true,
-            // isHandleRemove: false
+            // action: 'http://localhost:3000/article-gate/business/file/upload?fileType=image&subType=certificate'
+            action: 'http://s.lng168.com/article-gate/business/file/upload?fileType=image&subType=certificate'
         }
-    // },
-    // {
-    //     title: '审批',
-    //     name: 'approval',
-    //     dict: [
-    //         {code: "1", codeName: '通过'},
-    //         {code: "0", codeName: '驳回'},
-    //         {code: "3", codeName: '未审核'}
-    //     ],
-    //     formItem: {
-    //         type: 'select',
-    //         rules: [{required: true, message: '请选择一个状态！'}]
-    //     },
-
     }
 ];
 
