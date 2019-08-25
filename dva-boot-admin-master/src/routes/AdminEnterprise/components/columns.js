@@ -187,6 +187,11 @@ export const createColumns = (self,provinces,cities,countries) => [
             type: 'select',
         },
     },{
+        title: '企业认证编码',
+        name: 'secretKey',
+        disabled:true,
+        formItem: {},
+    },{
         title: '审核状态',
         name: 'cerStatus',
         dict: [
@@ -284,11 +289,6 @@ export const columns2 = [
         name: 'workEmployees',
         disabled:true,
         tableItem: {},
-        formItem: {},
-    },{
-        title: '企业认证编码',
-        name: 'secretKey',
-        disabled:true,
         formItem: {},
     },{
         title: '企业认证信息',
