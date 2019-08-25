@@ -18,6 +18,12 @@ export const createColumns = (self) => [
         formItem: {
         }
     },{
+        title: '会员信息发布时间',
+        name: 'pubDatetime',
+        tableItem: {
+            type: 'datetime',
+        }
+    },{
         title: '采购企业名称',
             name: 'purEntName',
         tableItem: {},
@@ -39,12 +45,6 @@ export const createColumns = (self) => [
         name: 'purAddress',
         tableItem: {},
         formItem: {}
-    },{
-        title: '发布时间',
-        name: 'pubDatetime',
-        tableItem: {
-            type: 'datetime',
-        }
     },{
         title: '抢购会员名称',
         name: 'nickName',
