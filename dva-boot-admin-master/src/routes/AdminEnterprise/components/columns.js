@@ -19,10 +19,10 @@ export const createColumns = (self,provinces,cities,countries) => [
             group: 'abc'
         }
     }, {
-        title: '企业编号',
+        title: '营业执照号',
         name: 'entBh',
         tableItem: {},
-        formItem: {rules: [{required: true, message: '企业编号不能为空！'}]},
+        formItem: {rules: [{required: true, message: '营业执照号不能为空！'}]},
         searchItem: {
             group: 'abc'
         }
@@ -284,6 +284,11 @@ export const columns2 = [
         name: 'workEmployees',
         disabled:true,
         tableItem: {},
+        formItem: {},
+    },{
+        title: '企业认证编码',
+        name: 'secretKey',
+        disabled:true,
         formItem: {},
     },{
         title: '企业认证信息',
