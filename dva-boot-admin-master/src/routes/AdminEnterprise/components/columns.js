@@ -63,7 +63,6 @@ export const createColumns = (self,provinces,cities,countries) => [
         name: 'entProvince',
         dict:provinces,
         formItem: {
-            rules: [{required: true, message: '省份不能为空！'}],
             type:'select',
             showSearch:true,
             optionFilterProp:'children',
@@ -77,7 +76,6 @@ export const createColumns = (self,provinces,cities,countries) => [
         name: 'entCity',
         dict:cities,
         formItem: {
-            rules: [{required: true, message: '城市不能为空！'}],
             type: 'select',
             showSearch: true,
             optionFilterProp: 'children',
@@ -88,7 +86,6 @@ export const createColumns = (self,provinces,cities,countries) => [
         name: 'entCounty',
         dict:countries,
         formItem: {
-            rules: [{required: true, message: '县区不能为空！'}],
             type: 'select',
             showSearch: true,
             optionFilterProp: 'children',

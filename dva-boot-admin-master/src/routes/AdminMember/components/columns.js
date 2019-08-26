@@ -199,7 +199,12 @@ export const createColumns = (self,ents) => [
         name: 'org_id',
         formItem: {},
     }, {
-        title: '商城金币',
+        title: '商城余额',
+        name: 'ec_gold_coin',
+        disabled:true,
+        formItem: {},
+    }, {
+        title: '商城回馈金币',
         name: 'ec_gold_coin_add',
         formItem: {},
     }, {
