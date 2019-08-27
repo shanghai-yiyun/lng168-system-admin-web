@@ -42,8 +42,8 @@ export const createColumns = (self) => [
             maxFileSize: 1000, // 最大限制 kb
             fileTypes: ['.png', '.jpg', '.gif'], // 允许类型
             max: 1,//上传图片数量最大限制
-            action: 'http://localhost:3000/article-gate/business/file/upload?fileType=image&subType=banner'
-            // action: 'http://s.lng168.com/article-gate/business/file/upload?fileType=image&subType=banner'
+            // action: 'http://localhost:3000/article-gate/business/file/upload?fileType=image&subType=banner'
+            action: 'http://s.lng168.com/article-gate/business/file/upload?fileType=image&subType=banner'
         },
     },
     {
