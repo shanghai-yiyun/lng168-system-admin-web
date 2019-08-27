@@ -50,6 +50,7 @@ import AdminMsgPurOff from  './AdminMsgPurOff';
 import AdminMsgPur from  './AdminMsgPur';
 import AdminPushMsg from  './AdminPushMsg';
 import AdminContract from  './AdminContract';
+import AdminBanner from  './AdminBanner';
 /**
  * 主路由配置
  * 
@@ -123,6 +124,7 @@ const routesConfig = app => [
       AdminMsgSupOff(app),
       AdminPushMsg(app),
       AdminContract(app),
+      AdminBanner(app),
       NotFound(),
     ]
   }
