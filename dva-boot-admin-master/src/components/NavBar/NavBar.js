@@ -154,7 +154,7 @@ class NavBar extends PureComponent {
           <li className="dropdown">
             <Popover
               placement="bottomRight"
-              title={`欢迎 ${user.nickname}`}
+              title={`欢迎 ${user.nickname}/${user.roleName}`}
               overlayClassName={cx('navbar-popup', { [theme]: !!theme })}
               content={<UserDropDown />}
               trigger="click"
