@@ -15,7 +15,7 @@ export const createColumns = (self) => [
         name: 'type',
         dict: [
             {code: 0, codeName: '首页'},
-            {code: 1, codeName: '咨询'},
+            {code: 1, codeName: '资讯'},
             {code: 2, codeName: '贸易'},
         ],
         tableItem: {width: 180},

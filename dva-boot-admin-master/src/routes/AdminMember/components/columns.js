@@ -119,13 +119,12 @@ export const createColumns = (self,ents) => [
             type: 'select',
         }
     }, {
-        title: '企业认证状态',
+        title: '企业审核状态',
         name: 'ent_cer_status',
         dict: [
-            {code: 0, codeName: '认证失败'},
-            {code: 1, codeName: '已认证'},
-            {code: 2, codeName: '认证中'},
-            {code: 9, codeName: '无'}
+            {code: 1, codeName: '已审核'},
+            {code: 2, codeName: '审核中'},
+            {code: 3, codeName: '审核失败'},
         ],
         tableItem: {},
         formItem: {
