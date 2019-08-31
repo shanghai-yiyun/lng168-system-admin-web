@@ -6,7 +6,7 @@ import moment from 'moment';
 import axios from 'axios';
 import store from "cmn-utils/lib/store";
 
-export const createColumns = (self,ents) => [
+export const createColumns = (self, ents) => [
     {
         title: '会员id',
         name: 'id',
@@ -22,8 +22,7 @@ export const createColumns = (self,ents) => [
         name: 'ename',
         tableItem: {},
         formItem: {},
-        searchItem: {
-        }
+        searchItem: {}
     }, {
         title: '昵称',
         name: 'nickname',
@@ -37,32 +36,32 @@ export const createColumns = (self,ents) => [
         name: 'mobile',
         tableItem: {},
         formItem: {
-            rules:[{ pattern: /^1[3|5|7|8|9][0-9]\d{8}$/, message: "手机号码格式不正确"}]
+            rules: [{pattern: /^1[3|5|7|8|9][0-9]\d{8}$/, message: "手机号码格式不正确"}]
         },
         searchItem: {
             group: 'abc'
         }
-    // }, {
-    //     title: '企业id',
-    //     name: 'entId',
-    //     formItem: {},
-    // } ,{
-    //     title: '企业名称',
-    //     name: 'entName',
-    //     formItem: {},
-    //     tableItem: {},
-    //     searchItem: {
-    //     }
-    },{
+        // }, {
+        //     title: '企业id',
+        //     name: 'entId',
+        //     formItem: {},
+        // } ,{
+        //     title: '企业名称',
+        //     name: 'entName',
+        //     formItem: {},
+        //     tableItem: {},
+        //     searchItem: {
+        //     }
+    }, {
         title: '企业名称',
         name: 'entId',
-        dict:ents,
+        dict: ents,
         tableItem: {},
         formItem: {
             rules: [{required: true, message: '企业名称不能为空！'}],
-            type:'select',
-            showSearch:true,
-            optionFilterProp:'children',
+            type: 'select',
+            showSearch: true,
+            optionFilterProp: 'children',
         },
         searchItem: {
             group: 'abc'
@@ -147,6 +146,7 @@ export const createColumns = (self,ents) => [
             {code: 6, codeName: '人工初审通过'},
         ],
         tableItem: {},
+        disabled: true,
         formItem: {
             type: 'select',
         },
@@ -220,7 +220,7 @@ export const createColumns = (self,ents) => [
     }, {
         title: '商城余额',
         name: 'ec_gold_coin',
-        disabled:true,
+        disabled: true,
         formItem: {},
     }, {
         title: '商城回馈金币',
@@ -236,7 +236,7 @@ export const createColumns = (self,ents) => [
             {code: 3, codeName: '用户'},
         ],
         formItem: {
-            type:'select'
+            type: 'select'
         },
     }, {
         title: '操作',
@@ -328,7 +328,7 @@ export const columns2 = [
                     message: '请选择用户认证图片'
                 }
             ],
-            listType:"picture",
+            listType: "picture",
             maxFileSize: 1000, // 最大限制 kb
             fileTypes: ['.png', '.jpg', '.gif'], // 允许类型
             max: 10,
@@ -342,13 +342,13 @@ export const columns2 = [
 export async function getExcel(url, fileName) {
     // const token = store.getStore("token");
     axios.get(url, {
-            responseType: 'blob', // 表明返回服务器返回的数据类型,
-            headers: {
-                Authorization: store.getStore("token"),
-                Accept: 'application/json',
-            },
-        })
-        .then(res =>{
+        responseType: 'blob', // 表明返回服务器返回的数据类型,
+        headers: {
+            Authorization: store.getStore("token"),
+            Accept: 'application/json',
+        },
+    })
+        .then(res => {
             const content = res;
             const blob = new Blob([content.data], {
                 type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=utf-8',
