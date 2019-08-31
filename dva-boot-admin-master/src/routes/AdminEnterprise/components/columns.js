@@ -155,8 +155,8 @@ export const createColumns = (self,provinces,cities,countries) => [
         name: 'entArea',
         formItem: {},
     }, {
-        title: '更新时间',
-        name: 'timeu',
+        title: '创建时间',
+        name: 'timei',
         tableItem: {}
     }, {
         title: '指数计算标志',

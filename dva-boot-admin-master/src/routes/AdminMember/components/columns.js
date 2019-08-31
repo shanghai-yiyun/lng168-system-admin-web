@@ -134,6 +134,26 @@ export const createColumns = (self,ents) => [
             type: 'select',
             group: 'abc'
         }
+    }, {
+        title: '企业认证状态',
+        name: 'ent_fdd_status',
+        dict: [
+            {code: 0, codeName: '未认证'},
+            {code: 1, codeName: '管理员资料已提交'},
+            {code: 2, codeName: '企业基本资料(没有申请表)已提交'},
+            {code: 3, codeName: '已提交待审核'},
+            {code: 4, codeName: '审核通过'},
+            {code: 5, codeName: '审核不通过'},
+            {code: 6, codeName: '人工初审通过'},
+        ],
+        tableItem: {},
+        formItem: {
+            type: 'select',
+        },
+        searchItem: {
+            type: 'select',
+            group: 'abc'
+        }
     },
     {
         title: '截止日期',
