@@ -51,6 +51,7 @@ import AdminMsgPur from  './AdminMsgPur';
 import AdminPushMsg from  './AdminPushMsg';
 import AdminContract from  './AdminContract';
 import AdminBanner from  './AdminBanner';
+import AppDownLoad from  './AppDownLoad';
 /**
  * 主路由配置
  * 
@@ -68,9 +69,10 @@ const routesConfig = app => [
     component: UserLayout,
     childRoutes: [
       Login(app) , //登录
-      smsLogin(app)  //登录
-      // Register(app),
+      // smsLogin(app)  //登录
+      Register(app),
       // NotFound()
+      AppDownLoad(app),
     ]
   },
   {
